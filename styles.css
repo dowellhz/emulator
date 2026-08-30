@@ -21,7 +21,8 @@ img { display:block; max-width:100%; }
 .eyebrow { color:var(--red); font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.16em; margin:0 0 25px; text-transform:uppercase; }
 h1,h2 { font-size:clamp(52px,7.2vw,92px); letter-spacing:-.07em; line-height:1.08; margin:0; }
 h1 em { color:var(--red); font-style:normal; }
-.hero-copy>p:not(.eyebrow) { color:var(--muted); font-size:16px; line-height:1.9; margin:30px auto; max-width:580px; }
+.hero-copy>p:not(.eyebrow) { color:var(--muted); font-size:16px; line-height:1.9; margin:30px auto; max-width:680px; }
+.nowrap { white-space:nowrap; }
 .primary-link { align-items:center; background:var(--ink); border-radius:99px; color:white; display:inline-flex; font-size:13px; font-weight:700; gap:30px; padding:15px 22px; transition:transform .2s,box-shadow .2s; }
 .primary-link:hover { box-shadow:0 12px 28px rgba(24,34,55,.18); transform:translateY(-2px); }
 .product-shot { background:var(--white); border:1px solid var(--line); border-radius:18px; box-shadow:0 40px 90px rgba(24,34,55,.14); margin-top:85px; padding:10px; position:relative; }
