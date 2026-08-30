@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f7f5f1">
-    <meta name="description" content="FC Emulator Library 群晖 DSM 7 服务器端安装与使用说明。">
+    <meta name="description" content="FC Emulator Library Windows、macOS、Linux 与群晖服务器端安装说明。">
     <meta property="og:title" content="服务器端 — 红白机模拟器">
-    <meta property="og:description" content="在群晖 NAS 上管理自己的 ROM、资料与封面。">
+    <meta property="og:description" content="在自己的电脑或群晖 NAS 上管理 ROM、资料与封面。">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/server-library.png">
     <title>服务器端 — 红白机模拟器</title>
@@ -28,20 +28,26 @@
     <main>
       <section class="server-hero section-shell">
         <div class="server-hero-copy reveal">
-          <p class="eyebrow">SYNOLOGY DSM 7</p>
-          <h1>把资料库，<br><em>放在自己的 NAS。</em></h1>
+          <p class="eyebrow">WINDOWS · MACOS · LINUX · SYNOLOGY</p>
+          <h1>把资料库，<br><em>放在自己的设备。</em></h1>
           <p>FC Emulator Library Server 用来整理 ROM、游戏资料、封面与合集，并向 Apple TV 提供你自己的远程资料库。</p>
-          <div class="server-download-row">
-            <a class="primary-link" href="downloads/FCEmulatorLibrary-1.0.0-0026.spk" download>下载群晖安装包 <span>↓</span></a>
-            <span>DSM 7 · v1.0.0-0026 · noarch</span>
+          <div class="server-download-options">
+            <a class="server-download-card featured" href="downloads/FCEmulatorLibrary-Docker-1.0.0-0026.zip" download>
+              <span>普通电脑 · 推荐</span><strong>Docker Compose</strong><small>Windows · macOS · Linux</small><b>下载 ZIP <i>↓</i></b>
+            </a>
+            <a class="server-download-card" href="downloads/FCEmulatorLibrary-1.0.0-0026.spk" download>
+              <span>群晖 NAS</span><strong>DSM 7 安装包</strong><small>noarch · Node.js 18+</small><b>下载 SPK <i>↓</i></b>
+            </a>
           </div>
         </div>
         <aside class="server-requirements reveal" aria-label="安装要求">
           <p>安装要求</p>
+          <strong>普通电脑</strong>
+          <span>安装近期版本的 Docker Desktop，Linux 可使用 Docker Engine 与 Compose 插件。</span>
           <strong>群晖 DSM 7</strong>
-          <span>先在套件中心安装 Node.js 18 或更高版本。</span>
+          <span>先在套件中心安装 Node.js 18 或更高版本，再手动安装 SPK。</span>
           <strong>端口 8282</strong>
-          <span>安装后通过浏览器打开 NAS 地址的 8282 端口。</span>
+          <span>默认仅当前电脑可访问；连接 Apple TV 时再绑定电脑的局域网 IP。</span>
         </aside>
       </section>
 
@@ -53,13 +59,23 @@
       <section class="server-guide section-shell" aria-labelledby="install-title">
         <div class="server-guide-title reveal">
           <p class="eyebrow">INSTALLATION</p>
-          <h2 id="install-title">四步完成安装。</h2>
+          <h2 id="install-title">普通电脑，<br>四步完成安装。</h2>
         </div>
         <ol class="server-steps">
-          <li class="reveal"><span>01</span><div><h3>准备运行环境</h3><p>在群晖「套件中心」安装 Node.js 18、20 或 22。安装包本身不绑定 NAS CPU 架构。</p></div></li>
-          <li class="reveal"><span>02</span><div><h3>手动安装 SPK</h3><p>进入「套件中心 → 手动安装」，选择本页下载的 <code>.spk</code> 文件并完成安装。</p></div></li>
-          <li class="reveal"><span>03</span><div><h3>授予资料库权限</h3><p>在共享文件夹权限的「系统内部用户」中，为 <code>FCEmulatorLibrary</code> 授予目标资料库的读写权限。</p></div></li>
-          <li class="reveal"><span>04</span><div><h3>打开并设置</h3><p>启动套件后访问 <code>http://NAS_IP:8282/</code>，在设置中选择资料库目录，再由 Apple TV 连接这个地址。</p></div></li>
+          <li class="reveal"><span>01</span><div><h3>安装 Docker</h3><p>Windows 与 macOS 安装 Docker Desktop；Linux 安装 Docker Engine 与 Compose 插件。</p></div></li>
+          <li class="reveal"><span>02</span><div><h3>解压并选择资料库</h3><p>下载并解压 ZIP，创建其中的 <code>library</code> 文件夹；也可按 README 把现有资料库路径写入 <code>.env</code>。</p></div></li>
+          <li class="reveal"><span>03</span><div><h3>启动服务</h3><p>在解压目录运行 <code>docker compose up -d --build</code>，再打开 <code>http://127.0.0.1:8282/</code>。</p></div></li>
+          <li class="reveal"><span>04</span><div><h3>安全开放给 Apple TV</h3><p>先启用管理 Token，再将 <code>FC_LIBRARY_BIND_IP</code> 改为电脑的局域网 IP；不要进行公网端口转发。</p></div></li>
+        </ol>
+      </section>
+
+      <section class="server-synology section-shell reveal" aria-labelledby="synology-title">
+        <div><p class="eyebrow">SYNOLOGY DSM 7</p><h2 id="synology-title">群晖继续使用原生 SPK。</h2></div>
+        <ol>
+          <li><span>01</span><p>在套件中心安装 Node.js 18、20 或 22。</p></li>
+          <li><span>02</span><p>进入「手动安装」，选择本页下载的 SPK。</p></li>
+          <li><span>03</span><p>为系统内部用户 <code>FCEmulatorLibrary</code> 授予资料库读写权限。</p></li>
+          <li><span>04</span><p>启动后访问 <code>http://NAS_IP:8282/</code> 完成设置。</p></li>
         </ol>
       </section>
 
@@ -69,8 +85,8 @@
           <h2>安装包不附带游戏与 BIOS。</h2>
         </div>
         <div>
-          <p>公开下载包不包含 ROM、CPS2 key，也不包含 <code>neogeo.zip</code> BIOS。CPS2 游戏需要在你自己的 ROM ZIP 中提供匹配的 <code>.key</code>；Neo Geo BIOS 需由你在管理页面上传自有的 <code>neogeo.zip</code>。</p>
-          <p>服务配置保存在群晖套件数据目录，ROM、封面和资料库索引写入你选择并授权的共享文件夹。请只使用你有权使用的内容。</p>
+          <p>Docker ZIP 与群晖 SPK 都不包含 ROM、CPS2 key，也不包含 <code>neogeo.zip</code> BIOS。CPS2 游戏需要在你自己的 ROM ZIP 中提供匹配的 <code>.key</code>；Neo Geo BIOS 需由你在管理页面上传自有的 <code>neogeo.zip</code>。</p>
+          <p>Docker 包默认仅绑定本机地址，并以非 root、只读根文件系统运行。ROM、封面和资料库索引只写入你明确挂载或授权的目录。请只使用你有权使用的内容。</p>
         </div>
       </section>
     </main>
