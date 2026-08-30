@@ -11,12 +11,7 @@ img { display:block; max-width:100%; }
 .site-header { align-items:center; backdrop-filter:blur(18px); background:rgba(247,245,241,.86); border-bottom:1px solid transparent; display:flex; height:76px; justify-content:space-between; left:0; padding-inline:max(32px,calc((100vw - 1180px)/2)); position:fixed; right:0; top:0; transition:border-color .2s,background .2s; z-index:10; }
 .site-header.scrolled { background:rgba(247,245,241,.96); border-color:var(--line); }
 .brand { align-items:center; display:inline-flex; font-size:15px; font-weight:800; gap:11px; }
-.brand-mark { background:var(--white); border-radius:7px; box-shadow:0 5px 15px rgba(24,34,55,.12); display:inline-block; height:31px; overflow:hidden; position:relative; width:36px; }
-.brand-mark::before { background:var(--red); content:""; height:7px; left:0; position:absolute; right:0; top:0; }
-.brand-mark::after { background:var(--ink); box-shadow:14px 0 var(--ink); border-radius:50%; content:""; height:5px; left:17px; position:absolute; top:18px; width:5px; }
-.brand-mark i:first-child::before,.brand-mark i:first-child::after { background:var(--ink); border-radius:1px; content:""; left:7px; position:absolute; top:19px; }
-.brand-mark i:first-child::before { height:3px; width:9px; }
-.brand-mark i:first-child::after { height:9px; left:10px; top:16px; width:3px; }
+.brand-icon { height:34px; object-fit:contain; width:34px; }
 .site-header nav { display:flex; font-size:12px; font-weight:600; gap:34px; }
 .site-header nav a { color:var(--muted); transition:color .2s; }
 .site-header nav a:hover { color:var(--ink); }
