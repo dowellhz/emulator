@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f7f5f1">
+    <meta name="theme-color" content="#0b1717">
     <meta name="description" content="FC Emulator Library Windows、macOS、Linux 与群晖服务器端安装说明。">
-    <meta property="og:title" content="服务器端 — 红白机模拟器">
+    <meta property="og:title" content="服务器端 — 红白机回忆模拟器">
     <meta property="og:description" content="在自己的电脑或群晖 NAS 上管理 ROM、资料与封面。">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/server-library.png">
-    <title>服务器端 — 红白机模拟器</title>
+    <title>服务器端 — 红白机回忆模拟器</title>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
@@ -18,11 +18,12 @@
   </head>
   <body>
     <header class="site-header scrolled" data-header>
-      <a class="brand" href="index.html" aria-label="返回红白机模拟器首页">
+      <a class="brand" href="index.html" aria-label="返回 FC Emulator 首页">
         <img class="brand-icon" src="assets/icon.png" alt="">
-        <span>红白机模拟器</span>
+        <span>FC Emulator</span>
       </a>
-      <nav aria-label="主导航"><a href="index.html#experience">体验</a><a class="current" href="server.html" aria-current="page">服务器端</a><a href="privacy.html">隐私</a><a href="index.html#release">发布</a></nav>
+      <nav aria-label="主导航"><a href="index.html#systems">支持平台</a><a href="index.html#download">Android TV</a><a class="current" href="server.html" aria-current="page">服务器端</a><a href="privacy.html">隐私</a></nav>
+      <a class="header-cta" href="index.html#download">下载 APK</a>
     </header>
 
     <main>
@@ -30,13 +31,13 @@
         <div class="server-hero-copy reveal">
           <p class="eyebrow">WINDOWS · MACOS · LINUX · SYNOLOGY</p>
           <h1>把资料库，<br><em>放在自己的设备。</em></h1>
-          <p>FC Emulator Library Server 用来整理 ROM、游戏资料、封面与合集，并向 Apple TV 提供你自己的远程资料库。</p>
+          <p>FC Emulator Library Server 用来整理 ROM、游戏资料、封面、存档与合集，并向 Android TV、Apple TV 和 macOS 提供你自己的远程资料库。</p>
           <div class="server-download-options">
-            <a class="server-download-card featured" href="downloads/FCEmulatorLibrary-Docker-1.0.0-0026.zip" download>
-              <span>普通电脑 · 推荐</span><strong>Docker Compose</strong><small>Windows · macOS · Linux</small><b>下载 ZIP <i>↓</i></b>
+            <a class="server-download-card featured" href="downloads/FCEmulatorLibrary-Docker-1.0.0-0030.zip" download>
+              <span>普通电脑 · 推荐</span><strong>Docker Compose</strong><small>v1.0.0-0030 · Windows · macOS · Linux</small><b>下载 ZIP <i>↓</i></b>
             </a>
-            <a class="server-download-card" href="downloads/FCEmulatorLibrary-1.0.0-0026.spk" download>
-              <span>群晖 NAS</span><strong>DSM 7 安装包</strong><small>noarch · Node.js 18+</small><b>下载 SPK <i>↓</i></b>
+            <a class="server-download-card" href="downloads/FCEmulatorLibrary-1.0.0-0030.spk" download>
+              <span>群晖 NAS</span><strong>DSM 7 安装包</strong><small>v1.0.0-0030 · noarch · Node.js 18+</small><b>下载 SPK <i>↓</i></b>
             </a>
           </div>
         </div>
@@ -47,7 +48,7 @@
           <strong>群晖 DSM 7</strong>
           <span>先在套件中心安装 Node.js 18 或更高版本，再手动安装 SPK。</span>
           <strong>端口 8282</strong>
-          <span>默认仅当前电脑可访问；连接 Apple TV 时再绑定电脑的局域网 IP。</span>
+          <span>默认仅当前电脑可访问；连接电视客户端时再绑定电脑的局域网 IP。</span>
         </aside>
       </section>
 
@@ -65,7 +66,7 @@
           <li class="reveal"><span>01</span><div><h3>安装 Docker</h3><p>Windows 与 macOS 安装 Docker Desktop；Linux 安装 Docker Engine 与 Compose 插件。</p></div></li>
           <li class="reveal"><span>02</span><div><h3>解压并选择资料库</h3><p>下载并解压 ZIP，创建其中的 <code>library</code> 文件夹；也可按 README 把现有资料库路径写入 <code>.env</code>。</p></div></li>
           <li class="reveal"><span>03</span><div><h3>启动服务</h3><p>在解压目录运行 <code>docker compose up -d --build</code>，再打开 <code>http://127.0.0.1:8282/</code>。</p></div></li>
-          <li class="reveal"><span>04</span><div><h3>安全开放给 Apple TV</h3><p>先启用管理 Token，再将 <code>FC_LIBRARY_BIND_IP</code> 改为电脑的局域网 IP；不要进行公网端口转发。</p></div></li>
+          <li class="reveal"><span>04</span><div><h3>安全开放给电视客户端</h3><p>先启用管理 Token，再将 <code>FC_LIBRARY_BIND_IP</code> 改为电脑的局域网 IP；不要进行公网端口转发。</p></div></li>
         </ol>
       </section>
 
@@ -92,7 +93,7 @@
     </main>
 
     <footer class="site-footer section-shell">
-      <a class="brand" href="index.html"><img class="brand-icon" src="assets/icon.png" alt=""><span>红白机模拟器</span></a>
+      <a class="brand" href="index.html"><img class="brand-icon" src="assets/icon.png" alt=""><span>FC Emulator</span></a>
       <p>服务器只在你自己的设备上运行；请妥善设置局域网、防火墙与访问权限。</p>
       <div><a href="privacy.html">隐私政策</a><span>© <span data-year></span></span></div>
     </footer>

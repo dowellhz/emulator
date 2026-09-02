@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f7f5f1">
-    <meta name="description" content="红白机模拟器 — 为 Apple TV 与 macOS 打造的原生游戏模拟器。">
-    <meta property="og:title" content="红白机模拟器">
-    <meta property="og:description" content="把熟悉的游戏，带回客厅大屏。">
+    <meta name="theme-color" content="#0b1717">
+    <meta name="description" content="FC Emulator — 为 Android TV、Apple TV 与 macOS 打造的客厅游戏资料库与模拟器。">
+    <meta property="og:title" content="FC Emulator">
+    <meta property="og:description" content="一台电视，一只手柄，下一局现在开始。">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/library.jpg">
-    <title>红白机模拟器</title>
+    <meta property="og:image" content="assets/android-library.png">
+    <title>FC Emulator — 客厅里的经典游戏资料库</title>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
@@ -18,50 +18,136 @@
   </head>
   <body>
     <header class="site-header" data-header>
-      <a class="brand" href="#top" aria-label="红白机模拟器首页">
+      <a class="brand" href="#top" aria-label="FC Emulator 首页">
         <img class="brand-icon" src="assets/icon.png" alt="">
-        <span>红白机模拟器</span>
+        <span>FC Emulator</span>
       </a>
-      <nav aria-label="主导航"><a href="#experience">体验</a><a href="server.html">服务器端</a><a href="#privacy">隐私</a><a href="#release">发布</a></nav>
+      <nav aria-label="主导航">
+        <a href="#systems">支持平台</a>
+        <a href="#download">Android TV</a>
+        <a href="server.html">服务器端</a>
+        <a href="privacy.html">隐私</a>
+      </nav>
+      <a class="header-cta" href="#download">下载 APK</a>
     </header>
 
     <main id="top">
       <section class="hero section-shell">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Apple TV · macOS</p>
-          <h1>把熟悉的游戏，<br><em>带回客厅大屏。</em></h1>
-          <p>一款原生、纯粹的游戏模拟器。整理自己的游戏资料库，连接手柄，然后开始<span class="nowrap">下一局。</span></p>
-          <a class="primary-link" href="#release">获取发布版本 <span>→</span></a>
+          <p class="eyebrow"><span></span> Android TV preview available</p>
+          <h1>一台电视，<br>一只手柄，<br><em>下一局现在开始。</em></h1>
+          <p class="hero-intro">为客厅距离重新设计的游戏资料库。连接自己的 NAS 或资料库服务器，在 Android TV 上浏览、收藏、存档并继续游玩。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#download">下载 Android TV <span>↓</span></a>
+            <a class="button button-ghost" href="server.html">配置资料库服务器 <span>→</span></a>
+          </div>
+          <div class="hero-meta" aria-label="Android 版本要求">
+            <span>v0.1.0</span><span>Android 7.0+</span><span>arm64-v8a</span><span>支持手柄</span>
+          </div>
         </div>
-        <div class="product-shot reveal"><img src="assets/library.jpg" alt="红白机模拟器 Apple TV 游戏资料库界面"></div>
+        <div class="hero-art reveal" aria-label="FC Emulator 电视资料库界面预览">
+          <div class="hero-orbit hero-orbit-one"></div>
+          <div class="hero-orbit hero-orbit-two"></div>
+          <div class="tv-frame">
+            <div class="tv-screen"><img src="assets/android-library.png" alt="FC Emulator Android TV 中文游戏资料库，显示最近、搜索、分类和内置原创游戏封面"></div>
+            <div class="tv-stand"></div>
+          </div>
+          <div class="floating-card floating-card-left"><b>60</b><span>目标帧率</span></div>
+          <div class="floating-card floating-card-right"><b>4P</b><span>街机手柄</span></div>
+        </div>
       </section>
 
-      <section class="statement section-shell reveal" id="experience">
-        <p>NES · NEO GEO · ARCADE</p>
-        <h2>游戏很多，<br>操作很少。</h2>
+      <section class="platform-strip" aria-label="客户端平台">
+        <div class="section-shell platform-strip-inner">
+          <p>一个资料库，多种客厅设备</p>
+          <div><span class="active">Android TV</span><span>Apple TV</span><span>macOS</span><span>自建服务器</span></div>
+        </div>
       </section>
 
-      <section class="features section-shell">
-        <article class="reveal"><span>01</span><h3>为电视距离设计</h3><p>清晰的封面、搜索、分类、收藏与最近游玩。坐在沙发上，一眼找到想玩的游戏。</p></article>
-        <article class="reveal"><span>02</span><h3>拿起手柄就玩</h3><p>支持 Apple TV 遥控器与系统游戏手柄，也为 macOS 准备了完整的键盘和手柄输入。</p></article>
-        <article class="reveal"><span>03</span><h3>进度始终在手</h3><p>即时存档、快进、录像回放和电池存档，让经典游戏更适合今天的游玩节奏。</p></article>
+      <section class="systems section-shell" id="systems">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> One library, four families</p>
+          <h2>不按核心分类，<br><em>按你想玩的游戏分类。</em></h2>
+          <p>统一的封面、搜索、收藏、最近游玩与游戏菜单。NES、Capcom、SEGA 和 Neo Geo 使用同一套电视交互。</p>
+        </div>
+        <div class="system-grid">
+          <article class="system-card reveal"><span>01</span><div><p>8-bit</p><h3>NES / FDS</h3></div><small>即时存档 · 电池存档 · 快进</small></article>
+          <article class="system-card reveal"><span>02</span><div><p>Arcade</p><h3>Capcom</h3></div><small>CPS1 · CPS2 · 4P 支持</small></article>
+          <article class="system-card reveal"><span>03</span><div><p>Arcade</p><h3>SEGA</h3></div><small>System 16 · OutRun</small></article>
+          <article class="system-card reveal"><span>04</span><div><p>Arcade</p><h3>Neo Geo</h3></div><small>存储卡 · Backup RAM</small></article>
+        </div>
       </section>
 
-      <section class="privacy section-shell reveal" id="privacy">
-        <div><p class="eyebrow">PRIVACY FIRST</p><h2>你的游戏，<br>只属于你。</h2></div>
-        <div><p>没有广告、跟踪或分析服务。资料库、游玩记录、ROM、封面与存档不会发送给开发者；远程资料库只连接到你自己配置的服务器。</p><a href="privacy.html">阅读完整隐私政策 <span>→</span></a></div>
+      <section class="experience section-shell">
+        <div class="experience-visual reveal">
+          <img src="assets/controller.png" alt="FC Emulator 手柄操作说明界面">
+        </div>
+        <div class="experience-copy reveal">
+          <p class="eyebrow"><span></span> Made for ten feet away</p>
+          <h2>不是把手机界面，<br>放大到电视上。</h2>
+          <ul>
+            <li><b>焦点只走一格</b><span>方向键与摇杆统一节流，列表和菜单保持可预测。</span></li>
+            <li><b>游戏菜单接管输入</b><span>退出、存档、读档时模拟核心暂停接收手柄事件。</span></li>
+            <li><b>画面尽可能铺满</b><span>按原始比例放大，横屏全屏、竖屏上下顶边，不拉伸变形。</span></li>
+          </ul>
+        </div>
       </section>
 
-      <section class="release section-shell reveal" id="release">
-        <p class="eyebrow">RELEASE</p>
-        <h2>下一局，<br>很快见。</h2>
-        <p>公开发布版本正在准备中。签名与分发验证完成后，正式安装渠道会在这里公布。</p>
-        <span class="release-state"><i></i> Coming soon</span>
+      <section class="download section-shell reveal" id="download">
+        <div class="download-copy">
+          <p class="eyebrow"><span></span> Android TV download</p>
+          <h2>先在大屏上，<br>开始这一局。</h2>
+          <p>适用于 64 位 ARM Android TV 设备。APK 不包含商业游戏、BIOS 或私有密钥；请只导入你有权使用的内容。</p>
+          <div class="download-notes">
+            <span><b>系统</b> Android 7.0 或更高</span>
+            <span><b>架构</b> arm64-v8a</span>
+            <span><b>版本</b> 0.1.0 Preview</span>
+          </div>
+        </div>
+        <div class="download-panel">
+          <img src="assets/icon.png" alt="">
+          <div>
+            <p>FC Emulator for Android TV</p>
+            <small>APK · 直接安装包</small>
+          </div>
+          <a class="button button-light" href="downloads/FCEmulator-AndroidTV-0.1.0-arm64-v8a.apk" download>下载 APK <span>↓</span></a>
+          <p class="checksum">SHA-256: 3d149ad379fe629cd5129b590cde2f9ce8e7fe3bc682a7edd35e0ca9be00d712<br><a href="downloads/FCEmulator-AndroidTV-0.1.0-provenance.json">查看签名构建证明 →</a></p>
+        </div>
+      </section>
+
+      <section class="install section-shell">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Three steps</p>
+          <h2>安装很短，<br>资料留在你手里。</h2>
+        </div>
+        <ol class="install-steps">
+          <li class="reveal"><span>01</span><div><h3>下载并安装 APK</h3><p>把 APK 发送到电视，通过文件管理器或 ADB 安装。首次侧载时，系统会要求允许安装未知来源应用。</p></div></li>
+          <li class="reveal"><span>02</span><div><h3>连接自己的资料库</h3><p>进入“设置 → 远端资料库”，填写 HTTP(S) 或 NAS 地址；也可以先部署配套服务器端。</p></div></li>
+          <li class="reveal"><span>03</span><div><h3>连接手柄开始游戏</h3><p>蓝牙或 USB 手柄均可。长按确认键打开游戏选项，可收藏、管理缓存和查看游戏信息。</p></div></li>
+        </ol>
+      </section>
+
+      <section class="server-callout section-shell reveal">
+        <div>
+          <p class="eyebrow"><span></span> Library server 1.0.0-0030</p>
+          <h2>游戏放在 NAS，<br>电视只负责好好玩。</h2>
+        </div>
+        <div>
+          <p>服务器端统一整理 ROM、封面、分类和存档，可运行在 Windows、macOS、Linux 或群晖 DSM 7。</p>
+          <a class="button button-light" href="server.html">查看服务器端 <span>→</span></a>
+        </div>
+      </section>
+
+      <section class="privacy-callout section-shell reveal">
+        <p class="eyebrow"><span></span> Private by design</p>
+        <h2>没有账号，没有广告，<br>也没有开发者的云。</h2>
+        <p>应用不会把 ROM、封面、存档、资料库地址或游玩记录发送给开发者。客户端只连接你明确配置的设备。</p>
+        <a href="privacy.html">阅读完整隐私政策 <span>→</span></a>
       </section>
     </main>
 
     <footer class="site-footer section-shell">
-      <a class="brand" href="#top"><img class="brand-icon" src="assets/icon.png" alt=""><span>红白机模拟器</span></a>
+      <a class="brand" href="#top"><img class="brand-icon" src="assets/icon.png" alt=""><span>FC Emulator</span></a>
       <p>请仅使用你有权使用的游戏内容。本站与任天堂及其他游戏发行商无隶属或背书关系。</p>
       <div><a href="privacy.html">隐私政策</a><span>© <span data-year></span></span></div>
     </footer>
