@@ -35,7 +35,7 @@
       <section class="hero section-shell">
         <div class="hero-copy reveal">
           <p class="eyebrow"><span></span> Android TV preview available</p>
-          <h1>一台电视，<br>一只手柄，<br><em>下一局现在开始。</em></h1>
+          <h1>一台电视，<br>一只手柄，<br><em class="hero-tagline">下一局现在开始。</em></h1>
           <p class="hero-intro">为客厅距离重新设计的游戏资料库。连接自己的 NAS 或资料库服务器，在 Android TV 上浏览、收藏、存档并继续游玩。</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#download">下载 Android TV <span>↓</span></a>
@@ -60,21 +60,21 @@
       <section class="platform-strip" aria-label="客户端平台">
         <div class="section-shell platform-strip-inner">
           <p>一个资料库，多种客厅设备</p>
-          <div><span class="active">Android TV</span><span>Apple TV</span><span>macOS</span><span>自建服务器</span></div>
+          <div><span class="active">Android TV</span><span>Apple TV · Coming Soon</span><span>macOS</span><span>自建服务器</span></div>
         </div>
       </section>
 
       <section class="systems section-shell" id="systems">
         <div class="section-heading reveal">
-          <p class="eyebrow"><span></span> One library, four families</p>
-          <h2>不按核心分类，<br><em>按你想玩的游戏分类。</em></h2>
-          <p>统一的封面、搜索、收藏、最近游玩与游戏菜单。NES、Capcom、SEGA 和 Neo Geo 使用同一套电视交互。</p>
+          <p class="eyebrow"><span></span> One library, every game night</p>
+          <h2>不必记住硬件，<br><em>按想玩的方式开始。</em></h2>
+          <p>统一的封面、搜索、收藏、最近游玩与游戏菜单。无论独自回味还是多人同乐，都使用同一套电视交互。</p>
         </div>
         <div class="system-grid">
-          <article class="system-card reveal"><span>01</span><div><p>8-bit</p><h3>NES / FDS</h3></div><small>即时存档 · 电池存档 · 快进</small></article>
-          <article class="system-card reveal"><span>02</span><div><p>Arcade</p><h3>Capcom</h3></div><small>CPS1 · CPS2 · 4P 支持</small></article>
-          <article class="system-card reveal"><span>03</span><div><p>Arcade</p><h3>SEGA</h3></div><small>System 16 · OutRun</small></article>
-          <article class="system-card reveal"><span>04</span><div><p>Arcade</p><h3>Neo Geo</h3></div><small>存储卡 · Backup RAM</small></article>
+          <article class="system-card reveal"><span>01</span><div><p>Classic</p><h3>童年回忆</h3></div><small>即时存档 · 自动保存 · 快进</small></article>
+          <article class="system-card reveal"><span>02</span><div><p>Co-op</p><h3>并肩闯关</h3></div><small>双人合作 · 四人同乐</small></article>
+          <article class="system-card reveal"><span>03</span><div><p>Racing</p><h3>速度挑战</h3></div><small>低延迟操作 · 流畅画面</small></article>
+          <article class="system-card reveal"><span>04</span><div><p>Versus</p><h3>客厅对战</h3></div><small>本地多人 · 随时续局</small></article>
         </div>
       </section>
 
@@ -104,14 +104,24 @@
             <span><b>版本</b> 0.1.0 Preview</span>
           </div>
         </div>
-        <div class="download-panel">
-          <img src="assets/icon.png" alt="">
-          <div>
-            <p>FC Emulator for Android TV</p>
-            <small>APK · 直接安装包</small>
+        <div class="download-panels">
+          <div class="download-panel">
+            <img src="assets/icon.png" alt="">
+            <div>
+              <p>FC Emulator for Android TV</p>
+              <small>APK · 直接安装包</small>
+            </div>
+            <a class="button button-light" href="downloads/FCEmulator-AndroidTV-0.1.0-arm64-v8a.apk" download>下载 APK <span>↓</span></a>
+            <p class="checksum">SHA-256: 3d149ad379fe629cd5129b590cde2f9ce8e7fe3bc682a7edd35e0ca9be00d712</p>
           </div>
-          <a class="button button-light" href="downloads/FCEmulator-AndroidTV-0.1.0-arm64-v8a.apk" download>下载 APK <span>↓</span></a>
-          <p class="checksum">SHA-256: 3d149ad379fe629cd5129b590cde2f9ce8e7fe3bc682a7edd35e0ca9be00d712<br><a href="downloads/FCEmulator-AndroidTV-0.1.0-provenance.json">查看签名构建证明 →</a></p>
+          <div class="download-panel download-panel-soon">
+            <img src="assets/icon.png" alt="">
+            <div>
+              <p>FC Emulator for Apple TV</p>
+              <small>TV APP · COMING SOON</small>
+            </div>
+            <span class="button button-disabled" aria-disabled="true">Coming Soon <span>•••</span></span>
+          </div>
         </div>
       </section>
 
