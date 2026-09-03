@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "ghosts-and-graves",
+  "title": "Ghosts and Graves",
+  "chineseTitle": "Ghosts and Graves",
+  "description": "一款开源的墓园格子解谜游戏，用于测试 NES Mapper 3、画面、声音和输入。",
+  "system": "nes",
+  "category": "益智",
+  "classic": false,
+  "mapper": 3,
+  "region": "Homebrew",
+  "players": 1,
+  "rom": {
+    "path": "Ghosts and Graves.nes",
+    "bytes": 73744,
+    "sha256": "3073ba7e0a80538a9260d7f41741dd338b8583d8f4207d62316f7684c1096619"
+  },
+  "artwork": {
+    "cover": {
+      "path": "Ghosts and Graves.png",
+      "bytes": 314454,
+      "sha256": "0c6ebea338eba0c47239e8fd061e0f9c8bf931865a481bbf35034027a595d6d3"
+    }
+  }
+}

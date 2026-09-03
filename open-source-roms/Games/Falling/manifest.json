@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "falling",
+  "title": "Falling",
+  "chineseTitle": "Falling",
+  "description": "一款开源的空中坠落躲避游戏，用于测试 NES Mapper 0、画面、声音和输入。",
+  "system": "nes",
+  "category": "动作",
+  "classic": false,
+  "mapper": 0,
+  "region": "Homebrew",
+  "players": 1,
+  "rom": {
+    "path": "Falling.nes",
+    "bytes": 40976,
+    "sha256": "e22b947542c2d7e595bf84725b333be7af8189c5965b9c53e356a249c7d79943"
+  },
+  "artwork": {
+    "cover": {
+      "path": "Falling.png",
+      "bytes": 187727,
+      "sha256": "d7dc8b0956a28ad86212836dc4fe34c8b45e7eca3c92967d5ce3a2759bee8e05"
+    }
+  }
+}

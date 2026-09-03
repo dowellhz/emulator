@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "title": "Open-source NES Test Library",
+  "updatedAt": "2026-09-03T04:51:53Z",
+  "games": [
+    {
+      "id": "falling",
+      "manifest": "Games/Falling/manifest.json",
+      "updatedAt": "2026-09-03T04:51:53Z"
+    },
+    {
+      "id": "ghosts-and-graves",
+      "manifest": "Games/Ghosts and Graves/manifest.json",
+      "updatedAt": "2026-09-03T04:51:53Z"
+    }
+  ]
+}
