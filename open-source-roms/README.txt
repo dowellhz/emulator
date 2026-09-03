@@ -5,7 +5,7 @@ https://dowellhz.github.io/emulator/open-source-roms/
 
 Every ROM and cover image has the same base filename. The library contains
 only redistributable open-source test games and their license notices.
-See FORMAT.md for the complete directory and manifest format.
+Read format.html in a browser, or FORMAT.md for the Markdown source.
 
 Falling
 Source: https://github.com/xram64/falling-nes

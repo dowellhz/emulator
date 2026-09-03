@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FC Emulator 开源 NES 测试资料库目录、索引与游戏清单格式说明。">
+  <title>开源 NES 测试资料库格式说明</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f5f2ea;
+      --card: #fffdf8;
+      --ink: #102624;
+      --muted: #607572;
+      --line: #d9ded8;
+      --accent: #db4b3f;
+      --code: #e9eee9;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { width: min(900px, calc(100% - 32px)); margin: 32px auto 72px; }
+    nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 34px; font-size: 14px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    article { padding: clamp(24px, 6vw, 64px); background: var(--card); border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 18px 50px rgba(31, 47, 43, .08); }
+    h1 { margin: 0 0 12px; font-size: clamp(32px, 6vw, 56px); line-height: 1.08; letter-spacing: -.04em; }
+    h2 { margin: 44px 0 14px; padding-top: 8px; font-size: 24px; line-height: 1.25; }
+    p { margin: 12px 0; }
+    .lead { max-width: 680px; color: var(--muted); font-size: 18px; }
+    .address { margin: 28px 0 8px; padding: 16px 18px; border-left: 4px solid var(--accent); background: var(--code); border-radius: 4px 12px 12px 4px; overflow-wrap: anywhere; }
+    pre { overflow-x: auto; margin: 16px 0; padding: 18px; background: var(--code); border: 1px solid var(--line); border-radius: 14px; font: 14px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    :not(pre) > code { padding: .12em .38em; background: var(--code); border-radius: 5px; font-size: .9em; }
+    ul { padding-left: 1.25em; }
+    li { margin: 7px 0; }
+    .rule { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0 8px; }
+    .rule div { padding: 16px; background: var(--code); border-radius: 14px; }
+    .rule strong { display: block; color: var(--accent); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+    footer { margin-top: 28px; color: var(--muted); font-size: 14px; text-align: center; }
+    @media (max-width: 640px) { .rule { grid-template-columns: 1fr; } article { border-radius: 18px; } }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper: #111816; --card: #17211f; --ink: #edf4f1; --muted: #9eb0ab; --line: #35433f; --code: #202c29; --accent: #ff7568; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <nav><a href="./">← 返回文件目录</a><a href="FORMAT.md">查看 Markdown 原文</a></nav>
+    <article>
+      <h1>开源 NES 测试资料库格式</h1>
+      <p class="lead">用于 Android TV 与 Apple TV 的 HTTP 静态资料库约定。每个游戏独立存放，ROM 与封面使用完全相同的文件名主体。</p>
+      <p class="address">导入地址：<br><code>https://dowellhz.github.io/emulator/open-source-roms/</code></p>
+
+      <div class="rule">
+        <div><strong>ROM</strong>游戏名称.nes</div>
+        <div><strong>Cover</strong>游戏名称.png</div>
+        <div><strong>Schema</strong>schemaVersion 1</div>
+      </div>
+
+      <h2>1. 目录结构</h2>
+      <pre><code>open-source-roms/
+├── library.json
+├── FORMAT.md
+├── LICENSE-*.txt
+└── Games/
+    └── 游戏目录/
+        ├── manifest.json
+        ├── 游戏名称.nes
+        └── 游戏名称.png</code></pre>
+      <p>文件名区分大小写。推荐使用 505×337 横版 PNG 封面，应用内居中裁切，不拉伸画面。</p>
+
+      <h2>2. 根索引 library.json</h2>
+      <pre><code>{
+  "schemaVersion": 1,
+  "title": "Open-source NES Test Library",
+  "updatedAt": "2026-09-03T04:51:53Z",
+  "games": [
+    {
+      "id": "falling",
+      "manifest": "Games/Falling/manifest.json",
+      "updatedAt": "2026-09-03T04:51:53Z"
+    }
+  ]
+}</code></pre>
+      <ul>
+        <li><code>id</code> 必须唯一并保持稳定，只能包含英文字母、数字、点、下划线和连字符，最长 180 个字符。</li>
+        <li><code>manifest</code> 是相对于资料库根目录的路径。</li>
+        <li><code>updatedAt</code> 使用 UTC RFC 3339 时间，修改游戏文件或清单后应同步更新。</li>
+      </ul>
+
+      <h2>3. 单游戏 manifest.json</h2>
+      <pre><code>{
+  "schemaVersion": 1,
+  "id": "falling",
+  "title": "Falling",
+  "chineseTitle": "Falling",
+  "description": "游戏说明",
+  "system": "nes",
+  "category": "动作",
+  "classic": false,
+  "mapper": 0,
+  "region": "Homebrew",
+  "players": 1,
+  "rom": {
+    "path": "Falling.nes",
+    "bytes": 40976,
+    "sha256": "64 位小写 SHA-256"
+  },
+  "artwork": {
+    "cover": {
+      "path": "Falling.png",
+      "bytes": 187727,
+      "sha256": "64 位小写 SHA-256"
+    }
+  }
+}</code></pre>
+      <ul>
+        <li>清单中的 <code>id</code> 必须与根索引中的对应 <code>id</code> 完全相同。</li>
+        <li>ROM 和封面路径相对于该游戏的 <code>manifest.json</code> 所在目录。</li>
+        <li>只能使用安全相对路径，不能以斜杠开头，也不能包含 <code>.</code> 或 <code>..</code> 路径段。</li>
+        <li><code>bytes</code> 必须等于实际字节数；<code>sha256</code> 必须是文件内容对应的 64 位小写十六进制值。</li>
+        <li>NES ROM 使用 <code>.nes</code>；封面推荐 <code>.png</code>，也支持 JPG 和 WebP。</li>
+      </ul>
+
+      <h2>4. 限制与校验</h2>
+      <ul>
+        <li>单个 ROM 最大 512 MiB。</li>
+        <li>单张封面最大 32 MiB。</li>
+        <li>为同时兼容 Android TV 与 Apple TV，单个资料库最多放置 5000 个游戏。</li>
+      </ul>
+      <pre><code>stat -f '%z' 'Falling.nes'
+shasum -a 256 'Falling.nes'</code></pre>
+
+      <h2>5. 简易导入与 HTTP 导入</h2>
+      <ul>
+        <li>SMB 简易导入可直接扫描裸目录中的同名 <code>.nes</code> 和 <code>.png</code>。</li>
+        <li>GitHub Pages 属于 HTTP 静态服务器，模拟器会读取根目录的 <code>library.json</code>，所以必须保留根索引和每个游戏的 <code>manifest.json</code>。</li>
+        <li>文件目录网页只供人查看，不参与模拟器导入。</li>
+      </ul>
+
+      <h2>6. 发布要求</h2>
+      <p>只能发布作者明确允许再分发的 ROM 和素材，并保留相应许可证。不得上传商业 ROM、BIOS、私有密钥、密码或 Token。</p>
+    </article>
+    <footer>Open-source NES test library · Format version 1</footer>
+  </main>
+</body>
+</html>
