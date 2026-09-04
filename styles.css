@@ -120,13 +120,23 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
 .download::before { border: 1px solid rgba(255, 255, 255, .16); border-radius: 50%; content: ""; height: 520px; left: -230px; position: absolute; top: -250px; width: 520px; }
 .download .eyebrow { color: rgba(255, 255, 255, .7); }
 .download h2 { font-size: clamp(47px, 5vw, 68px); }
+/* Three download panels make the right column taller than the copy, which
+   left a large empty block under the paragraph. Anchoring the specs to the
+   bottom of the copy column balances the two sides again. */
+.download-copy { display: flex; flex-direction: column; }
 .download-copy > p:not(.eyebrow) { color: rgba(255, 255, 255, .74); font-size: 13px; line-height: 1.9; margin: 28px 0 36px; max-width: 530px; }
-.download-notes { display: flex; flex-wrap: wrap; gap: 18px; }
+.download-notes { display: flex; flex-wrap: wrap; gap: 18px 24px; margin-top: auto; }
 .download-notes span { font-size: 10px; }
 .download-notes b { color: rgba(255, 255, 255, .54); font-weight: 600; margin-right: 5px; }
-.download-panels { align-self: center; display: grid; gap: 12px; }
+.download-panels { align-self: stretch; display: grid; gap: 12px; }
 .download-panel { align-content: center; align-self: center; background: rgba(92, 15, 10, .28); border: 1px solid rgba(255, 255, 255, .18); border-radius: 18px; display: grid; gap: 18px; grid-template-columns: 70px 1fr; padding: 28px; position: relative; }
-.download-panel-soon { background: rgba(92, 15, 10, .14); }
+/* The Apple TV row is a placeholder, not a download, so it is a slim strip
+   rather than a card the same size as the two real ones. That also keeps the
+   panel stack from towering over the copy beside it. */
+.download-panel-soon { align-items: center; background: rgba(92, 15, 10, .14); gap: 14px; grid-template-columns: 46px 1fr auto; padding: 16px 22px; }
+.download-panel-soon > img { height: 46px; width: 46px; }
+.download-panel-soon > div p { font-size: 14px; }
+.download-panel.download-panel-soon .button { font-size: 10px; grid-column: auto; justify-self: end; padding: 10px 18px; }
 .download-panel > img { border-radius: 16px; height: 70px; width: 70px; }
 .download-panel > div { align-self: center; }
 .download-panel > div p { font-size: 16px; font-weight: 780; margin: 0 0 5px; }

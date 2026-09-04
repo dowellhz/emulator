@@ -25,24 +25,25 @@
       <nav aria-label="主导航">
         <a href="#systems">支持平台</a>
         <a href="#download">Android TV</a>
+        <a href="#download">macOS</a>
         <a href="server.html">服务器端</a>
         <a href="privacy.html">隐私</a>
       </nav>
-      <a class="header-cta" href="#download">下载 APK</a>
+      <a class="header-cta" href="#download">下载</a>
     </header>
 
     <main id="top">
       <section class="hero section-shell">
         <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Android TV preview available</p>
+          <p class="eyebrow"><span></span> Android TV &amp; macOS available</p>
           <h1>一台电视，<br>一只手柄，<br><em class="hero-tagline">下一局现在开始。</em></h1>
-          <p class="hero-intro">为客厅距离重新设计的游戏资料库。连接自己的 NAS 或资料库服务器，在 Android TV 上浏览、收藏、存档并继续游玩。</p>
+          <p class="hero-intro">为客厅距离重新设计的游戏资料库。连接自己的 NAS 或资料库服务器，在 Android TV 与 Mac 上浏览、收藏、存档并继续游玩。</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#download">下载 Android TV <span>↓</span></a>
+            <a class="button button-primary" href="#download">下载客户端 <span>↓</span></a>
             <a class="button button-ghost" href="server.html">配置资料库服务器 <span>→</span></a>
           </div>
           <div class="hero-meta" aria-label="Android 版本要求">
-            <span>v0.1.0</span><span>Android 7.0+</span><span>arm64-v8a</span><span>支持手柄</span>
+            <span>Android TV 0.1.0</span><span>macOS 1.0.0</span><span>Apple 芯片 · arm64</span><span>支持手柄</span>
           </div>
         </div>
         <div class="hero-art reveal" aria-label="FC Emulator 电视资料库界面预览">
@@ -60,7 +61,7 @@
       <section class="platform-strip" aria-label="客户端平台">
         <div class="section-shell platform-strip-inner">
           <p>一个资料库，多种客厅设备</p>
-          <div><span class="active">Android TV</span><span>Apple TV · Coming Soon</span><span>macOS</span><span>自建服务器</span></div>
+          <div><span class="active">Android TV</span><span class="active">macOS</span><span>Apple TV · Coming Soon</span><span>自建服务器</span></div>
         </div>
       </section>
 
@@ -95,13 +96,13 @@
 
       <section class="download section-shell reveal" id="download">
         <div class="download-copy">
-          <p class="eyebrow"><span></span> Android TV download</p>
+          <p class="eyebrow"><span></span> Downloads</p>
           <h2>先在大屏上，<br>开始这一局。</h2>
-          <p>适用于 64 位 ARM Android TV 设备。APK 不包含商业游戏、BIOS 或私有密钥；请只导入你有权使用的内容。</p>
+          <p>Android TV 与 macOS 两个客户端。安装包都不包含商业游戏、BIOS 或私有密钥；请只导入你有权使用的内容。</p>
           <div class="download-notes">
-            <span><b>系统</b> Android 7.0 或更高</span>
-            <span><b>架构</b> arm64-v8a</span>
-            <span><b>版本</b> 0.1.0 Preview</span>
+            <span><b>Android TV</b> Android 7.0 或更高 · arm64-v8a</span>
+            <span><b>macOS</b> 14 Sonoma 或更高 · Apple 芯片</span>
+            <span><b>签名</b> Developer ID · 已通过 Apple 公证</span>
           </div>
         </div>
         <div class="download-panels">
@@ -113,6 +114,15 @@
             </div>
             <a class="button button-light" href="downloads/FCEmulator-AndroidTV-0.1.0-arm64-v8a.apk" download>下载 APK <span>↓</span></a>
             <p class="checksum">SHA-256: 3d149ad379fe629cd5129b590cde2f9ce8e7fe3bc682a7edd35e0ca9be00d712</p>
+          </div>
+          <div class="download-panel">
+            <img src="assets/icon.png" alt="">
+            <div>
+              <p>FC Emulator for macOS</p>
+              <small>DMG · APPLE SILICON</small>
+            </div>
+            <a class="button button-light" href="downloads/FCEmulator-macOS-1.0.0.dmg" download>下载 DMG <span>↓</span></a>
+            <p class="checksum">SHA-256: 4421f7b6009dd954efad13e2b4bbdae2169cde3e4095d6c81b87cfb691b3b588</p>
           </div>
           <div class="download-panel download-panel-soon">
             <img src="assets/icon.png" alt="">
@@ -131,7 +141,7 @@
           <h2>安装很短，<br>资料留在你手里。</h2>
         </div>
         <ol class="install-steps">
-          <li class="reveal"><span>01</span><div><h3>下载并安装 APK</h3><p>把 APK 发送到电视，通过文件管理器或 ADB 安装。首次侧载时，系统会要求允许安装未知来源应用。</p></div></li>
+          <li class="reveal"><span>01</span><div><h3>下载并安装</h3><p>Android TV：把 APK 发送到电视，用文件管理器或 ADB 安装，首次侧载需允许未知来源。macOS：打开 DMG，把应用拖进「应用程序」即可，安装包已通过 Apple 公证，不会被 Gatekeeper 拦下。</p></div></li>
           <li class="reveal"><span>02</span><div><h3>连接自己的资料库</h3><p>进入“设置 → 远端资料库”，填写 HTTP(S) 或 NAS 地址；也可以先部署配套服务器端。</p></div></li>
           <li class="reveal"><span>03</span><div><h3>连接手柄开始游戏</h3><p>蓝牙或 USB 手柄均可。长按确认键打开游戏选项，可收藏、管理缓存和查看游戏信息。</p></div></li>
         </ol>
