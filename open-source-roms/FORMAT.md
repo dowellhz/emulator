@@ -1,5 +1,8 @@
 # 开源 NES 测试资料库文件格式
 
+本页描述现有 NES `manifest.json` v1。需要声明明确机型、硬件板、固件、输入、持久化区域与
+可复现参考轨迹时，使用[可携带游戏清单 v2](./PORTABLE_MANIFEST_V2.md)。
+
 资料库导入地址：
 
 `https://dowellhz.github.io/emulator/open-source-roms/`
