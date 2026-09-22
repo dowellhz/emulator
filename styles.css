@@ -134,7 +134,9 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
    rather than a card the same size as the two real ones. That also keeps the
    panel stack from towering over the copy beside it. */
 .download-panel-soon { align-items: center; background: rgba(92, 15, 10, .14); gap: 14px; grid-template-columns: 46px 1fr auto; padding: 16px 22px; }
-.download-panel-soon > img { height: 46px; width: 46px; }
+/* The 16px radius .download-panel sets is scaled for a 70px tile; at 46px it
+   eats the corners. Keep the same proportion. */
+.download-panel-soon > img { border-radius: 10px; height: 46px; width: 46px; }
 .download-panel-soon > div p { font-size: 14px; }
 .download-panel.download-panel-soon .button { font-size: 10px; grid-column: auto; justify-self: end; padding: 10px 18px; }
 .download-panel > img { border-radius: 16px; height: 70px; width: 70px; }
