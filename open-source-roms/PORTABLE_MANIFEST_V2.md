@@ -1,8 +1,8 @@
 # FC Emulator 可携带游戏清单 v2
 
 `manifest.json` 的 v2 格式在 v1 展示元数据之外，加入一份完整、可审计的 `hardware` 声明。
-它用于 Mega Drive、IGS PGM、SNES 等独立新核心，也可用于现有系统。GB/GBC 已退出开发与
-产品范围，服务端与客户端都会拒绝新的 `gameBoy`、`gameBoyColor` 清单。
+它用于 Mega Drive、IGS PGM、SNES、Game Boy 等独立新核心，也可用于现有系统。`gameBoy`、
+`gameBoyColor` 曾于 2026-09-10 作为墓碑保留，2026-10-02 随自研核心按原含义恢复。
 
 v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`，其中所有数组即使为空也
 必须明确写出。ROM、固件和参考轨迹只以安全相对路径、字节数和小写 SHA-256 引用；不得在
@@ -69,6 +69,11 @@ v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`�
 | `neoGeo` | `arcade-neogeo-mvs` | `.zip/.7z` | `neogeo-` |
 | `arcade` | `arcade-cps1`、`arcade-cps2`、`arcade-sega-outrun`、`arcade-sega-system16` | `.zip/.7z` | `cps1-`、`cps2-`、`sega-arcade-` |
 | `megaDrive` | `sega-mega-drive` | `.bin/.md/.gen` | `mega-drive-` |
+| `masterSystem` | `sega-master-system`、`sega-master-system-2`、`sega-mark-iii` | `.sms` | `sms-` |
+| `gameGear` | `sega-game-gear` | `.gg` | `gg-` |
+| `gameBoy` | `game-boy-dmg`、`game-boy-pocket` | `.gb/.gbc` | `game-boy-` |
+| `gameBoyColor` | `game-boy-color` | `.gb/.gbc` | `game-boy-` |
+| `gameBoyAdvance` | `game-boy-advance` | `.gba` | `gba-` |
 | `pgm` | `arcade-igs-pgm1` | `.zip/.7z` | `pgm-` |
 | `snes` | `super-nintendo`、`super-famicom` | `.smc/.sfc` | `snes-` |
 
@@ -76,11 +81,13 @@ v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`�
 不得依靠标题、文件名或 ROM 哈希在运行时猜测。
 
 输入设备按系统限制为 `nes-standard`、`arcade-digital`、`mega-drive-3-button`、
-`mega-drive-6-button`、`snes-standard` 或 `snes-super-scope`。端口号在 0–7 内且不可重复。
+`mega-drive-6-button`、`snes-standard`、`snes-super-scope`、`sms-control-pad`、
+`game-gear-built-in`、`game-boy-built-in` 或 `gba-built-in`。端口号在 0–7 内且不可重复。
 
 持久化 `kind` 与 `FCEngineC` ABI v2 一一对应：`nes-battery`、`fds-side`、
 `neogeo-backup-ram`、`neogeo-memory-card`、`cps1-eeprom`、`mega-drive-sram`、
-`mega-drive-eeprom`、`pgm-nvram`、`snes-sram`、`snes-rtc`。
+`mega-drive-eeprom`、`pgm-nvram`、`snes-sram`、`snes-rtc`、`sega8-cartridge-ram`、
+`game-boy-ram`、`game-boy-rtc`、`gba-backup`、`gba-rtc`。
 同一 `(kind, slot)` 不可重复，`bytes` 是核心可见区域的精确大小。这里只描述区域，不保存用户
 运行后产生的存档数据。
 
@@ -96,6 +103,40 @@ Mega Drive 首发产品边界更窄：`region` 只接受 `japan/usa/europe/world
 `acclaim-16m`、`acclaim-32m`、`codemasters-jcart`，chip 只能是 `x24c01/x24c02`
 或 `24c01` 至 `24c512` 的已登记型号。`bytes` 必须与芯片容量精确相等；客户端和服务端都
 在 ROM 进入核心前拒绝未知接线或容量不一致，不能用游戏名、文件名或 ROM 哈希推断 EEPROM。
+
+Master System 与 Game Gear 共用一套 8 位边界：板卡是 `sms-`/`gg-` 加
+`cartridge`（由核心按 MEKA 规则自检 mapper）、`sega`、`codemasters` 或 `korean` 之一，前缀必须
+与 `system` 一致。Master System 接受 `japan/usa/europe/world` 和最多两个 `sms-control-pad`
+端口（0 必须有）；Game Gear 没有 PAL 型号，只接受 `japan/usa/world` 和端口 0 的
+`game-gear-built-in`。每张卡带都有 RAM，清单只在游戏会写它时声明一条 slot 0
+`sega8-cartridge-ram`：`sega`/`korean`/`cartridge` 板 32768 字节，`codemasters` 板 65536 字节。
+两台主机都不需要固件。`.sms` 卡带以 `.gg` 身份进库时按 Game Gear 的 Master System 兼容
+模式运行，两者的存档 identity 不同。
+
+Game Boy 与 Game Boy Color 由卡带头 `$0143` 的 CGB 标志决定（`$80`/`$c0` 为 Color），扩展名
+`.gb`/`.gbc` 只是文件名，两者都可用于两台主机；`$c0` 专用卡带不得进 `gameBoy`，不支持彩色的卡带
+不得进 `gameBoyColor`。板卡是 `game-boy-` 加卡带控制芯片 `rom`、`mbc1`、`mbc2`、`mbc3` 或 `mbc5`，
+必须与卡带头一致；输入只有端口 0 的 `game-boy-built-in`；地区接受 `japan/usa/europe/world`，不影响
+运行。电池卡带声明 slot 0 `game-boy-ram`（MBC2 为 512 字节，其余为卡带头的 RAM 大小），MBC3 时钟
+卡带另声明 slot 1、48 字节的 `game-boy-rtc`；两者合起来就是通用 `.sav` 文件。启动 ROM 不随清单发布，
+不得声明固件。存档信封见 `GAME_BOY_SAVE_V1.md`。
+
+Game Boy Advance（2026-10-02 加入）：板卡是 `gba-` 加卡带存档芯片，由 ROM 里 SDK 链入的 ID 字符串（只认 4 字节对齐处）决定，
+必须与 ROM 一致——`EEPROM_V` 为 `eeprom`，`SRAM_V`/`SRAM_F_V` 为 `sram`，`FLASH1M_V` 为 `flash128`，
+`FLASH_V`/`FLASH512_V` 为 `flash64`，都没有为 `none`（按此顺序取第一个命中）。输入只有端口 0 的
+`gba-built-in`；地区接受 `japan/usa/europe/world`，不影响运行。有存档芯片的卡带声明一条 slot 0
+`gba-backup`：`sram` 32768、`flash64` 65536、`flash128` 131072 字节；`eeprom` 声明 8192，但实际
+存档可能是 512 字节（4 Kbit 芯片），游戏第一次访问前无法从 ROM 得知，客户端两种都要接受。带
+S-3511A 时钟的卡带（游戏编号 `$00ac` 前三个字符为 `AXV`、`AXP`、`BPE`、`U3I`、`U32`、`U33`、`BKA`
+或 `BR4`）另声明 slot 1、16 字节的 `gba-rtc`。BIOS 不随清单发布，也不得声明固件：它由资料库根索引
+的 `bios.gba` 统一提供（见下）。存档信封见 `GBA_SAVE_V1.md`。
+
+资料库根索引 `library.json` 的 `bios.gba` 形如 `{ "path": "gba_bios.bin", "bytes": 16384, "sha256": … }`，
+与 `bios.fds` 相同。服务端与客户端只接受 MAME `nintendo/gba.cpp` 登记的那一份 16 KiB BIOS
+（CRC32 `81977335`、SHA-1 `300c20df6731a33952ded8c436f7f186d25d3492`、SHA-256
+`fd2547724b505f487e6dcb29ec2ecff3af35a841a77ab2e85fd87350abd36570`）。客户端按 SHA-256 保存到 App
+私有容器，不内置、不从 ROM 公共目录搜索；没有 BIOS 时 GBA 游戏不启动并提示到资料库服务器上传。
+公开 SPK/Docker 包不得含 `gba_bios.bin`。
 
 固件 `role` 只能是 `system-firmware` 或 `coprocessor-firmware`；同一 `(role, slot)` 不可
 重复。CPS2 key 仍严格使用既有的单游戏 `emulation.cps2Key` 链路，不能伪装成通用固件，客户端

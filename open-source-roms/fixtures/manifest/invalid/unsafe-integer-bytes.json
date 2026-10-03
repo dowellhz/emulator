@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "id": "md-fixture",
+  "title": "Mega Drive Fixture",
+  "system": "megaDrive",
+  "category": "其他",
+  "rom": {
+    "path": "rom/fixture.md",
+    "bytes": 524288,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "hardware": {
+    "schemaVersion": 1,
+    "model": "sega-mega-drive",
+    "region": "usa",
+    "cartridge": {
+      "board": "mega-drive-linear",
+      "features": [
+        "battery"
+      ]
+    },
+    "firmware": [],
+    "inputs": [
+      {
+        "port": 0,
+        "kind": "mega-drive-6-button"
+      }
+    ],
+    "persistence": [
+      {
+        "kind": "mega-drive-sram",
+        "slot": 0,
+        "bytes": 9007199254740993
+      }
+    ],
+    "referenceTraces": [
+      {
+        "id": "boot-1800",
+        "file": {
+          "path": "traces/boot-1800.json",
+          "bytes": 4096,
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "hardResetSeed": 4660,
+        "rtcEpoch": 946684800,
+        "checkpoints": [
+          600,
+          1200,
+          1800
+        ],
+        "references": [
+          {
+            "name": "mame",
+            "revision": "cccccccccccccccccccccccccccccccccccccccc",
+            "binarySHA256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ]
+      }
+    ]
+  }
+}

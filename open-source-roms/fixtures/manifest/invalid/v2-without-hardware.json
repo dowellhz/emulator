@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "id": "md-fixture",
+  "title": "Mega Drive Fixture",
+  "system": "megaDrive",
+  "category": "其他",
+  "rom": {
+    "path": "rom/fixture.md",
+    "bytes": 524288,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

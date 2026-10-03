@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 2,
+  "id": "snes-fixture",
+  "title": "snes fixture",
+  "system": "snes",
+  "category": "其他",
+  "rom": {
+    "path": "rom/fixture.sfc",
+    "bytes": 262144,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "hardware": {
+    "schemaVersion": 1,
+    "model": "super-nintendo",
+    "region": "usa",
+    "cartridge": {
+      "board": "snes-lorom",
+      "features": [
+        "battery"
+      ]
+    },
+    "firmware": [
+      {
+        "role": "system-firmware",
+        "slot": 0,
+        "file": {
+          "path": "firmware/spc700.rom",
+          "bytes": 64,
+          "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "port": 0,
+        "kind": "snes-standard"
+      }
+    ],
+    "persistence": [
+      {
+        "kind": "snes-sram",
+        "slot": 0,
+        "bytes": 8192
+      }
+    ],
+    "referenceTraces": [
+      {
+        "id": "boot-1800",
+        "file": {
+          "path": "traces/boot-1800.json",
+          "bytes": 4096,
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "hardResetSeed": 4660,
+        "rtcEpoch": 946684800,
+        "checkpoints": [
+          600,
+          1200,
+          1800
+        ],
+        "references": [
+          {
+            "name": "mame",
+            "revision": "cccccccccccccccccccccccccccccccccccccccc",
+            "binarySHA256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ]
+      }
+    ]
+  }
+}

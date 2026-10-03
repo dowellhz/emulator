@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "id": "masterSystem-fixture",
+  "title": "masterSystem fixture",
+  "system": "masterSystem",
+  "category": "其他",
+  "rom": {
+    "path": "rom/fixture.sms",
+    "bytes": 262144,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "hardware": {
+    "schemaVersion": 1,
+    "model": "sega-master-system-2",
+    "region": "usa",
+    "cartridge": {
+      "board": "sms-sega",
+      "features": [
+        "battery"
+      ]
+    },
+    "firmware": [],
+    "inputs": [
+      {
+        "port": 0,
+        "kind": "sms-control-pad"
+      }
+    ],
+    "persistence": [
+      {
+        "kind": "sega8-cartridge-ram",
+        "slot": 0,
+        "bytes": 32768
+      }
+    ],
+    "referenceTraces": [
+      {
+        "id": "boot-1800",
+        "file": {
+          "path": "traces/boot-1800.json",
+          "bytes": 4096,
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "hardResetSeed": 4660,
+        "rtcEpoch": 946684800,
+        "checkpoints": [
+          600,
+          1200,
+          1800
+        ],
+        "references": [
+          {
+            "name": "mame",
+            "revision": "cccccccccccccccccccccccccccccccccccccccc",
+            "binarySHA256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ]
+      }
+    ]
+  }
+}
