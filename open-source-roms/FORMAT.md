@@ -37,6 +37,7 @@ Falling.png
   "schemaVersion": 1,
   "title": "Open-source NES Test Library",
   "updatedAt": "2026-09-03T04:51:53Z",
+  "manufacturerCounts": { "capcom": 297, "sega": 140, "konami": 88 },
   "games": [
     {
       "id": "falling",
@@ -47,10 +48,11 @@ Falling.png
 }
 ```
 
-- `schemaVersion` 当前固定为 `1`。
+- `schemaVersion` 当前固定为 `1`。**客户端必须忽略本文未列出的多余字段**，使服务端可以附加向后兼容的新字段而不改版本号。
 - `id` 必须唯一且保持稳定，只能包含英文字母、数字、`.`、`_` 和 `-`，最长 180 个字符。
 - `manifest` 是相对于资料库根目录的路径。
 - `updatedAt` 使用 UTC RFC 3339 时间；修改游戏文件或清单后应同时更新。
+- `manufacturerCounts` 可选：街机厂家 id → 该厂家的游戏数，供客户端按游戏数量排序街机厂家货架、把长尾收进一个“其他”货架，免得每个客户端各自统计。id 为 `capcom`、`sega`、`konami`、`taito`、`namco`、`psikyo`、`irem`、`seibu`、`cave`、`technos`、`dataeast`（无连字符）、`toaplan`、`midway`。缺省时客户端本地统计；老客户端忽略该字段。
 
 ## 3. 游戏清单 `manifest.json`
 
@@ -88,7 +90,7 @@ Falling.png
 - `bytes` 必须等于文件的实际字节数。
 - `sha256` 必须等于文件内容的 SHA-256，并使用 64 位小写十六进制字符。
 - NES ROM 使用 `.nes`；封面推荐 `.png`，也支持 `.jpg`、`.jpeg` 和 `.webp`。
-- 单个 ROM 最大 512 MiB，单张封面最大 32 MiB，资料库最多 5000 个游戏。
+- 单个 ROM 最大 512 MiB（PlayStation 光盘包 `.fcps1`、Mega CD 光盘包 `.fcmcd`、PC Engine CD 光盘包 `.fcpcecd` 每张盘最大 1 GiB、整包最大 4 GiB），单张封面最大 32 MiB，资料库最多 5000 个游戏。
 
 macOS 可使用以下命令生成完整性字段：
 

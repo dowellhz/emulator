@@ -74,6 +74,10 @@ v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`�
 | `gameBoy` | `game-boy-dmg`、`game-boy-pocket` | `.gb/.gbc` | `game-boy-` |
 | `gameBoyColor` | `game-boy-color` | `.gb/.gbc` | `game-boy-` |
 | `gameBoyAdvance` | `game-boy-advance` | `.gba` | `gba-` |
+| `playStation` | `playstation` | `.fcps1` | `ps1-` |
+| `megaCD` | `sega-mega-cd` | `.fcmcd` | `mega-cd-` |
+| `pcEngine` | `pc-engine`、`turbografx-16` | `.pce` | `pce-` |
+| `pcEngineCD` | `pc-engine-cd` | `.fcpcecd` | `pce-cd-` |
 | `pgm` | `arcade-igs-pgm1` | `.zip/.7z` | `pgm-` |
 | `snes` | `super-nintendo`、`super-famicom` | `.smc/.sfc` | `snes-` |
 
@@ -82,12 +86,12 @@ v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`�
 
 输入设备按系统限制为 `nes-standard`、`arcade-digital`、`mega-drive-3-button`、
 `mega-drive-6-button`、`snes-standard`、`snes-super-scope`、`sms-control-pad`、
-`game-gear-built-in`、`game-boy-built-in` 或 `gba-built-in`。端口号在 0–7 内且不可重复。
+`game-gear-built-in`、`game-boy-built-in`、`gba-built-in`、`ps1-digital-pad`、`ps1-dualshock-analog` 或 `pce-pad`（Mega CD 用 `mega-drive-3-button`）。端口号在 0–7 内且不可重复。
 
 持久化 `kind` 与 `FCEngineC` ABI v2 一一对应：`nes-battery`、`fds-side`、
 `neogeo-backup-ram`、`neogeo-memory-card`、`cps1-eeprom`、`mega-drive-sram`、
 `mega-drive-eeprom`、`pgm-nvram`、`snes-sram`、`snes-rtc`、`sega8-cartridge-ram`、
-`game-boy-ram`、`game-boy-rtc`、`gba-backup`、`gba-rtc`。
+`game-boy-ram`、`game-boy-rtc`、`gba-backup`、`gba-rtc`、`ps1-memory-card`、`mega-cd-backup-ram`。
 同一 `(kind, slot)` 不可重复，`bytes` 是核心可见区域的精确大小。这里只描述区域，不保存用户
 运行后产生的存档数据。
 
@@ -135,8 +139,67 @@ S-3511A 时钟的卡带（游戏编号 `$00ac` 前三个字符为 `AXV`、`AXP`�
 与 `bios.fds` 相同。服务端与客户端只接受 MAME `nintendo/gba.cpp` 登记的那一份 16 KiB BIOS
 （CRC32 `81977335`、SHA-1 `300c20df6731a33952ded8c436f7f186d25d3492`、SHA-256
 `fd2547724b505f487e6dcb29ec2ecff3af35a841a77ab2e85fd87350abd36570`）。客户端按 SHA-256 保存到 App
-私有容器，不内置、不从 ROM 公共目录搜索；没有 BIOS 时 GBA 游戏不启动并提示到资料库服务器上传。
+私有容器，不从 ROM 公共目录搜索。`bios.gba` 可以没有：客户端这时用本项目自研的 16 KiB 系统 ROM
+（`FCEmulatorMac/Tools/GBABIOS`），与原版逐调用对照一致，游戏照常启动。即时存档记下运行时的系统 ROM，
+换了另一份 ROM 不能继续（可能停在 BIOS 调用中途），客户端从头启动、卡带存档不受影响。
 公开 SPK/Docker 包不得含 `gba_bios.bin`。
+
+PlayStation（2026-10-08 加入）：ROM 是游戏的 `.fcps1` 包（`PS1_DISC_PACKAGE_V1.md`；多碟游戏的全部光盘在同一个版本 2 包里），清单只能是 v2。
+板卡固定为 `ps1-cd`、无 feature；端口 0 和 1 各一个手柄，`kind` 是 `ps1-digital-pad` 或 `ps1-dualshock-analog`（见下）；持久化只有 slot 0、131072 字节的
+`ps1-memory-card`（1 号卡槽，2 号卡槽空）；不声明固件。`region` 是 `usa/japan/europe` 之一，由光盘内容决定，
+规则与核心相同：SYSTEM.CNF 的 `BOOT = cdrom:\` 序列号（`S?U?` 美、`S?E?` 欧、`S?P?/S?K?/S?B?` 日），否则
+第 4 扇区的 "Licensed by" 文字，都没有时为 `usa`。完整审计会重新读包核对。
+
+手柄模式（2026-10-09）：客户端两个端口都插 DualShock，开机一律数字模式（ID 41h），玩家在游戏里**不能**切换模式——
+Street Fighter EX2 Plus、Street Fighter Alpha 等只认数字手柄的游戏在模拟模式（ID 73h）下完全不认按键。游戏自己用
+43h/44h 切到模拟模式（并可锁定）照常生效，这是硬件行为。`ps1-dualshock-analog` 表示“需要宿主替玩家按一次 ANALOG 键”：
+客户端开机后对该端口按一次 ANALOG 进入模拟模式，只给需要模拟模式、但自己不发 44h 切换的游戏使用；默认不标。服务端 Web
+管理里是游戏的一个开关（`PATCH /api/source-roms/<id>` 的布尔字段 `ps1AnalogPad`，只接受 PlayStation 游戏、只接受
+`true/false`，联网识别永不改它），打开时两个端口都写成 `ps1-dualshock-analog`，关闭时都写回 `ps1-digital-pad`。读即时存档
+后，客户端按同一规则重设每个端口的模式，只有游戏自己配置过的端口（开机后进过 43h 配置模式，44h 锁定与否）保留存档里的
+模式——例如 Resident Evil 3 开机时自己切到模拟、不锁定，之后不再切；存档字节格式不变，
+`ps1v1` 硬件指纹也不含这项，改开关不会让已有存档失效。
+
+BIOS 按区放在资料库根目录：`ps1-bios-usa.bin`、`ps1-bios-japan.bin`、`ps1-bios-europe.bin`，`library.json`
+的 `bios.playStation` 形如 `{ "usa": { "path": "ps1-bios-usa.bin", "bytes": 524288, "sha256": … }, … }`，
+只列存在的区。服务端与客户端只接受 MAME `sony/psx.cpp`（`85388fbf4ae40dc1823ec0ef4ea353473275428d`）
+`psj/psu/pse` 登记的零售机 BIOS，区由身份决定、与文件名无关（`lib/ps1.js` 的 `PS1_BIOSES`）。客户端按
+清单 `region` 取对应区的 BIOS；没有该区 BIOS 时不启动并提示上传。真 BIOS 会校验光盘区码，所以不能拿别区的
+BIOS 代替。公开 SPK/Docker 包不得含 PlayStation BIOS、`.fcps1` 或 `.cue`。
+
+Mega CD（2026-10-08 加入）：ROM 是游戏的 `.fcmcd` 包（`MEGA_CD_DISC_PACKAGE_V1.md`：PlayStation 包的布局、魔数
+`FCMCDPK1`），清单只能是 v2。型号 `sega-mega-cd`，板卡固定为 `mega-cd-disc`、无 feature；两个端口都是
+`mega-drive-3-button`；持久化只有 slot 0、8192 字节的 `mega-cd-backup-ram`（主机内置备份 RAM）；不声明固件。
+`region` 是 `usa/japan/europe` 之一，由光盘系统区的安全码决定（第一数据扇区 0x20B：0x64 欧、0xA1 日、其余美，
+与 Genesis Plus GX `get_region` 相同，也是 BIOS 自己核对的依据）。完整审计会重新读包核对。
+
+BIOS 按区放在资料库根目录：`mcd-bios-usa.bin`、`mcd-bios-japan.bin`、`mcd-bios-europe.bin`（128 KiB，主机字节序），
+`library.json` 的 `bios.megaCD` 与 `bios.playStation` 同形。只接受 MAME `sega/mdconsole.cpp`
+（`85388fbf4ae40dc1823ec0ef4ea353473275428d`）登记的零售机 BIOS（Mega CD/Sega CD 1、2 型及 X'Eye、Wondermega、
+CDX、Multi-Mega、Aiwa；不含 LaserActive），两种字节序都认，MAME 按字交换存放的那些存成主机字节序；区由身份决定
+（`lib/megacd.js` 的 `MEGACD_BIOSES`，亚洲版 `megacda` 归日区）。客户端按清单 `region` 取 BIOS，没有就不启动并提示上传。
+公开 SPK/Docker 包不得含 Mega CD BIOS 或 `.fcmcd`。
+
+PC Engine CD-ROM²（2026-10-09 加入）：ROM 是光盘的 `.fcpcecd` 包（`PCE_CD_DISC_PACKAGE_V1.md`：PlayStation 包的布局、魔数
+`FCPCDPK1`），清单只能是 v2。型号 `pc-engine-cd`、地区固定 `world`（光盘不带主机信息，主机由所用 System Card 决定：
+日版卡即 PC Engine，美版卡即 TurboGrafx-16）；板卡固定 `pce-cd-disc`、无 feature；端口 0 一个 `pce-pad`；持久化只有
+slot 0、2048 字节的 `pce-backup-ram`；不声明固件。完整审计会重新读包核对启动记录。
+
+System Card 按区放在资料库根目录：`pce-syscard-japan.pce`、`pce-syscard-usa.pce`（256 KiB，不带机头），`library.json` 的
+`bios.pcEngineCD` 与 `bios.megaCD` 同形。只接受 MAME（`85388fbf`）`hash/pce.xml` 的 cdsysb/cdsysa/cdsys/scdsys 与
+`hash/tg16.xml` 的 cdsys/scdsys（`lib/pcecd.js` 的 `PCECD_SYSTEM_CARDS`，按去机头后的 SHA-1）。Super CD-ROM² 光盘只能用
+3.0（Super System Card）启动。公开 SPK/Docker 包不得含 System Card 或 `.fcpcecd`。
+
+PC Engine / TurboGrafx-16 HuCard（2026-10-08 加入）：ROM 是 `.pce`（可带 512 字节拷贝机头），清单只能是 v2。`region` 与 `model`
+成对：日版卡 `japan` + `pc-engine`，美版卡 `usa` + `turbografx-16`。卡属于哪台主机按存储镜像（去掉拷贝机头、不做按位倒序）
+的 SHA-1 判定：在 MAME 软件表 `hash/tg16.xml`（85388fbf，98 张，服务器 `lib/pce-tg16.js`）里的是美版卡，其余都是日版卡。
+镜像是否按位倒序（$1FFF 处复位向量的页字节小于 $E0 时载入前倒回来）只是存储方式，不代表地区：No-Intro 的美版卡没有倒序，
+日版的 Xserd、Cyber Dodge 反而是倒序的。美版卡插在 PC Engine（手柄口 bit 6 读出 1）上会锁死，所以地区不能猜。
+1.0.0-0081 按倒序判地区，写出的清单由服务器启动时按上述规则就地改正（`reconcileCanonicalPCEHardware`）。板卡为
+`pce-hucard`、`pce-sf2`（2.5 MiB 的 Street Fighter II' 换页）或 `pce-populous`（$1F26 处 `POPULOUS`，卡带 32 KiB RAM），无 feature；
+端口 0 一个 `pce-pad`；持久化固定为 slot 0、2048 字节的 `pce-backup-ram`（CD 单元 / 天之声 Bank / Backup Booster 的 BRAM，
+HuCard 游戏存档用它）；不声明固件。CD System Card（$3FFB6 处 `PC Engine CD-ROM SYSTEM`）是 BIOS，不按游戏收。
+规则与 FCPCECoreC 的载入一致（MAME `bus/pce/pce_slot.cpp`），完整审计会重读 ROM 核对地区与板卡。
 
 固件 `role` 只能是 `system-firmware` 或 `coprocessor-firmware`；同一 `(role, slot)` 不可
 重复。CPS2 key 仍严格使用既有的单游戏 `emulation.cps2Key` 链路，不能伪装成通用固件，客户端
