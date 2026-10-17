@@ -20,23 +20,23 @@
   </head>
   <body>
     <header class="site-header scrolled">
-      <a class="brand" href="index.html" aria-label="Return to the Retro Console home page"><img class="brand-icon" src="../assets/icon.png" alt=""><span>Retro Console</span></a>
-      <nav aria-label="Main navigation"><a href="index.html#systems">Platforms</a><a href="index.html#download">Android TV</a><a href="server.html">Server</a><a href="install.html">Installation</a><a class="current" href="privacy.html" aria-current="page">Privacy</a></nav>
+      <a class="brand" href="index.html" aria-label="Return to the Retro Console home page"><img class="brand-icon" src="../assets/site-icon-128.png" alt="" width="128" height="128" decoding="async"><span>Retro Console</span></a>
+      <nav aria-label="Main navigation"><a href="index.html#systems">Systems</a><a href="index.html#download-android">Android TV</a><a href="index.html#download-macos">macOS</a><a href="server.html">Server</a><a href="install.html">Installation</a><a class="current" aria-current="page" href="privacy.html">Privacy</a></nav>
       <div class="header-actions"><a class="language-switch" data-language="zh" href="../privacy.html" lang="zh-Hans" hreflang="zh-Hans" aria-label="Switch to Chinese">中文</a>
-      <a class="header-cta" href="index.html">Home</a></div>
+      <a class="header-cta" href="index.html#download">Download Apps</a></div>
     </header>
 
     <main class="policy section-shell">
       <p class="eyebrow"><span></span> Privacy Policy</p>
       <h1>Privacy Policy</h1>
-      <p class="effective">Effective September 2, 2026</p>
+      <p class="effective">Effective September 2, 2026 · Updated: October 17, 2026</p>
       <p>Retro Console is a local game-library and emulator app for Android TV, Apple TV, and macOS. It does not include advertising, tracking, analytics, or a developer-operated account service. The developer does not collect your personal data, library contents, play history, game files, artwork, save data, passwords, or access tokens.</p>
 
       <h2>Data processed by the app</h2>
       <ul>
         <li>Library addresses, display preferences, lightweight indexes, and game progress are processed only on your device.</li>
         <li>Passwords and access tokens are stored in Android Keystore or Apple Keychain.</li>
-        <li>Game files you import, along with artwork, metadata, and temporary synchronization files, stay inside the app sandbox. Rebuildable cache files may be removed by the operating system.</li>
+        <li>The app keeps its index, caches, saves, and temporary synchronization files in its private storage. The operating system may remove rebuildable caches. On macOS, the app can read a ROM folder you choose directly. Importing games into a local portable library, or explicitly setting or finding missing covers, writes that public content to the chosen folder.</li>
         <li>If you configure an HTTP(S) or SMB library, the app connects only to the server address you provide.</li>
         <li>Save synchronization is optional and available only for a compatible HTTP(S) library you configure. Save data travels directly between the client and that server. SMB libraries do not upload save data.</li>
       </ul>
@@ -47,7 +47,7 @@
       <p>The app does not sell or share personal data with the developer or advertising companies, does not track you across apps or websites, and does not use data for targeted advertising.</p>
 
       <h2>Retention and deletion</h2>
-      <p>You control the data stored by the app. In “Settings → Storage &amp; Cache,” choose “Clear All Games” to remove games, caches, save data, library addresses, and saved authentication information. Uninstalling the app also removes its on-device data. Data stored on a NAS or HTTP(S) server you control must be deleted on that server.</p>
+      <p>You control the data stored by the app. In “Settings → Storage &amp; Cache,” choose “Clear All Games” to remove games, caches, save data, library addresses, and saved authentication information. On macOS, moving the app to Trash does not automatically delete its private data or your chosen ROM folder. Manage and delete public ROM folders and data on your NAS or HTTP(S) server separately, at those locations.</p>
 
       <h2>Children</h2>
       <p>The app does not knowingly collect personal information from children or any other users.</p>
@@ -57,7 +57,7 @@
     </main>
 
     <footer class="site-footer section-shell">
-      <a class="brand" href="index.html"><img class="brand-icon" src="../assets/icon.png" alt=""><span>Retro Console</span></a>
+      <a class="brand" href="index.html"><img class="brand-icon" src="../assets/site-icon-128.png" alt="" width="128" height="128" loading="lazy" decoding="async"><span>Retro Console</span></a>
       <p>Use only game content you have the right to use.</p>
       <div><a href="index.html">Home</a><span>© <span data-year>2026</span> Retro Console</span></div>
     </footer>

@@ -25,18 +25,11 @@
   <body>
     <header class="site-header" data-header>
       <a class="brand" href="#top" aria-label="Retro Console home">
-        <img class="brand-icon" src="../assets/icon.png" alt="">
+        <img class="brand-icon" src="../assets/site-icon-128.png" alt="" width="128" height="128" decoding="async">
         <span>Retro Console</span>
       </a>
-      <nav aria-label="Main navigation">
-        <a href="#systems">Platforms</a>
-        <a href="#download">Android TV</a>
-        <a href="#download">macOS</a>
-        <a href="server.html">Library server</a>
-        <a href="install.html">Installation guide</a>
-        <a href="privacy.html">Privacy</a>
-      </nav>
-      <div class="header-actions"><a class="language-switch" data-language="zh" href="../index.html?lang=zh" lang="zh-CN" aria-label="切换到中文">中文</a><a class="header-cta" href="#download">Download</a></div>
+      <nav aria-label="Main navigation"><a href="#systems">Systems</a><a href="#download-android">Android TV</a><a href="#download-macos">macOS</a><a href="server.html">Server</a><a href="install.html">Installation</a><a href="privacy.html">Privacy</a></nav>
+      <div class="header-actions"><a class="language-switch" data-language="zh" href="../index.html?lang=zh" lang="zh-CN" aria-label="切换到中文">中文</a><a class="header-cta" href="#download">Download Apps</a></div>
     </header>
 
     <main id="top">
@@ -57,7 +50,7 @@
           <div class="hero-orbit hero-orbit-one"></div>
           <div class="hero-orbit hero-orbit-two"></div>
           <div class="tv-frame">
-            <div class="tv-screen"><img src="../assets/android-library.png" alt="Retro Console Android TV library in Chinese, showing recent games, search, categories, and the included original game"></div>
+            <div class="tv-screen"><img src="../assets/android-library.png" alt="Retro Console Android TV library in Chinese, showing recent games, search, categories, and the included original game" width="2400" height="1080" decoding="async"></div>
             <div class="tv-stand"></div>
           </div>
           <div class="floating-card floating-card-left"><b>60</b><span>Target frame rate</span></div>
@@ -88,7 +81,7 @@
 
       <section class="experience section-shell">
         <div class="experience-visual reveal">
-          <img src="../assets/controller-rounded.png" alt="Retro Console controller help screen">
+          <a href="../assets/controller-rounded.png" target="_blank" rel="noopener"><img src="../assets/site-controller-1280.webp" alt="Retro controller illustration" width="1280" height="768" loading="lazy" decoding="async"></a>
         </div>
         <div class="experience-copy reveal">
           <p class="eyebrow"><span></span> Made for ten feet away</p>
@@ -113,8 +106,8 @@
           </div>
         </div>
         <div class="download-panels">
-          <div class="download-panel">
-            <img src="../assets/icon.png" alt="">
+          <div class="download-panel" id="download-android">
+            <img src="../assets/site-icon-128.png" alt="" width="128" height="128" loading="lazy" decoding="async">
             <div>
               <p>Retro Console for Android TV</p>
               <small>APK · Install directly</small>
@@ -122,8 +115,8 @@
             <a class="button button-light" href="../downloads/FCEmulator-AndroidTV-1.3-arm64-v8a.apk" download>Download APK <span>↓</span></a>
             <p class="checksum">SHA-256: 75126a398ce3aa5b2091d1d0aa57c92d548850984d8ba7ec31d43fec1c5409c9</p>
           </div>
-          <div class="download-panel">
-            <img src="../assets/icon.png" alt="">
+          <div class="download-panel" id="download-macos">
+            <img src="../assets/site-icon-128.png" alt="" width="128" height="128" loading="lazy" decoding="async">
             <div>
               <p>Retro Console for macOS</p>
               <small>DMG · APPLE SILICON</small>
@@ -132,7 +125,7 @@
             <p class="checksum">SHA-256: 54c3b37bb901c133de74f1e4bd30c9a8d6916243253cd57a6f3a5cf439b1980d</p>
           </div>
           <div class="download-panel download-panel-compact">
-            <img src="../assets/controller-rounded.png" alt="Retro Console icon for Apple TV">
+            <img src="../assets/site-controller-160.png" alt="Retro Console icon for Apple TV" width="160" height="96" loading="lazy" decoding="async">
             <div>
               <p>Retro Console</p>
               <small>APPLE TV · SEARCH FOR “红白机街机模拟器”</small>
@@ -149,7 +142,7 @@
         </div>
         <ol class="install-steps">
           <li class="reveal"><span>01</span><div><h3>Download and install</h3><p>Android TV: send the APK to your TV and install it with a file manager or ADB. When prompted, allow installation from that source. macOS: open the DMG and drag the app to Applications. The download is signed and notarized by Apple.</p></div></li>
-          <li class="reveal"><span>02</span><div><h3>Connect your own library</h3><p>Open Settings → NAS / Remote Library and enter your HTTP(S) or NAS library address. You can also set up the library server first.</p></div></li>
+          <li class="reveal"><span>02</span><div><h3>Connect your own library</h3><p>On Mac, import and organize local games in ROM Manager without a server, or connect to your Synology library in Settings. <a href="install.html#macos">Read the macOS setup guide →</a></p></div></li>
           <li class="reveal"><span>03</span><div><h3>Connect a controller and play</h3><p>Use a Bluetooth or USB controller. Hold the confirm button on a game to open its options, add it to favorites, manage its cache, or view game details.</p></div></li>
         </ol>
       </section>
@@ -174,7 +167,7 @@
     </main>
 
     <footer class="site-footer section-shell">
-      <a class="brand" href="#top"><img class="brand-icon" src="../assets/icon.png" alt=""><span>Retro Console</span></a>
+      <a class="brand" href="#top"><img class="brand-icon" src="../assets/site-icon-128.png" alt="" width="128" height="128" loading="lazy" decoding="async"><span>Retro Console</span></a>
       <p>Only use game content you have the right to use. This site is not affiliated with or endorsed by Nintendo or other game publishers.</p>
       <div><a href="privacy.html">Privacy policy</a><span>© <span data-year></span></span></div>
     </footer>

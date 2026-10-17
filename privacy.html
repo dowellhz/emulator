@@ -20,22 +20,22 @@
   </head>
   <body>
     <header class="site-header scrolled">
-      <a class="brand" href="index.html" aria-label="返回 Retro Console 首页"><img class="brand-icon" src="assets/icon.png" alt=""><span>Retro Console</span></a>
-      <nav aria-label="主导航"><a href="index.html#systems">支持平台</a><a href="index.html#download">Android TV</a><a href="server.html">服务器端</a><a href="install.html">安装指南</a><a class="current" href="privacy.html" aria-current="page">隐私</a></nav>
-      <div class="header-actions"><a class="language-switch" data-language="en" href="en/privacy.html" lang="en" aria-label="Switch to English">English</a><a class="header-cta" href="index.html">返回首页</a></div>
+      <a class="brand" href="index.html" aria-label="返回 Retro Console 首页"><img class="brand-icon" src="assets/site-icon-128.png" alt="" width="128" height="128" decoding="async"><span>Retro Console</span></a>
+      <nav aria-label="主导航"><a href="index.html#systems">支持平台</a><a href="index.html#download-android">Android TV</a><a href="index.html#download-macos">macOS</a><a href="server.html">服务器端</a><a href="install.html">安装指南</a><a class="current" aria-current="page" href="privacy.html">隐私</a></nav>
+      <div class="header-actions"><a class="language-switch" data-language="en" href="en/privacy.html" lang="en" aria-label="Switch to English">English</a><a class="header-cta" href="index.html#download">下载客户端</a></div>
     </header>
 
     <main class="policy section-shell">
       <p class="eyebrow"><span></span> Privacy Policy</p>
       <h1>隐私政策</h1>
-      <p class="effective">生效日期：2026 年 9 月 2 日</p>
+      <p class="effective">生效日期：2026 年 9 月 2 日 · 更新日期：2026 年 10 月 17 日</p>
       <p>Retro Console 是在 Android TV、Apple TV 与 macOS 上运行的本地游戏资料库和模拟器。应用不包含广告、跨应用跟踪、分析服务或由开发者运营的账户服务。开发者不会收集你的个人数据、资料库内容、游戏记录、游戏文件、封面、存档、密码或访问令牌。</p>
 
       <h2>应用处理的数据</h2>
       <ul>
         <li>资料库地址、显示偏好、轻量索引和游戏进度只在你的设备上处理。</li>
         <li>密码和访问令牌保存在 Android Keystore 或 Apple Keychain 中。</li>
-        <li>你导入的游戏文件、封面、元数据及临时同步文件保存在应用沙盒内；可重建的缓存文件可能被操作系统清理。</li>
+        <li>应用的索引、缓存、存档和临时同步文件保存在应用私有目录内；可重建的缓存可能被操作系统清理。macOS 可直接读取你选择的 ROM 目录；向本地可移植资料库导入游戏，或明确设置、补全封面时，会把对应公共内容写入该目录。</li>
         <li>如果你配置 HTTP(S) 或 SMB 资料库，应用只会直接连接你填写的服务器。</li>
         <li>存档同步是可选功能，仅对你配置的兼容 HTTP(S) 资料库启用。存档直接在客户端与该服务器之间传输；SMB 资料库不会上传存档。</li>
       </ul>
@@ -46,7 +46,7 @@
       <p>应用不会向开发者或广告公司出售、共享个人数据，不会跨应用或网站跟踪用户，也不会将数据用于定向广告。</p>
 
       <h2>保留与删除</h2>
-      <p>你可以控制应用保存的数据。在“设置 → 存储与缓存”中选择“清理全部游戏”，即可从应用中删除游戏、缓存、存档、资料库地址和已保存的认证信息。卸载应用也会删除本机数据。保存在你自己的 NAS 或 HTTP(S) 服务器上的数据，需要在对应服务器上删除。</p>
+      <p>你可以控制应用保存的数据。在“设置 → 存储与缓存”中选择“清理全部游戏”，即可从应用中删除游戏、缓存、存档、资料库地址和已保存的认证信息。macOS 仅把应用移到废纸篓，不会自动删除私有数据或你选择的 ROM 目录。公共 ROM 目录及 NAS 或 HTTP(S) 服务器上的数据，需要在对应位置另行管理和删除。</p>
 
       <h2>儿童隐私</h2>
       <p>应用不会有意收集儿童或其他用户的个人信息。</p>
@@ -58,7 +58,7 @@
     </main>
 
     <footer class="site-footer section-shell">
-      <a class="brand" href="index.html"><img class="brand-icon" src="assets/icon.png" alt=""><span>Retro Console</span></a>
+      <a class="brand" href="index.html"><img class="brand-icon" src="assets/site-icon-128.png" alt="" width="128" height="128" loading="lazy" decoding="async"><span>Retro Console</span></a>
       <p>请仅使用你有权使用的游戏内容。</p>
       <div><a href="index.html">返回首页</a><span>© 2026 Retro Console</span></div>
     </footer>

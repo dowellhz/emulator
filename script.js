@@ -18,7 +18,10 @@ if ('IntersectionObserver' in window) {
       }
     });
   }, { threshold: 0.12 });
-  reveals.forEach((node) => observer.observe(node));
+  reveals.forEach((node) => {
+    node.classList.add('reveal-pending');
+    observer.observe(node);
+  });
 } else {
   reveals.forEach((node) => node.classList.add('visible'));
 }

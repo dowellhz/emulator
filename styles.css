@@ -20,7 +20,7 @@
 html { scroll-behavior: smooth; }
 body { background: var(--paper); color: var(--ink); font-family: var(--sans); margin: 0; }
 a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height:auto; }
 button, input { font: inherit; }
 .section-shell { margin-inline: auto; width: min(1240px, calc(100% - 72px)); }
 
@@ -233,7 +233,8 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
 .site-footer > p { color: var(--muted); font-size: 10px; line-height: 1.7; margin: 0 auto; max-width: 520px; text-align: center; }
 .site-footer > div { align-items: end; display: flex; flex-direction: column; font-family: var(--mono); font-size: 9px; gap: 6px; }
 .site-footer > div a { text-decoration: underline; text-underline-offset: 3px; }
-.reveal { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s ease; }
+.reveal { transition: opacity .65s ease, transform .65s ease; }
+.reveal.reveal-pending { opacity: 0; transform: translateY(16px); }
 .reveal.visible { opacity: 1; transform: none; }
 
 @media (max-width: 980px) {
@@ -310,7 +311,7 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal, .reveal.reveal-pending { opacity: 1; transform: none; transition: none; }
 }
 
 /* Installation guide: readable steps and uncropped screenshots on every screen. */
@@ -376,4 +377,15 @@ html:lang(en) .installation-intro h1 { font-size:clamp(44px, 6vw, 78px); }
   .installation pre { padding:15px; font-size:12px; }
   .installation-section { padding-block:30px; }
   .policy { padding-top:155px; }
+}
+
+/* Keep navigation easy to tap without changing its routes or hiding links. */
+.site-header nav a { display:inline-flex; align-items:center; min-height:36px; }
+.installation-toc { gap:8px; }
+.installation-toc a { display:inline-flex; align-items:center; min-height:36px; }
+main [id] { scroll-margin-top:110px; }
+@media (max-width:980px) {
+  .site-header nav, html:lang(en) .site-header nav { row-gap:4px; }
+  .hero, .installation, .server-hero, .policy { padding-top:190px; }
+  main [id], .installation-section { scroll-margin-top:190px; }
 }
