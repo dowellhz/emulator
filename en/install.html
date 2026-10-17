@@ -31,7 +31,7 @@
         <div class="installation-choice"><a href="#computer">Set up a computer server · Docker <span>↓</span></a><a href="#synology">I use Synology DSM 7 <span>↓</span></a><a href="#macos">Play and manage ROMs on a Mac <span>↓</span></a></div>
       </header>
       <div class="installation-layout">
-        <nav class="installation-toc" aria-label="Guide contents"><strong>Installation &amp; Setup</strong><a href="#computer">01 Install on a computer</a><a href="#synology">02 Install on Synology</a><a href="#macos">Mac app · Local or Synology</a><a href="#library">03 Library folder &amp; games</a><a href="#bios">04 BIOS &amp; firmware</a><a href="#network">05 Local network access</a><a href="#clients">06 Connect a client</a><a href="#rom-formats">07 Supported ROM formats</a><a href="#troubleshooting">08 Troubleshooting &amp; updates</a></nav>
+        <nav class="installation-toc" aria-label="Guide contents"><strong>Installation &amp; Setup</strong><a href="#computer">01 Install on a computer</a><a href="#synology">02 Install on Synology</a><a href="#macos">03 Mac app · Local or Synology</a><a href="#library">04 Library folder &amp; games</a><a href="#bios">05 BIOS &amp; firmware</a><a href="#network">06 Local network access</a><a href="#clients">07 Connect a client</a><a href="#rom-formats">08 Supported ROM formats</a><a href="#troubleshooting">09 Troubleshooting &amp; updates</a></nav>
         <div class="installation-content">
           <section id="computer" class="installation-section">
             <p class="eyebrow">WINDOWS · MACOS · LINUX</p><h2>01 Install on a computer</h2>
@@ -54,7 +54,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
             </ol>
           </section>
           <section id="macos" class="installation-section">
-            <p class="eyebrow">MAC APP · LOCAL OR SYNOLOGY</p><h2>The Mac app: manage local games or connect to Synology</h2>
+            <p class="eyebrow">MAC APP · LOCAL OR SYNOLOGY</p><h2>03 The Mac app: manage local games or connect to Synology</h2>
             <p><strong>To play on your Mac, you only need the Mac app. Synology and Docker are optional.</strong> Manage your own local ROM library directly, or connect the Mac to a library you already keep on Synology. Start with the local steps below, then follow the Synology connection steps if needed.</p>
             <ol class="instruction-steps">
               <li><h3>Install the Mac app</h3><p>Download the macOS DMG from the <a href="index.html#download">client download section</a>. The current build requires an Apple silicon Mac running macOS 14 Sonoma or later. Open the DMG, drag the app into Applications, then open it from Applications. Local use does not require the Docker installation steps below.</p></li>
@@ -70,7 +70,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
             </ol>
           </section>
           <section id="library" class="installation-section">
-            <p class="eyebrow">FIRST SETUP</p><h2>03 Choose a folder and upload games</h2><p>In version 1.3.4 and later, choose Chinese or English at the top right of the management page. The first visit follows your browser language, and later visits remember your choice. Changing language reloads the current page. Finish any upload or save, and close open dialogs before switching.</p>
+            <p class="eyebrow">FIRST SETUP</p><h2>04 Choose a folder and upload games</h2><p>In version 1.3.4 and later, choose Chinese or English at the top right of the management page. The first visit follows your browser language, and later visits remember your choice. Changing language reloads the current page. Finish any upload or save, and close open dialogs before switching.</p>
             <ol class="instruction-steps">
               <li><h3>Choose a folder the server can access</h3><p>Click “Settings” at the top right of the management page. Enter or browse for the “Library directory (absolute path on the server).” <strong>For Docker, enter <code>/library</code></strong>. This is the path inside the container; <code>FC_LIBRARY_HOST_PATH</code> in <code>.env</code> selects the actual folder on your computer. On Synology, use the <code>/volume…/shared-folder</code> path you checked earlier.</p><p>Set the “Library name,” save, and wait for the page to refresh. Start with an empty folder for a new library. For an existing portable library, choose the folder containing its root <code>library.json</code>. Back up existing files first.</p></li>
               <li><h3>Set a management token</h3><p>In “Settings,” enter an access token of your own with <strong>at least 16 characters</strong> in “Management token,” then save. Uploading, deleting, and changing settings will require this token. When using another browser, enter the same token when prompted. It is separate from your DSM password and DeepSeek API key.</p><p>You do not need a DeepSeek API key if you do not use online metadata lookup. The public package contains no one’s keys or accounts.</p></li>
@@ -80,7 +80,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
             <figure class="installation-image"><a href="../assets/install-library-en.png" target="_blank" rel="noopener"><img src="../assets/install-library-en.png" alt="Game management page showing the ROM upload area, upload results, and game list" loading="lazy" width="1360" height="1000" decoding="async"></a><figcaption>After uploading, check the result and game list. The screenshot shows the actual English interface with demonstration data.</figcaption></figure>
           </section>
           <section id="bios" class="installation-section">
-            <p class="eyebrow">BIOS &amp; FIRMWARE</p><h2>04 Add the required startup files</h2>
+            <p class="eyebrow">BIOS &amp; FIRMWARE</p><h2>05 Add the required startup files</h2>
             <p>The public installers contain no ROMs or console BIOS files. Open “BIOS &amp; firmware” in the management page and use the appropriate card to select files you own. The server checks their contents against known identities. Invalid files show an explanation and do not overwrite previously verified valid files.</p>
             <div class="installation-table"><table><thead><tr><th>Console or game</th><th>What to provide</th></tr></thead><tbody>
               <tr><td>Famicom Disk System (FDS)</td><td><code>disksys.rom</code>. Ordinary NES cartridges do not need it.</td></tr>
@@ -97,7 +97,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
             <figure class="installation-image"><a href="../assets/install-bios-en.png" target="_blank" rel="noopener"><img src="../assets/install-bios-en.png" alt="BIOS and firmware upload cards grouped by console and region, including Atari 5200, Atari 7800, and optional GBA BIOS" loading="lazy" width="1360" height="1000" decoding="async"></a><figcaption>Each card shows whether its file is missing, optional, or verified. A file is marked verified only after validation. The screenshot shows the actual English interface with demonstration data.</figcaption></figure>
           </section>
           <section id="network" class="installation-section">
-            <p class="eyebrow">LOCAL NETWORK</p><h2>05 Allow access from your local network</h2>
+            <p class="eyebrow">LOCAL NETWORK</p><h2>06 Allow access from your local network</h2>
             <p>Set your management token before allowing TVs or other devices to connect. Keep the server and clients on a local network where they can reach each other. Guest Wi-Fi and router device isolation can block connections.</p>
             <ol class="instruction-steps">
               <li><h3>Docker: bind to your computer’s local network address</h3><p>Find your computer’s local IPv4 address in its network settings. Edit <code>.env</code> in the extracted folder. In <code>FC_LIBRARY_BIND_IP=127.0.0.1</code>, replace the address with that computer’s actual local network address. Keep the port as <code>FC_LIBRARY_PORT=8282</code>. Then run this from the same folder:</p><pre><code>docker compose up -d</code></pre><p>If you use an existing library, keep <code>FC_LIBRARY_HOST_PATH</code> pointing to its original folder on the host computer. Do not remove that setting. After changing the bind address, open <code>http://your-computer-LAN-IP:8282/</code> in your browser. If the service is bound only to that address, 127.0.0.1 may no longer work.</p></li>
@@ -106,7 +106,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
             </ol>
           </section>
           <section id="clients" class="installation-section">
-            <p class="eyebrow">ANDROID TV · APPLE TV · MACOS</p><h2>06 Connect a client to your library</h2>
+            <p class="eyebrow">ANDROID TV · APPLE TV · MACOS</p><h2>07 Connect a client to your library</h2>
             <ol class="instruction-steps">
               <li><h3>Get the library’s root address</h3><p>Open the management page using the server’s <strong>local network address</strong> and click “Library address” at the top right. Clients use an address such as <code>http://your-server-LAN-IP:8282/library/</code>. This differs from the management page’s root address: keep the trailing <code>/library/</code>. You do not need to add <code>library.json</code>.</p></li>
               <li><h3>Enter the address and authentication in your client</h3><p>On Android TV, Apple TV, or macOS, open “Settings → NAS / Remote library” and enter the “Server address.” If the server has a token, select “Bearer Token” authentication and enter the same access token used by the management page. Do not enter your DSM username or password as the token.</p><p>If macOS says that a local ROM folder is in use and server sync is paused, switch back to remote library mode first.</p></li>
@@ -114,7 +114,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
             </ol>
           </section>
           <section id="rom-formats" class="installation-section">
-            <p class="eyebrow">HELP · ROM FORMATS</p><h2>07 Which ROMs can the server accept?</h2>
+            <p class="eyebrow">HELP · ROM FORMATS</p><h2>08 Which ROMs can the server accept?</h2>
             <p>A ROM is a game file you have dumped; ZIP / 7z files are containers that hold files together. The types below are accepted by the <strong>1.3.4 server’s upload interface</strong>. This does not mean every game will run, or include formats supported only by an individual client. Choose a library folder in “Settings” before uploading.</p>
             <h3>Cartridge and disk games</h3>
             <p>“Single-file ZIP / 7z” below means the archive contains <strong>one game file in the listed format</strong>. Keep covers, readme files, and other games out of the same archive. The server validates the contents instead of treating every ZIP as an arcade set. The file may be inside a subfolder. Common system metadata is ignored; unsafe paths and damaged archives are rejected.</p>
@@ -151,7 +151,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
             <p>For unlisted types, do not assume the server can upload them just because a client has a console menu or recognizes an extension. For example, internal Nintendo 64 manifest validation does not mean this web version offers uploads of <code>.z64</code> / <code>.v64</code> / <code>.n64</code>.</p>
           </section>
           <section id="troubleshooting" class="installation-section">
-            <p class="eyebrow">TROUBLESHOOTING &amp; UPDATE</p><h2>08 Troubleshooting and updates</h2>
+            <p class="eyebrow">TROUBLESHOOTING &amp; UPDATE</p><h2>09 Troubleshooting and updates</h2>
             <details open><summary>Connection refused, or port 8282 will not open</summary><p>Check that Docker Desktop or the DSM package is running. For Docker, run <code>docker compose ps</code> and <code>docker compose logs --tail 80 server</code> in the extracted folder. If the process exits, resolve the startup error in its logs before checking the firewall. Make sure no other application is using the port and that you are connecting to the server’s local network IP. Only Docker’s default local-only configuration uses 127.0.0.1.</p></details>
             <details><summary>EACCES / permission denied</summary><p>This is a filesystem permission problem. On Synology, check that the internal system user <code>FCEmulatorLibrary</code> has read/write access to the chosen shared folder and permission to pass through every parent folder. Checking only your DSM login account is not enough. For Docker, check that container UID/GID <code>1000:1000</code> can write to the mounted folder and that Docker Desktop is allowed to access it. Adjust only the library folder’s permissions; do not make an entire drive writable by everyone.</p><p>The Synology startup log is normally at <code>/var/packages/FCEmulatorLibrary/var/fc-emulator-library.log</code>. If an error refers to a temporary cache, check that the latest server package is installed, then inspect fresh logs after upgrading. An old log entry may not describe the current error.</p></details>
             <details><summary>Wrong processor architecture or Node.js version</summary><p>The Synology SPK’s <code>noarch</code> label means it does not contain a Node runtime for a fixed architecture; you still need to install one. Install Node.js 18+ for your NAS model in Package Center. Docker Desktop must also match your computer’s Apple silicon, Intel / AMD, or ARM architecture. For an unsupported image architecture or <code>exec format error</code>, check the runtime environment rather than changing file permissions.</p></details>

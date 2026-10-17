@@ -31,7 +31,7 @@
         <div class="installation-choice"><a href="#computer">安装电脑服务器 · Docker <span>↓</span></a><a href="#synology">我用群晖 DSM 7 <span>↓</span></a><a href="#macos">我在 Mac 上管理和玩游戏 <span>↓</span></a></div>
       </header>
       <div class="installation-layout">
-        <nav class="installation-toc" aria-label="指南目录"><strong>安装与配置</strong><a href="#computer">01 普通电脑安装</a><a href="#synology">02 群晖安装</a><a href="#macos">Mac 应用 · 本地或群晖</a><a href="#library">03 目录与游戏导入</a><a href="#bios">04 BIOS 与固件</a><a href="#network">05 允许局域网访问</a><a href="#clients">06 连接客户端</a><a href="#rom-formats">07 支持的 ROM 类型</a><a href="#troubleshooting">08 故障与升级</a></nav>
+        <nav class="installation-toc" aria-label="指南目录"><strong>安装与配置</strong><a href="#computer">01 普通电脑安装</a><a href="#synology">02 群晖安装</a><a href="#macos">03 Mac 应用 · 本地或群晖</a><a href="#library">04 目录与游戏导入</a><a href="#bios">05 BIOS 与固件</a><a href="#network">06 允许局域网访问</a><a href="#clients">07 连接客户端</a><a href="#rom-formats">08 支持的 ROM 类型</a><a href="#troubleshooting">09 故障与升级</a></nav>
         <div class="installation-content">
           <section id="computer" class="installation-section">
             <p class="eyebrow">WINDOWS · MACOS · LINUX</p><h2>01 普通电脑安装</h2>
@@ -54,7 +54,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             </ol>
           </section>
           <section id="macos" class="installation-section">
-            <p class="eyebrow">MAC APP · LOCAL OR SYNOLOGY</p><h2>Mac 应用：自己管理游戏，也能连接群晖</h2>
+            <p class="eyebrow">MAC APP · LOCAL OR SYNOLOGY</p><h2>03 Mac 应用：自己管理游戏，也能连接群晖</h2>
             <p><strong>只在 Mac 上玩，安装 Mac 应用就够了，无需群晖或 Docker。</strong>你可以直接管理自己的本地 ROM 资料库；已有群晖资料库时，也可以把 Mac 当作客户端连接它。下面先介绍本地用法，再介绍如何切换到群晖。</p>
             <ol class="instruction-steps">
               <li><h3>安装 Mac 应用</h3><p>前往<a href="index.html#download">客户端下载区</a>下载 macOS DMG。当前版本适用于 Apple 芯片 Mac，要求 macOS 14 Sonoma 或更高版本。打开 DMG，把应用拖到「应用程序」，再从「应用程序」打开。仅本地使用时，不必执行下面的 Docker 安装步骤。</p></li>
@@ -70,7 +70,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             </ol>
           </section>
           <section id="library" class="installation-section">
-            <p class="eyebrow">FIRST SETUP</p><h2>03 设置目录，上传游戏</h2><p>1.3.4 起，管理页面右上角可选择「中文 / English」。首次打开会按浏览器语言显示，之后记住你的选择。切换会刷新当前页面；请先完成上传或保存，并关闭打开的弹窗。</p>
+            <p class="eyebrow">FIRST SETUP</p><h2>04 设置目录，上传游戏</h2><p>1.3.4 起，管理页面右上角可选择「中文 / English」。首次打开会按浏览器语言显示，之后记住你的选择。切换会刷新当前页面；请先完成上传或保存，并关闭打开的弹窗。</p>
             <ol class="instruction-steps">
               <li><h3>选择服务器能看见的目录</h3><p>打开管理网页右上角「设置」，在「资料库目录（服务器绝对路径）」中填写或浏览选择目录。<strong>Docker 填 <code>/library</code></strong>，这是容器内的路径；电脑上的真实目录由 <code>.env</code> 的 <code>FC_LIBRARY_HOST_PATH</code> 决定。群晖填上一步确认的 <code>/volume…/共享文件夹</code> 路径。</p><p>设置「资料库名称」，保存并等待页面刷新。首次使用建议先选择一个空目录。已有可移植资料库请选择包含根 <code>library.json</code> 的目录；目录里的旧文件请先备份。</p></li>
               <li><h3>设置管理 Token</h3><p>仍在「设置」中，为「管理 Token」填写自己生成的<strong>至少 16 个字符</strong>的访问令牌，然后保存。保存后，上传、删除和修改设置等管理操作需要该 Token；换浏览器访问时，按页面提示输入同一 Token。它不是 DSM 密码，也不是 DeepSeek API Key。</p><p>不使用联网资料补全时，无需填写 DeepSeek API Key。公开包没有预置任何人的密钥或账号。</p></li>
@@ -80,7 +80,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             <figure class="installation-image"><a href="assets/install-library.png" target="_blank" rel="noopener"><img src="assets/install-library.png" alt="游戏管理页面：ROM 上传区域、上传结果与游戏列表" loading="lazy" width="1360" height="1000" decoding="async"></a><figcaption>上传后同时检查结果和游戏列表。截图为演示数据。</figcaption></figure>
           </section>
           <section id="bios" class="installation-section">
-            <p class="eyebrow">BIOS &amp; FIRMWARE</p><h2>04 补齐启动所需文件</h2>
+            <p class="eyebrow">BIOS &amp; FIRMWARE</p><h2>05 补齐启动所需文件</h2>
             <p>公开安装包不含 ROM 或主机 BIOS。打开管理网页「BIOS 与固件」，按对应卡片选择自己拥有的文件；页面会校验内容身份，错误文件会显示原因，不会覆盖原来已经验证的合法文件。</p>
             <div class="installation-table"><table><thead><tr><th>主机或游戏</th><th>需要准备什么</th></tr></thead><tbody>
               <tr><td>Famicom 磁碟机 FDS</td><td><code>disksys.rom</code>；普通 NES 卡带不需要。</td></tr>
@@ -97,7 +97,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             <figure class="installation-image"><a href="assets/install-bios.png" target="_blank" rel="noopener"><img src="assets/install-bios.png" alt="BIOS 与固件页面：按主机和地区区分的上传卡片，包含 Atari 5200、7800 与可选 GBA BIOS" loading="lazy" width="1360" height="1000" decoding="async"></a><figcaption>按卡片检查缺少、可选与已验证状态；文件校验通过后才会标记为已验证。</figcaption></figure>
           </section>
           <section id="network" class="installation-section">
-            <p class="eyebrow">LOCAL NETWORK</p><h2>05 允许局域网设备访问</h2>
+            <p class="eyebrow">LOCAL NETWORK</p><h2>06 允许局域网设备访问</h2>
             <p>先完成管理 Token 设置，再开放给电视或其他设备。让服务器与客户端处在同一个可互通的局域网；访客 Wi-Fi 或路由器的设备隔离可能阻止连接。</p>
             <ol class="instruction-steps">
               <li><h3>Docker：绑定电脑的局域网地址</h3><p>在系统网络设置里查看电脑的局域网 IPv4 地址。编辑解压目录中的 <code>.env</code>，把 <code>FC_LIBRARY_BIND_IP=127.0.0.1</code> 的地址部分换成这台电脑的实际局域网地址，端口保留 <code>FC_LIBRARY_PORT=8282</code>。随后在同一目录运行：</p><pre><code>docker compose up -d</code></pre><p>如果改用现有资料库，<code>FC_LIBRARY_HOST_PATH</code> 仍指向原来的宿主机目录。不要删掉该配置。绑定局域网地址后，请在浏览器改用 <code>http://电脑的局域网IP:8282/</code>；只绑定该地址时，原来的 127.0.0.1 地址可能不再可用。</p></li>
@@ -106,7 +106,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             </ol>
           </section>
           <section id="clients" class="installation-section">
-            <p class="eyebrow">ANDROID TV · APPLE TV · MACOS</p><h2>06 连接客户端资料库</h2>
+            <p class="eyebrow">ANDROID TV · APPLE TV · MACOS</p><h2>07 连接客户端资料库</h2>
             <ol class="instruction-steps">
               <li><h3>取得资料库根地址</h3><p>通过服务器<strong>局域网地址</strong>打开管理网页，点击右上角「资料库地址」。客户端使用的地址形如 <code>http://服务器的局域网IP:8282/library/</code>。这与浏览器管理页的根地址不同，末尾要保留 <code>/library/</code>，无需手工追加 <code>library.json</code>。</p></li>
               <li><h3>在客户端填写地址与认证</h3><p>在 Android TV、Apple TV 或 macOS 客户端打开「设置 → NAS / 远程资料库」，填写「服务器地址」。服务器启用了 Token 时，认证方式选择「Bearer Token」，填入与管理网页相同的访问令牌。不要把 DSM 用户名密码填成 Token。</p><p>macOS 若提示正在使用本地 ROM 目录、服务器同步已暂停，先切回远程资料库模式再继续。</p></li>
@@ -114,7 +114,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             </ol>
           </section>
           <section id="rom-formats" class="installation-section">
-            <p class="eyebrow">HELP · ROM FORMATS</p><h2>07 服务器支持哪些 ROM？</h2>
+            <p class="eyebrow">HELP · ROM FORMATS</p><h2>08 服务器支持哪些 ROM？</h2>
             <p>ROM 是你导出的游戏文件；ZIP / 7z 是把文件装在一起的压缩容器。下面列的是 <strong>1.3.4 服务器上传入口</strong>实际接受的类型，不等同于每款游戏都能运行，也不把客户端单独支持的格式算进来。先在「设置」中选好资料库目录，再上传。</p>
             <h3>卡带与磁碟游戏</h3>
             <p>下表的「单文件 ZIP / 7z」指压缩包内只放<strong>一个对应格式的游戏文件</strong>。封面、说明文档和其他游戏请不要混在同一压缩包内；系统会按成员内容校验，不会把所有 ZIP 都当作街机。文件可在子目录内；常见系统元数据会忽略，危险路径或损坏压缩包会拒绝。</p>
@@ -151,7 +151,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             <p>没有在本表列出的类型，请勿仅凭客户端菜单或扩展名猜测服务器能上传。例如服务器内部有 Nintendo 64 清单校验代码，并不代表本版网页已开放 <code>.z64</code> / <code>.v64</code> / <code>.n64</code> 上传入口。</p>
           </section>
           <section id="troubleshooting" class="installation-section">
-            <p class="eyebrow">TROUBLESHOOTING &amp; UPDATE</p><h2>08 常见故障与升级</h2>
+            <p class="eyebrow">TROUBLESHOOTING &amp; UPDATE</p><h2>09 常见故障与升级</h2>
             <details open><summary>网页提示连接被拒绝，或打不开 8282</summary><p>先看 Docker Desktop / DSM 套件是否正在运行；Docker 在解压目录执行 <code>docker compose ps</code> 和 <code>docker compose logs --tail 80 server</code>。若进程退出，应先处理日志中的启动错误，再检查防火墙。确认端口没有被其他程序占用，并核对访问的是服务器局域网 IP；只有 Docker 默认本机模式使用 127.0.0.1。</p></details>
             <details><summary>提示 EACCES / permission denied</summary><p>这是文件系统权限问题。群晖检查内部系统用户 <code>FCEmulatorLibrary</code> 对所选共享文件夹的读写权限，以及每一级父目录的穿越权限；不要只检查 DSM 登录账号。Docker 检查挂载目录是否允许容器 UID/GID <code>1000:1000</code> 写入，以及 Docker Desktop 是否已共享该目录。只修正资料库目录，不要对整块磁盘设置所有人可写。</p><p>群晖启动日志通常位于 <code>/var/packages/FCEmulatorLibrary/var/fc-emulator-library.log</code>。若报错指向临时缓存，也应核对是否安装了最新服务器包；升级后再检查新日志，避免把旧记录当成本次错误。</p></details>
             <details><summary>主机架构或 Node.js 不匹配</summary><p>群晖公开 SPK 的 <code>noarch</code> 表示包内没有固定架构的 Node，不代表可以跳过运行时安装。请在套件中心安装适用于该 NAS 型号的 Node.js 18+。Docker Desktop 也要匹配电脑的 Apple 芯片、Intel / AMD 或 ARM 架构；出现镜像架构不支持或 <code>exec format error</code> 时，先核对运行环境，不要靠更改文件权限处理。</p></details>
