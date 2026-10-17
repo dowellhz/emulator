@@ -28,27 +28,11 @@
         <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.3.4</p>
         <h1>装好应用，<br><em>管理自己的游戏库。</em></h1>
         <p>Mac 应用可以直接管理本地 ROM 并游玩；也可以用电脑或群晖 NAS 存放共享资料库，让电视、Mac 或手机连接。先选适合自己的用法，再配置目录、导入游戏。</p>
-        <div class="installation-choice"><a href="#macos">我在 Mac 上管理和玩游戏 <span>↓</span></a><a href="#computer">安装电脑服务器 · Docker <span>↓</span></a><a href="#synology">我用群晖 DSM 7 <span>↓</span></a></div>
+        <div class="installation-choice"><a href="#computer">安装电脑服务器 · Docker <span>↓</span></a><a href="#synology">我用群晖 DSM 7 <span>↓</span></a><a href="#macos">我在 Mac 上管理和玩游戏 <span>↓</span></a></div>
       </header>
       <div class="installation-layout">
-        <nav class="installation-toc" aria-label="指南目录"><strong>安装与配置</strong><a href="#macos">Mac 应用 · 本地或群晖</a><a href="#computer">01 普通电脑安装</a><a href="#synology">02 群晖安装</a><a href="#library">03 目录与游戏导入</a><a href="#bios">04 BIOS 与固件</a><a href="#network">05 允许局域网访问</a><a href="#clients">06 连接客户端</a><a href="#rom-formats">07 支持的 ROM 类型</a><a href="#troubleshooting">08 故障与升级</a></nav>
+        <nav class="installation-toc" aria-label="指南目录"><strong>安装与配置</strong><a href="#computer">01 普通电脑安装</a><a href="#synology">02 群晖安装</a><a href="#macos">Mac 应用 · 本地或群晖</a><a href="#library">03 目录与游戏导入</a><a href="#bios">04 BIOS 与固件</a><a href="#network">05 允许局域网访问</a><a href="#clients">06 连接客户端</a><a href="#rom-formats">07 支持的 ROM 类型</a><a href="#troubleshooting">08 故障与升级</a></nav>
         <div class="installation-content">
-          <section id="macos" class="installation-section">
-            <p class="eyebrow">MAC APP · LOCAL OR SYNOLOGY</p><h2>Mac 应用：自己管理游戏，也能连接群晖</h2>
-            <p><strong>只在 Mac 上玩，安装 Mac 应用就够了，无需群晖或 Docker。</strong>你可以直接管理自己的本地 ROM 资料库；已有群晖资料库时，也可以把 Mac 当作客户端连接它。下面先介绍本地用法，再介绍如何切换到群晖。</p>
-            <ol class="instruction-steps">
-              <li><h3>安装 Mac 应用</h3><p>前往<a href="index.html#download">客户端下载区</a>下载 macOS DMG。当前版本适用于 Apple 芯片 Mac，要求 macOS 14 Sonoma 或更高版本。打开 DMG，把应用拖到「应用程序」，再从「应用程序」打开。仅本地使用时，不必执行下面的 Docker 安装步骤。</p></li>
-              <li><h3>选择自己的 ROM 目录</h3><p>打开应用的「设置 → NAS / 远程资料库」，用服务器地址与本地目录之间的开关切到本地模式，再点击「选择目录…」。第一次使用可选一个新的空文件夹，例如自己创建的「Retro Console 游戏库」；应用会把空目录准备为可移植资料库。已有 ROM 文件夹也可以直接选择，文件按原位置读取；在访达里增删文件后，回到这里点击「刷新」。</p><p><strong>你选择的是公共 ROM 目录，不是 App 的私有索引位置。</strong>索引、缓存和游戏存档由 App 自己管理，无需另选路径。使用上述空目录建立的可移植资料库时，导入的游戏会整理并写入该目录；明确设置或补全封面时，封面也会按公共资料库格式写回。备份时请保留自己的 ROM 资料库；该目录并不等于 App 的全部设置与存档。</p></li>
-              <li><h3>在「ROM 管理」中导入和整理</h3><p>切到本地模式后，在游戏页打开「ROM 管理」，选择「导入 → ROM 文件…」，选中自己合法拥有或获得授权的 ROM。ZIP / 7z 中只放一个卡带文件时，可由导入器识别；已经整理好的通用游戏包用「游戏包 (.zip / 目录)…」，含根 <code>library.json</code> 的完整资料库用「整个资料库目录…」。不要把普通多游戏 ZIP 当作一个游戏包。</p><p>导入后检查游戏列表和具体错误。可以搜索、收藏，点击「编辑」修改名称、分类和封面，或使用「补全缺失封面」搜索公开封面来源。游戏名称和你自己的文件名会保留；切换界面语言不会翻译或改写原始游戏资料。下方<a href="#rom-formats">ROM 类型说明</a>解释常见后缀和容器；其中格式表是服务器入口的清单，不能视作 Mac 对每款游戏的兼容保证。</p></li>
-              <li><h3>按游戏需要补 BIOS，再启动验证</h3><p>在「ROM 管理 → 导入」菜单选择对应的 BIOS 或固件入口，例如 FDS BIOS、PlayStation BIOS。只使用自己有权使用的文件，按<a href="#bios">BIOS 与固件说明</a>准备正确的机型和地区；普通 NES 卡带不需要 FDS BIOS。不要把 BIOS 当作游戏卡带，也不要仅靠改名让文件通过校验。</p><p>返回游戏页实际启动游戏。导入成功说明文件已加入资料库；能否正常进入游戏，还取决于 BIOS、卡带硬件以及当前内核的兼容性。</p></li>
-            </ol>
-            <figure class="installation-image"><a href="assets/install-macos-zh.png" target="_blank" rel="noopener"><img src="assets/install-macos-zh.png" alt="Mac 中文 ROM 管理界面：导入菜单、搜索与筛选、编辑和收藏按钮，以及项目自制示例游戏" loading="lazy" width="2640" height="1100" decoding="async"></a><figcaption>真实 macOS 1.3.4 中文界面，使用项目自制示例游戏和演示资料；图片裁去了底部空白，点击可放大。顶部 BIOS 状态可横向滚动，具体可用功能以所装版本为准。</figcaption></figure>
-            <h3>已经有群晖？Mac 也可以直接连接</h3>
-            <ol class="instruction-steps">
-              <li><h3>取得群晖资料库地址</h3><p>按<a href="#synology">群晖安装</a>和<a href="#library">资料库配置</a>准备好 NAS，在管理网页复制「资料库地址」，形如 <code>http://群晖的局域网IP:8282/library/</code>。Mac 与群晖应在可互通的同一局域网。地址要带 <code>/library/</code>，不是 DSM 的登录地址。</p></li>
-              <li><h3>切到服务器模式并添加来源</h3><p>回到 Mac「设置 → NAS / 远程资料库」，把中间开关切回服务器模式，填写「服务器地址」。服务器设有访问令牌时，选择「Bearer Token」并填写同一 Token；先点「测试连接」，再点「添加资料库」。连接过程与<a href="#clients">其他客户端</a>相同，不需要在 Mac 另装 Docker。</p><p>本地目录和服务器是两种来源模式：使用本地目录时，服务器同步会暂停；切回服务器后再继续同步。切换模式不会把两边自动合并。已有来源可在「管理来源」中查看和同步。</p></li>
-            </ol>
-          </section>
           <section id="computer" class="installation-section">
             <p class="eyebrow">WINDOWS · MACOS · LINUX</p><h2>01 普通电脑安装</h2>
             <ol class="instruction-steps">
@@ -67,6 +51,22 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
               <li><h3>手动安装套件</h3><p>在「套件中心 → 手动安装」选择下载的 SPK，核对套件名称 <strong>Retro Console Library</strong> 后按向导完成安装。正式版管理端口为 <strong>8282</strong>。</p></li>
               <li><h3>创建资料库并授予权限</h3><p>通过 DSM「控制面板 → 共享文件夹」准备一个专门存放游戏资料库的共享文件夹，例如 <code>FCEmulatorLibrary</code>。进入该共享文件夹的「编辑 → 权限」，把用户类型切换为<strong>系统内部用户</strong>，给 <code>FCEmulatorLibrary</code> 账号勾选<strong>读取/写入</strong>并应用。</p><p>这是套件账号，不是你登录 DSM 使用的管理员账号。若只授权共享文件夹中的某个子目录，还要让套件账号能够穿过上级目录；只给最深处的文件夹读写权限可能仍会报「拒绝访问」。优先使用独立共享文件夹，避免向无关目录授予权限。</p></li>
               <li><h3>启动并打开管理页面</h3><p>在套件中心启动服务，点击「打开」，或在浏览器输入 <code>http://你的群晖局域网IP:8282/</code>。不要使用 DSM 的 5000 / 5001 端口代替服务器端口。若 DSM 开启了防火墙，允许受信任局域网访问 TCP 8282。</p><p>进入网页「设置」后选择资料库的真实路径：可能是 <code>/volume1/FCEmulatorLibrary</code>，也可能是 <code>/volume2/FCEmulatorLibrary</code>，以 NAS 实际存储卷为准。不要把 Mac 上的 <code>/Volumes/…</code> 路径直接填到群晖中。</p></li>
+            </ol>
+          </section>
+          <section id="macos" class="installation-section">
+            <p class="eyebrow">MAC APP · LOCAL OR SYNOLOGY</p><h2>Mac 应用：自己管理游戏，也能连接群晖</h2>
+            <p><strong>只在 Mac 上玩，安装 Mac 应用就够了，无需群晖或 Docker。</strong>你可以直接管理自己的本地 ROM 资料库；已有群晖资料库时，也可以把 Mac 当作客户端连接它。下面先介绍本地用法，再介绍如何切换到群晖。</p>
+            <ol class="instruction-steps">
+              <li><h3>安装 Mac 应用</h3><p>前往<a href="index.html#download">客户端下载区</a>下载 macOS DMG。当前版本适用于 Apple 芯片 Mac，要求 macOS 14 Sonoma 或更高版本。打开 DMG，把应用拖到「应用程序」，再从「应用程序」打开。仅本地使用时，不必执行下面的 Docker 安装步骤。</p></li>
+              <li><h3>选择自己的 ROM 目录</h3><p>打开应用的「设置 → NAS / 远程资料库」，用服务器地址与本地目录之间的开关切到本地模式，再点击「选择目录…」。第一次使用可选一个新的空文件夹，例如自己创建的「Retro Console 游戏库」；应用会把空目录准备为可移植资料库。已有 ROM 文件夹也可以直接选择，文件按原位置读取；在访达里增删文件后，回到这里点击「刷新」。</p><p><strong>你选择的是公共 ROM 目录，不是 App 的私有索引位置。</strong>索引、缓存和游戏存档由 App 自己管理，无需另选路径。使用上述空目录建立的可移植资料库时，导入的游戏会整理并写入该目录；明确设置或补全封面时，封面也会按公共资料库格式写回。备份时请保留自己的 ROM 资料库；该目录并不等于 App 的全部设置与存档。</p></li>
+              <li><h3>在「ROM 管理」中导入和整理</h3><p>切到本地模式后，在游戏页打开「ROM 管理」，选择「导入 → ROM 文件…」，选中自己合法拥有或获得授权的 ROM。ZIP / 7z 中只放一个卡带文件时，可由导入器识别；已经整理好的通用游戏包用「游戏包 (.zip / 目录)…」，含根 <code>library.json</code> 的完整资料库用「整个资料库目录…」。不要把普通多游戏 ZIP 当作一个游戏包。</p><p>导入后检查游戏列表和具体错误。可以搜索、收藏，点击「编辑」修改名称、分类和封面，或使用「补全缺失封面」搜索公开封面来源。游戏名称和你自己的文件名会保留；切换界面语言不会翻译或改写原始游戏资料。下方<a href="#rom-formats">ROM 类型说明</a>解释常见后缀和容器；其中格式表是服务器入口的清单，不能视作 Mac 对每款游戏的兼容保证。</p></li>
+              <li><h3>按游戏需要补 BIOS，再启动验证</h3><p>在「ROM 管理 → 导入」菜单选择对应的 BIOS 或固件入口，例如 FDS BIOS、PlayStation BIOS。只使用自己有权使用的文件，按<a href="#bios">BIOS 与固件说明</a>准备正确的机型和地区；普通 NES 卡带不需要 FDS BIOS。不要把 BIOS 当作游戏卡带，也不要仅靠改名让文件通过校验。</p><p>返回游戏页实际启动游戏。导入成功说明文件已加入资料库；能否正常进入游戏，还取决于 BIOS、卡带硬件以及当前内核的兼容性。</p></li>
+            </ol>
+            <figure class="installation-image"><a href="assets/install-macos-zh.png" target="_blank" rel="noopener"><img src="assets/install-macos-zh.png" alt="Mac 中文 ROM 管理界面：导入菜单、搜索与筛选、编辑和收藏按钮，以及项目自制示例游戏" loading="lazy" width="2640" height="1100" decoding="async"></a><figcaption>真实 macOS 1.3.4 中文界面，使用项目自制示例游戏和演示资料；图片裁去了底部空白，点击可放大。顶部 BIOS 状态可横向滚动，具体可用功能以所装版本为准。</figcaption></figure>
+            <h3>已经有群晖？Mac 也可以直接连接</h3>
+            <ol class="instruction-steps">
+              <li><h3>取得群晖资料库地址</h3><p>按<a href="#synology">群晖安装</a>和<a href="#library">资料库配置</a>准备好 NAS，在管理网页复制「资料库地址」，形如 <code>http://群晖的局域网IP:8282/library/</code>。Mac 与群晖应在可互通的同一局域网。地址要带 <code>/library/</code>，不是 DSM 的登录地址。</p></li>
+              <li><h3>切到服务器模式并添加来源</h3><p>回到 Mac「设置 → NAS / 远程资料库」，把中间开关切回服务器模式，填写「服务器地址」。服务器设有访问令牌时，选择「Bearer Token」并填写同一 Token；先点「测试连接」，再点「添加资料库」。连接过程与<a href="#clients">其他客户端</a>相同，不需要在 Mac 另装 Docker。</p><p>本地目录和服务器是两种来源模式：使用本地目录时，服务器同步会暂停；切回服务器后再继续同步。切换模式不会把两边自动合并。已有来源可在「管理来源」中查看和同步。</p></li>
             </ol>
           </section>
           <section id="library" class="installation-section">
