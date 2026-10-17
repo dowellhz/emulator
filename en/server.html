@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="../language.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b1717">
+    <meta name="description" content="Install Retro Console Library Server on Windows, macOS, Linux, or Synology NAS.">
+    <meta property="og:title" content="Library server — Retro Console">
+    <meta property="og:description" content="Manage ROMs, game details, and cover art on your own computer or Synology NAS.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../assets/server-library.png">
+    <link rel="alternate" hreflang="zh-Hans" href="https://dowellhz.github.io/emulator/server.html">
+    <link rel="alternate" hreflang="en" href="https://dowellhz.github.io/emulator/en/server.html">
+    <link rel="alternate" hreflang="x-default" href="https://dowellhz.github.io/emulator/server.html">
+    <title>Library server — Retro Console</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header scrolled" data-header>
+      <a class="brand" href="index.html" aria-label="Return to Retro Console home">
+        <img class="brand-icon" src="../assets/icon.png" alt="">
+        <span>Retro Console</span>
+      </a>
+      <nav aria-label="Main navigation"><a href="index.html#systems">Platforms</a><a href="index.html#download">Android TV</a><a class="current" href="server.html" aria-current="page">Library server</a><a href="install.html">Installation guide</a><a href="privacy.html">Privacy</a></nav>
+      <div class="header-actions"><a class="language-switch" data-language="zh" href="../server.html?lang=zh" lang="zh-CN" aria-label="切换到中文">中文</a><a class="header-cta" href="index.html#download">Download APK</a></div>
+    </header>
+
+    <main>
+      <section class="server-hero section-shell">
+        <div class="server-hero-copy reveal">
+          <p class="eyebrow">WINDOWS · MACOS · LINUX · SYNOLOGY</p>
+          <h1>Your library.<br><em>Your own hardware.</em></h1>
+          <p>Retro Console Library Server organizes ROMs, game details, cover art, saves, and collections, and serves your own remote library to Android TV, Apple TV, and macOS.</p>
+          <div class="server-download-options">
+            <a class="server-download-card featured" href="../downloads/FCEmulatorLibrary-Docker-1.3.3-c5138720.zip" download>
+              <span>Computers · Recommended</span><strong>Docker Compose</strong><small>v1.3.3 · Windows · macOS · Linux</small><b>Download ZIP <i>↓</i></b>
+            </a>
+            <a class="server-download-card" href="../downloads/FCEmulatorLibrary-1.3.3-14f6afd0.spk" download>
+              <span>Synology NAS</span><strong>DSM 7 package</strong><small>v1.3.3 · noarch · Node.js 18+</small><b>Download SPK <i>↓</i></b>
+            </a>
+          </div>
+        </div>
+        <aside class="server-requirements reveal" aria-label="Requirements">
+          <p>Requirements</p>
+          <strong>Computers</strong>
+          <span>Install a recent version of Docker Desktop. Linux users can use Docker Engine with the Compose plugin.</span>
+          <strong>Synology DSM 7</strong>
+          <span>Install Node.js 18 or later from Package Center, then manually install the SPK.</span>
+          <strong>Port 8282</strong>
+          <span>Docker initially allows access only from this computer. Bind to its local network IP when you are ready to connect a TV.</span>
+        </aside>
+      </section>
+
+      <section class="server-shot section-shell reveal">
+        <img src="../assets/server-library.png" alt="Retro Console Library Server management page with pending items, background tasks, filters, and game cover art">
+        <p>Library server management page</p>
+      </section>
+
+      <section class="server-guide section-shell" aria-labelledby="install-title">
+        <div class="server-guide-title reveal">
+          <p class="eyebrow">INSTALLATION</p>
+          <h2 id="install-title">On a computer,<br>set up in four steps.</h2>
+        </div>
+        <ol class="server-steps">
+          <li class="reveal"><span>01</span><div><h3>Install Docker</h3><p>Install Docker Desktop on Windows or macOS, or Docker Engine with the Compose plugin on Linux.</p></div></li>
+          <li class="reveal"><span>02</span><div><h3>Extract the ZIP and choose a library</h3><p>Download and extract the ZIP, then create a <code>library</code> folder inside it. To use an existing library, follow the README and set its path in <code>.env</code>.</p></div></li>
+          <li class="reveal"><span>03</span><div><h3>Start the server</h3><p>Open a terminal in the extracted folder and run <code>docker compose up -d --build</code>. Then open <code>http://127.0.0.1:8282/</code> in your browser.</p></div></li>
+          <li class="reveal"><span>04</span><div><h3>Allow access from your TV</h3><p>Set a management token first, then change <code>FC_LIBRARY_BIND_IP</code> to your computer’s local network IP. Do not forward the port to the internet.</p></div></li>
+        </ol>
+      </section>
+
+      <section class="server-synology section-shell reveal" aria-labelledby="synology-title">
+        <div><p class="eyebrow">SYNOLOGY DSM 7</p><h2 id="synology-title">Install a native SPK<br>on Synology.</h2></div>
+        <ol>
+          <li><span>01</span><p>Install Node.js 18, 20, or 22 in Package Center.</p></li>
+          <li><span>02</span><p>Choose Manual Install and select the SPK downloaded from this page.</p></li>
+          <li><span>03</span><p>Give the internal system user <code>FCEmulatorLibrary</code> read/write permission for your library folder.</p></li>
+          <li><span>04</span><p>Start the package, then open <code>http://NAS_IP:8282/</code> to finish setup. Replace NAS_IP with your NAS’s local network address.</p></li>
+        </ol>
+      </section>
+
+      <section class="server-notice section-shell reveal">
+        <div>
+          <p class="eyebrow">YOUR FILES, YOUR CONTROL</p>
+          <h2>Bring your own<br>games and BIOS files.</h2>
+        </div>
+        <div>
+          <p>The Docker ZIP and Synology SPK contain no ROMs, CPS2 keys, or <code>neogeo.zip</code> BIOS. CPS2 games need a matching <code>.key</code> in your own ROM ZIP. For Neo Geo, upload your own <code>neogeo.zip</code> on the management page.</p>
+          <p>The Docker package binds to localhost by default and runs as a non-root user with a read-only root filesystem. ROMs, cover art, and library indexes are written only to directories you mount or grant access to. Only use content you have the right to use.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer section-shell">
+      <a class="brand" href="index.html"><img class="brand-icon" src="../assets/icon.png" alt=""><span>Retro Console</span></a>
+      <p>The server runs on your own hardware. Set up your local network, firewall, and access permissions accordingly.</p>
+      <div><a href="privacy.html">Privacy policy</a><span>© <span data-year></span></span></div>
+    </footer>
+  </body>
+</html>
