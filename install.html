@@ -23,7 +23,7 @@
     </header>
     <main class="installation section-shell">
       <header class="installation-intro">
-        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.3.3</p>
+        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.3.4</p>
         <h1>从安装开始，<br><em>连上自己的游戏库。</em></h1>
         <p>准备一台电脑或群晖 NAS 存放资料库，再让电视、Mac 或手机连接它。先按设备完成安装，再继续设置目录、导入游戏和连接客户端。</p>
         <div class="installation-choice"><a href="#computer">我用 Windows / macOS / Linux <span>↓</span></a><a href="#synology">我用群晖 DSM 7 <span>↓</span></a></div>
@@ -52,7 +52,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             </ol>
           </section>
           <section id="library" class="installation-section">
-            <p class="eyebrow">FIRST SETUP</p><h2>03 设置目录，上传游戏</h2>
+            <p class="eyebrow">FIRST SETUP</p><h2>03 设置目录，上传游戏</h2><p>1.3.4 起，管理页面右上角可选择「中文 / English」。首次打开会按浏览器语言显示，之后记住你的选择。切换会刷新当前页面；请先完成上传或保存，并关闭打开的弹窗。</p>
             <ol class="instruction-steps">
               <li><h3>选择服务器能看见的目录</h3><p>打开管理网页右上角「设置」，在「资料库目录（服务器绝对路径）」中填写或浏览选择目录。<strong>Docker 填 <code>/library</code></strong>，这是容器内的路径；电脑上的真实目录由 <code>.env</code> 的 <code>FC_LIBRARY_HOST_PATH</code> 决定。群晖填上一步确认的 <code>/volume…/共享文件夹</code> 路径。</p><p>设置「资料库名称」，保存并等待页面刷新。首次使用建议先选择一个空目录。已有可移植资料库请选择包含根 <code>library.json</code> 的目录；目录里的旧文件请先备份。</p></li>
               <li><h3>设置管理 Token</h3><p>仍在「设置」中，为「管理 Token」填写自己生成的<strong>至少 16 个字符</strong>的访问令牌，然后保存。保存后，上传、删除和修改设置等管理操作需要该 Token；换浏览器访问时，按页面提示输入同一 Token。它不是 DSM 密码，也不是 DeepSeek API Key。</p><p>不使用联网资料补全时，无需填写 DeepSeek API Key。公开包没有预置任何人的密钥或账号。</p></li>
@@ -97,7 +97,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
           </section>
           <section id="rom-formats" class="installation-section">
             <p class="eyebrow">HELP · ROM FORMATS</p><h2>07 服务器支持哪些 ROM？</h2>
-            <p>ROM 是你导出的游戏文件；ZIP / 7z 是把文件装在一起的压缩容器。下面列的是 <strong>1.3.3 服务器上传入口</strong>实际接受的类型，不等同于每款游戏都能运行，也不把客户端单独支持的格式算进来。先在「设置」中选好资料库目录，再上传。</p>
+            <p>ROM 是你导出的游戏文件；ZIP / 7z 是把文件装在一起的压缩容器。下面列的是 <strong>1.3.4 服务器上传入口</strong>实际接受的类型，不等同于每款游戏都能运行，也不把客户端单独支持的格式算进来。先在「设置」中选好资料库目录，再上传。</p>
             <h3>卡带与磁碟游戏</h3>
             <p>下表的「单文件 ZIP / 7z」指压缩包内只放<strong>一个对应格式的游戏文件</strong>。封面、说明文档和其他游戏请不要混在同一压缩包内；系统会按成员内容校验，不会把所有 ZIP 都当作街机。文件可在子目录内；常见系统元数据会忽略，危险路径或损坏压缩包会拒绝。</p>
             <div class="installation-table"><table><thead><tr><th>主机</th><th>裸文件与 ZIP / 7z 内的成员</th><th>识别与依赖</th></tr></thead><tbody>
