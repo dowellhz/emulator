@@ -308,3 +308,61 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* Installation guide: readable steps and uncropped screenshots on every screen. */
+.installation { padding-block:155px 100px; }
+.installation-intro { max-width:920px; margin-bottom:75px; }
+.installation-intro h1 { font-size:clamp(44px,5.5vw,74px); }
+.installation-intro > p:last-of-type { color:var(--muted); line-height:1.9; max-width:720px; margin-block:28px; }
+.installation-choice { display:flex; flex-wrap:wrap; gap:12px; }
+.installation-choice a { background:var(--teal); border-radius:12px; color:var(--white); padding:17px 22px; font-size:13px; font-weight:700; }
+.installation-choice span { margin-left:18px; color:var(--mint); }
+.installation-layout { display:grid; grid-template-columns:210px minmax(0,1fr); gap:55px; align-items:start; }
+.installation-toc { position:sticky; top:110px; display:flex; flex-direction:column; gap:14px; font-size:12px; }
+.installation-toc strong { margin-bottom:10px; }
+.installation-toc a { color:var(--muted); }
+.installation-toc a:hover { color:var(--red); }
+.installation-content { min-width:0; }
+.installation-section { border-top:1px solid var(--line); padding-block:42px 52px; scroll-margin-top:110px; }
+.installation-section h2 { font-size:clamp(28px,3vw,39px); margin-bottom:28px; }
+.installation-section h3 { margin:0 0 12px; font-size:19px; letter-spacing:-.03em; }
+.installation-section p { color:var(--ink-soft); font-size:14px; line-height:1.95; }
+.installation-section a:not(.installation-image a) { color:var(--red-dark); text-decoration:underline; text-underline-offset:3px; }
+.instruction-steps { list-style:none; padding:0; counter-reset:instruction; }
+.instruction-steps > li { counter-increment:instruction; position:relative; padding-left:48px; margin-block:30px 36px; }
+.instruction-steps > li::before { content:counter(instruction,decimal-leading-zero); position:absolute; left:0; top:2px; color:var(--red); font:700 13px var(--mono); }
+.installation code { font-family:var(--mono); font-size:.88em; overflow-wrap:anywhere; }
+.installation p code, .installation td code { background:var(--paper-deep); border-radius:4px; padding:2px 4px; }
+.installation pre { padding:20px; background:var(--teal); color:var(--white); border-radius:12px; overflow-x:auto; line-height:1.85; }
+.installation pre code { overflow-wrap:normal; }
+.installation-image { margin:32px 0; }
+.installation-image img { width:100%; height:auto; border:1px solid var(--line); border-radius:12px; }
+.installation-image figcaption { font-size:12px; color:var(--muted); line-height:1.8; margin-top:12px; }
+.installation-table { width:100%; overflow:auto; margin-block:26px; }
+.installation-table table { border-collapse:collapse; width:100%; font-size:13px; line-height:1.8; }
+.installation-table th, .installation-table td { border-bottom:1px solid var(--line); text-align:left; vertical-align:top; padding:14px 12px; min-width:135px; }
+.installation-table th { background:var(--paper-deep); }
+.installation-section details { border-bottom:1px solid var(--line); padding:22px 0; }
+.installation-section summary { cursor:pointer; font-size:16px; font-weight:700; line-height:1.65; }
+@media (min-width:981px) and (max-width:1200px) { .site-header nav { gap:19px; } }
+@media (max-width:980px) {
+  .site-header { height:auto; min-height:112px; grid-template-rows:64px auto; }
+  .site-header > .brand { grid-column:1; grid-row:1; }
+  .site-header > .header-cta { grid-column:2; grid-row:1; }
+  .site-header nav { display:flex; grid-column:1 / -1; grid-row:2; width:100%; min-width:0; gap:14px 18px; flex-wrap:wrap; overflow:visible; padding:8px 0 16px; }
+  .site-header nav a { flex:none; }
+  .installation { padding-top:160px; }
+  .installation-layout { grid-template-columns:minmax(0,1fr); gap:28px; }
+  .installation-toc { position:static; flex-direction:row; flex-wrap:wrap; gap:16px 22px; padding-bottom:15px; }
+  .installation-toc strong { width:100%; }
+  .installation-section { scroll-margin-top:150px; }
+  .server-hero { padding-top:160px; }
+}
+@media (max-width:680px) {
+  .installation-intro { margin-bottom:45px; }
+  .installation-choice { flex-direction:column; }
+  .instruction-steps > li { padding-left:34px; }
+  .installation pre { padding:15px; font-size:12px; }
+  .installation-section { padding-block:30px; }
+  .policy { padding-top:155px; }
+}

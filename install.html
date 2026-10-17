@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b1717">
+    <meta name="description" content="从安装 Docker 或群晖套件，到设置 ROM 目录、上传 BIOS、连接电视客户端，逐步配置 Retro Console 资料库服务器。">
+    <title>安装指南 — Retro Console</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header scrolled" data-header>
+      <a class="brand" href="index.html" aria-label="返回 Retro Console 首页"><img class="brand-icon" src="assets/icon.png" alt=""><span>Retro Console</span></a>
+      <nav aria-label="主导航"><a href="index.html#systems">支持平台</a><a href="index.html#download">Android TV</a><a href="server.html">服务器端</a><a class="current" href="install.html" aria-current="page">安装指南</a><a href="privacy.html">隐私</a></nav>
+      <a class="header-cta" href="server.html">下载服务器</a>
+    </header>
+    <main class="installation section-shell">
+      <header class="installation-intro">
+        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.3.3</p>
+        <h1>从安装开始，<br><em>连上自己的游戏库。</em></h1>
+        <p>准备一台电脑或群晖 NAS 存放资料库，再让电视、Mac 或手机连接它。先按设备完成安装，再继续设置目录、导入游戏和连接客户端。</p>
+        <div class="installation-choice"><a href="#computer">我用 Windows / macOS / Linux <span>↓</span></a><a href="#synology">我用群晖 DSM 7 <span>↓</span></a></div>
+      </header>
+      <div class="installation-layout">
+        <nav class="installation-toc" aria-label="指南目录"><strong>安装与配置</strong><a href="#computer">01 普通电脑安装</a><a href="#synology">02 群晖安装</a><a href="#library">03 目录与游戏导入</a><a href="#bios">04 BIOS 与固件</a><a href="#network">05 允许局域网访问</a><a href="#clients">06 连接客户端</a><a href="#rom-formats">07 支持的 ROM 类型</a><a href="#troubleshooting">08 故障与升级</a></nav>
+        <div class="installation-content">
+          <section id="computer" class="installation-section">
+            <p class="eyebrow">WINDOWS · MACOS · LINUX</p><h2>01 普通电脑安装</h2>
+            <ol class="instruction-steps">
+              <li><h3>安装并启动 Docker</h3><p>Windows 或 macOS 安装 Docker Desktop，安装后打开应用，等待引擎启动。Mac 请按自己的 Apple 芯片或 Intel 芯片选择版本；Windows 按官方安装器要求启用 WSL 2 等组件。Linux 可安装 Docker Engine 与 Compose 插件。</p><p><a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener noreferrer">Docker 官方安装说明 ↗</a> · <a href="https://docs.docker.com/desktop/setup/install/windows-install/" target="_blank" rel="noopener noreferrer">Windows ↗</a> · <a href="https://docs.docker.com/desktop/setup/install/mac-install/" target="_blank" rel="noopener noreferrer">macOS ↗</a></p><p>打开终端，Windows 可用 PowerShell，检查下面两条命令。第二条能显示服务端信息，才说明引擎已运行。</p><pre><code>docker compose version
+docker info</code></pre></li>
+              <li><h3>下载并解压服务器 ZIP</h3><p>前往<a href="server.html">服务器端下载页</a>，选择「普通电脑 · Docker Compose」。把 ZIP 完整解压到准备长期保留的文件夹，确认其中有 <code>compose.yaml</code>、<code>Dockerfile</code>、<code>app</code> 和 <code>README.md</code>，不要在压缩包内直接操作。</p></li>
+              <li><h3>创建资料库文件夹</h3><p>在 <code>compose.yaml</code> 同级创建名为 <code>library</code> 的文件夹。它将保存游戏包、BIOS 和封面。已有目录也可以使用：复制 <code>.env.example</code> 为 <code>.env</code>，把 <code>FC_LIBRARY_HOST_PATH</code> 改成该目录的绝对路径。Windows 使用类似 <code>D:/Games/FCEmulatorLibrary</code> 的路径。</p><p>文件必须叫 <code>.env</code>，不要保存成 <code>.env.txt</code>。Docker Desktop 若询问是否允许访问此文件夹，请允许共享该目录。</p></li>
+              <li><h3>启动并打开管理页面</h3><p>Windows：在解压后的文件夹空白处右键，选择「在终端中打开」（也可使用 PowerShell）。Mac：打开「终端」，输入 <code>cd</code> 加一个空格，把解压后的文件夹拖进终端，再按回车。Linux：在文件管理器中选择「在终端打开」。确认当前目录中能找到 <code>compose.yaml</code>，然后运行：</p><pre><code>docker compose up -d --build
+docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。看到 <code>server</code> 正在运行后，在<strong>同一台电脑</strong>浏览器打开 <a href="http://127.0.0.1:8282/" target="_blank" rel="noopener noreferrer"><code>http://127.0.0.1:8282/</code></a>，继续下方的<a href="#library">目录配置</a>。当前默认只允许本机访问，电视连接前还需要完成<a href="#network">局域网设置</a>。</p></li>
+            </ol>
+          </section>
+          <section id="synology" class="installation-section">
+            <p class="eyebrow">SYNOLOGY DSM 7</p><h2>02 群晖安装</h2>
+            <ol class="instruction-steps">
+              <li><h3>准备 Node.js 与公开 SPK</h3><p>在 DSM「套件中心」安装适用于本机的 Node.js 18 或更高版本；启动脚本支持查找 Node.js 18、20、22 套件。随后前往<a href="server.html">服务器端下载页</a>下载群晖 SPK。公开包不附带 Node 运行时，标记为 <code>noarch</code>；仍需要 NAS 上可运行的 Node.js。</p></li>
+              <li><h3>手动安装套件</h3><p>在「套件中心 → 手动安装」选择下载的 SPK，核对套件名称 <strong>Retro Console Library</strong> 后按向导完成安装。正式版管理端口为 <strong>8282</strong>。</p></li>
+              <li><h3>创建资料库并授予权限</h3><p>通过 DSM「控制面板 → 共享文件夹」准备一个专门存放游戏资料库的共享文件夹，例如 <code>FCEmulatorLibrary</code>。进入该共享文件夹的「编辑 → 权限」，把用户类型切换为<strong>系统内部用户</strong>，给 <code>FCEmulatorLibrary</code> 账号勾选<strong>读取/写入</strong>并应用。</p><p>这是套件账号，不是你登录 DSM 使用的管理员账号。若只授权共享文件夹中的某个子目录，还要让套件账号能够穿过上级目录；只给最深处的文件夹读写权限可能仍会报「拒绝访问」。优先使用独立共享文件夹，避免向无关目录授予权限。</p></li>
+              <li><h3>启动并打开管理页面</h3><p>在套件中心启动服务，点击「打开」，或在浏览器输入 <code>http://你的群晖局域网IP:8282/</code>。不要使用 DSM 的 5000 / 5001 端口代替服务器端口。若 DSM 开启了防火墙，允许受信任局域网访问 TCP 8282。</p><p>进入网页「设置」后选择资料库的真实路径：可能是 <code>/volume1/FCEmulatorLibrary</code>，也可能是 <code>/volume2/FCEmulatorLibrary</code>，以 NAS 实际存储卷为准。不要把 Mac 上的 <code>/Volumes/…</code> 路径直接填到群晖中。</p></li>
+            </ol>
+          </section>
+          <section id="library" class="installation-section">
+            <p class="eyebrow">FIRST SETUP</p><h2>03 设置目录，上传游戏</h2>
+            <ol class="instruction-steps">
+              <li><h3>选择服务器能看见的目录</h3><p>打开管理网页右上角「设置」，在「资料库目录（服务器绝对路径）」中填写或浏览选择目录。<strong>Docker 填 <code>/library</code></strong>，这是容器内的路径；电脑上的真实目录由 <code>.env</code> 的 <code>FC_LIBRARY_HOST_PATH</code> 决定。群晖填上一步确认的 <code>/volume…/共享文件夹</code> 路径。</p><p>设置「资料库名称」，保存并等待页面刷新。首次使用建议先选择一个空目录。已有可移植资料库请选择包含根 <code>library.json</code> 的目录；目录里的旧文件请先备份。</p></li>
+              <li><h3>设置管理 Token</h3><p>仍在「设置」中，为「管理 Token」填写自己生成的<strong>至少 16 个字符</strong>的访问令牌，然后保存。保存后，上传、删除和修改设置等管理操作需要该 Token；换浏览器访问时，按页面提示输入同一 Token。它不是 DSM 密码，也不是 DeepSeek API Key。</p><p>不使用联网资料补全时，无需填写 DeepSeek API Key。公开包没有预置任何人的密钥或账号。</p></li>
+              <li><h3>上传一款自己的 ROM</h3><p>回到「游戏」页，点击「上传 ROM」选择文件，或拖入上传区域。ZIP / 7z 会按内部内容识别系统，不能仅凭文件名认定主机。街机驱动包应保留原名；需要声明的 Atari 卡带会弹出制式、板卡或控制器选择，按真实卡带填写。</p><p>上传结束后查看结果和游戏列表。出现「已加入」或「已存在」代表入库或去重成功；若还有启动依赖提示，请继续处理<a href="#bios">BIOS 与固件</a>，不要把上传成功等同于已经验证游戏能运行。</p></li>
+            </ol>
+            <figure class="installation-image"><a href="assets/install-settings.png" target="_blank" rel="noopener"><img src="assets/install-settings.png" alt="服务器设置面板：资料库名称、服务器绝对路径与管理 Token 输入项" loading="lazy"></a><figcaption>在设置中确认路径与访问令牌。截图为演示数据；点击图片查看原图。</figcaption></figure>
+            <figure class="installation-image"><a href="assets/install-library.png" target="_blank" rel="noopener"><img src="assets/install-library.png" alt="游戏管理页面：ROM 上传区域、上传结果与游戏列表" loading="lazy"></a><figcaption>上传后同时检查结果和游戏列表。截图为演示数据。</figcaption></figure>
+          </section>
+          <section id="bios" class="installation-section">
+            <p class="eyebrow">BIOS &amp; FIRMWARE</p><h2>04 补齐启动所需文件</h2>
+            <p>公开安装包不含 ROM 或主机 BIOS。打开管理网页「BIOS 与固件」，按对应卡片选择自己拥有的文件；页面会校验内容身份，错误文件会显示原因，不会覆盖原来已经验证的合法文件。</p>
+            <div class="installation-table"><table><thead><tr><th>主机或游戏</th><th>需要准备什么</th></tr></thead><tbody>
+              <tr><td>Famicom 磁碟机 FDS</td><td><code>disksys.rom</code>；普通 NES 卡带不需要。</td></tr>
+              <tr><td>Neo Geo / IGS PGM</td><td>分别上传 <code>neogeo.zip</code> / <code>pgm.zip</code>。</td></tr>
+              <tr><td>PlayStation / Mega CD</td><td>与游戏地区匹配的 BIOS；按文件身份自动区分日、美、欧版。</td></tr>
+              <tr><td>PC Engine CD</td><td>有效的 System Card；Super CD-ROM² 游戏需要 3.0。</td></tr>
+              <tr><td>Sega 32X</td><td>主 SH-2、副 SH-2、MD 侧三件 BIOS，按卡片提示逐件上传。</td></tr>
+              <tr><td>Neo Geo Pocket</td><td>对应单色 / 彩色机型的 BIOS，以及对应的首启 NVRAM。</td></tr>
+              <tr><td>Atari 5200 / 7800</td><td>5200 使用 <code>atari5200-bios.rom</code>；7800 当前客户端需要游戏制式对应的 NTSC / PAL BIOS，HSC 只用于声明 High Score Cartridge 的卡带。</td></tr>
+              <tr><td>Game Boy Advance</td><td>外部 <code>gba_bios.bin</code> 可选，未上传时客户端使用内置实现。</td></tr>
+              <tr><td>Super NES</td><td>IPL 与部分协处理器已有内置实现；只有相应卡带需要的外部固件才需上传，例如使用 ST011 / ST018 的卡带。不要把同尺寸的其他文件改名冒充固件。</td></tr>
+            </tbody></table></div>
+            <p>ROM 上传后若缺少依赖，页面会保留「ROM 已入库」的启动依赖提示，后续其他文件上传成功不会把它盖掉。点击「前往 BIOS 与固件」补齐文件，再重新上传该 ROM 确认；原有提示是上传当时的记录，可以手动关闭。CPS2 游戏还需匹配的 <code>.key</code>，可随自己的 ROM ZIP 提供。</p>
+            <figure class="installation-image"><a href="assets/install-bios.png" target="_blank" rel="noopener"><img src="assets/install-bios.png" alt="BIOS 与固件页面：按主机和地区区分的上传卡片，包含 Atari 5200、7800 与可选 GBA BIOS" loading="lazy"></a><figcaption>按卡片检查缺少、可选与已验证状态；文件校验通过后才会标记为已验证。</figcaption></figure>
+          </section>
+          <section id="network" class="installation-section">
+            <p class="eyebrow">LOCAL NETWORK</p><h2>05 允许局域网设备访问</h2>
+            <p>先完成管理 Token 设置，再开放给电视或其他设备。让服务器与客户端处在同一个可互通的局域网；访客 Wi-Fi 或路由器的设备隔离可能阻止连接。</p>
+            <ol class="instruction-steps">
+              <li><h3>Docker：绑定电脑的局域网地址</h3><p>在系统网络设置里查看电脑的局域网 IPv4 地址。编辑解压目录中的 <code>.env</code>，把 <code>FC_LIBRARY_BIND_IP=127.0.0.1</code> 的地址部分换成这台电脑的实际局域网地址，端口保留 <code>FC_LIBRARY_PORT=8282</code>。随后在同一目录运行：</p><pre><code>docker compose up -d</code></pre><p>如果改用现有资料库，<code>FC_LIBRARY_HOST_PATH</code> 仍指向原来的宿主机目录。不要删掉该配置。绑定局域网地址后，请在浏览器改用 <code>http://电脑的局域网IP:8282/</code>；只绑定该地址时，原来的 127.0.0.1 地址可能不再可用。</p></li>
+              <li><h3>群晖：确认端口与防火墙</h3><p>原生 SPK 启动后使用 NAS 的 8282 端口，通常无需 Docker 的绑定设置。若有 DSM 防火墙规则，仅对受信任局域网放行 TCP 8282。不要向互联网做端口转发。</p></li>
+              <li><h3>先用另一台设备验证</h3><p>在同一网络另一台电脑或手机浏览器输入服务器的局域网地址与 8282 端口。能打开管理页面后，再配置客户端。客户端里的 <code>127.0.0.1</code> 指它自己，不能用来连接另一台电脑或 NAS。</p></li>
+            </ol>
+          </section>
+          <section id="clients" class="installation-section">
+            <p class="eyebrow">ANDROID TV · APPLE TV · MACOS</p><h2>06 连接客户端资料库</h2>
+            <ol class="instruction-steps">
+              <li><h3>取得资料库根地址</h3><p>通过服务器<strong>局域网地址</strong>打开管理网页，点击右上角「资料库地址」。客户端使用的地址形如 <code>http://服务器的局域网IP:8282/library/</code>。这与浏览器管理页的根地址不同，末尾要保留 <code>/library/</code>，无需手工追加 <code>library.json</code>。</p></li>
+              <li><h3>在客户端填写地址与认证</h3><p>在 Android TV、Apple TV 或 macOS 客户端打开「设置 → NAS / 远程资料库」，填写「服务器地址」。服务器启用了 Token 时，认证方式选择「Bearer Token」，填入与管理网页相同的访问令牌。不要把 DSM 用户名密码填成 Token。</p><p>macOS 若提示正在使用本地 ROM 目录、服务器同步已暂停，先切回远程资料库模式再继续。</p></li>
+              <li><h3>测试并添加资料库</h3><p>先使用「测试连接」检查地址和认证，再使用「添加资料库」完成同步。已添加的来源可在「资料库来源」中测试或同步。完成后回到游戏页，检查游戏能否下载，再实际启动一局；个别内核的兼容性与 BIOS 是否齐全仍需以实际游戏表现为准。</p></li>
+            </ol>
+          </section>
+          <section id="rom-formats" class="installation-section">
+            <p class="eyebrow">HELP · ROM FORMATS</p><h2>07 服务器支持哪些 ROM？</h2>
+            <p>ROM 是你导出的游戏文件；ZIP / 7z 是把文件装在一起的压缩容器。下面列的是 <strong>1.3.3 服务器上传入口</strong>实际接受的类型，不等同于每款游戏都能运行，也不把客户端单独支持的格式算进来。先在「设置」中选好资料库目录，再上传。</p>
+            <h3>卡带与磁碟游戏</h3>
+            <p>下表的「单文件 ZIP / 7z」指压缩包内只放<strong>一个对应格式的游戏文件</strong>。封面、说明文档和其他游戏请不要混在同一压缩包内；系统会按成员内容校验，不会把所有 ZIP 都当作街机。文件可在子目录内；常见系统元数据会忽略，危险路径或损坏压缩包会拒绝。</p>
+            <div class="installation-table"><table><thead><tr><th>主机</th><th>裸文件与 ZIP / 7z 内的成员</th><th>识别与依赖</th></tr></thead><tbody>
+              <tr><td>NES / Famicom</td><td><code>.nes</code>；支持单文件 ZIP / 7z</td><td>读取 NES 头与 mapper；具体 mapper 仍需客户端支持，普通卡带不需要 FDS BIOS。</td></tr>
+              <tr><td>Famicom Disk System</td><td><code>.fds</code>、<code>.qd</code>；支持单文件 ZIP / 7z</td><td>归入 NES 系统，使用 FDS mapper 20 路径；需要 <code>disksys.rom</code>，与 NES 卡带不同。</td></tr>
+              <tr><td>Super NES / Super Famicom</td><td><code>.sfc</code>、<code>.smc</code>；支持单文件 ZIP / 7z</td><td>检查卡带芯片；IPL 和部分协处理器内置，外部固件按游戏需要准备。</td></tr>
+              <tr><td>Mega Drive / Genesis</td><td><code>.bin</code>、<code>.md</code>、<code>.gen</code>；支持单文件 ZIP / 7z</td><td>这些扩展名也可能用于 32X，系统会继续读头部确认。</td></tr>
+              <tr><td>Sega 32X</td><td><code>.32x</code>，以及内容被识别为 32X 的 <code>.bin</code> / <code>.md</code> / <code>.gen</code>；支持单文件 ZIP / 7z</td><td>需要主、副 SH-2 和 MD 侧三件适配器 BIOS。</td></tr>
+              <tr><td>Master System</td><td><code>.sms</code>；支持单文件 ZIP / 7z</td><td>按主机头部与卡带约束校验。</td></tr>
+              <tr><td>Game Gear</td><td><code>.gg</code>；支持单文件 ZIP / 7z</td><td>系统由卡带内容继续校验。</td></tr>
+              <tr><td>SG-1000</td><td><code>.sg</code>；支持单文件 ZIP / 7z</td><td>按 SG-1000 卡带约束校验。</td></tr>
+              <tr><td>Game Boy / Game Boy Color</td><td><code>.gb</code>、<code>.gbc</code>；支持单文件 ZIP / 7z</td><td>由头部决定 GB / GBC，不能只看扩展名；不支持的卡带控制器会拒绝。</td></tr>
+              <tr><td>Game Boy Advance</td><td><code>.gba</code>；支持单文件 ZIP / 7z</td><td>外部 BIOS 可选；未上传时客户端有内置实现。</td></tr>
+              <tr><td>WonderSwan / WonderSwan Color</td><td><code>.ws</code>、<code>.wsc</code>；支持单文件 ZIP / 7z</td><td>同一系统入口，由卡带内容区分机型。</td></tr>
+              <tr><td>Neo Geo Pocket / Color</td><td><code>.ngp</code>、<code>.ngc</code>；支持单文件 ZIP / 7z</td><td>按机型准备 BIOS 与首启 NVRAM。</td></tr>
+              <tr><td>PC Engine / TurboGrafx-16 HuCard</td><td><code>.pce</code>；支持单文件 ZIP / 7z</td><td>这是卡带入口，与需要 System Card 的 CD 游戏分开；System Card 本身会识别为固件。</td></tr>
+              <tr><td>Atari 2600</td><td><code>.a26</code>；支持单文件 ZIP / 7z</td><td>需要正确的制式、板卡与输入声明，页面按缺项提问；不能按标题猜 mapper。</td></tr>
+              <tr><td>Atari 5200</td><td><code>.a52</code>，包括受校验的 CART 头；支持单文件 ZIP / 7z</td><td>板型有歧义时需声明，可指定 2 / 4 端口机型；需要 5200 BIOS。</td></tr>
+              <tr><td>Atari 7800</td><td><code>.a78</code>，包括受校验的 A78 头；支持单文件 ZIP / 7z</td><td>无头映像须匹配已知卡带表，A78 头须有效；需要对应制式 BIOS，HSC 按卡带声明准备。</td></tr>
+            </tbody></table></div>
+            <p><strong>Atari 的 <code>.bin</code> 有额外限制：</strong>只有文件内容指纹匹配已知卡带表时，网页才会自动判定它属于哪台 Atari。未知 <code>.bin</code> 不能仅凭名字确定系统，且与 Mega Drive 的扩展名冲突；请使用可明确主机的正确卡带格式，按页面填写真实制式、板卡和控制器信息。选择一个猜测的板型不能让不支持的卡带变成可运行。</p>
+            <h3>光盘游戏</h3>
+            <div class="installation-table"><table><thead><tr><th>主机</th><th>可上传内容</th><th>需要注意</th></tr></thead><tbody>
+              <tr><td>PlayStation</td><td><code>.fcps1</code>；CD 镜像 <code>.chd</code>；ZIP / 7z 中的 CUE + BIN、CHD，或 CloneCD 的 CCD + 同名 IMG（及可选 SUB）</td><td>按光盘身份识别，需要对应地区 BIOS。</td></tr>
+              <tr><td>Mega CD / Sega CD</td><td><code>.fcmcd</code>；CD 镜像 <code>.chd</code>，或 ZIP / 7z 中的 CUE + BIN、CHD，或 CloneCD CCD + IMG（及可选 SUB）</td><td>经过光盘内容探测分流到 Mega CD，不是把任何 BIN 都当光盘；需要对应地区 BIOS。</td></tr>
+              <tr><td>PC Engine CD</td><td><code>.fcpcecd</code>；CD 镜像 <code>.chd</code>，或 ZIP / 7z 中的 CUE + BIN、CHD，或 CloneCD CCD + IMG（及可选 SUB）</td><td>按光盘内容探测分流；需要有效 System Card，Super CD-ROM² 游戏需 3.0。</td></tr>
+            </tbody></table></div>
+            <p><code>.cue</code> 是轨道目录，不是游戏数据本身。请把它与所引用的全部 BIN 按原相对路径装进同一个 ZIP / 7z，<strong>不要只上传 CUE，也不要把裸 BIN 当作光盘上传</strong>。同一游戏的多张盘可在一个包内，每盘一份 CUE / CHD / CCD；不要混用这几种布局，也不要把不同游戏混成一个包。<code>.fcps1</code> / <code>.fcmcd</code> / <code>.fcpcecd</code> 是本项目的光盘包格式，不能靠修改扩展名生成。</p>
+            <h3>街机、Neo Geo 与 PGM</h3>
+            <p>使用完整驱动集 <strong><code>.zip</code> / <code>.7z</code></strong>，保留原始驱动文件名和内部芯片文件，服务器会核对内容。这里是一个游戏含多块芯片的集合，不适用上面的「仅一个 ROM 成员」规则。Neo Geo 需另备 <code>neogeo.zip</code>，PGM 需 <code>pgm.zip</code>；CPS2 还需匹配的 <code>.key</code>。</p>
+            <p>拆分子集可能缺少母集芯片或设备 ROM；缺这些文件时不能运行。部分 ZIP 子集可从已经入库的匹配母集补全；若报缺母集，请先上传正确完整母集，不能靠改名或只上传子集解决。并非任何 MAME 驱动或任意来源 ROM 集都受当前内核支持。</p>
+            <p><strong>CPS3 使用独立「CPS3 街机」区域：</strong>上传 MAME 游戏集 ZIP（含卡带 BIOS）和对应 CloneCD 光盘 <code>.img</code>，服务端再安装为游戏。这个裸 IMG 入口专用于 CPS3，不是 PlayStation 的通用裸 IMG 入口。已有本项目 <code>.fcc3</code> 安装游戏包可由服务器导入，但必须先配置资料库目录；改名的文件不算有效安装包。</p>
+            <p>没有在本表列出的类型，请勿仅凭客户端菜单或扩展名猜测服务器能上传。例如服务器内部有 Nintendo 64 清单校验代码，并不代表本版网页已开放 <code>.z64</code> / <code>.v64</code> / <code>.n64</code> 上传入口。</p>
+          </section>
+          <section id="troubleshooting" class="installation-section">
+            <p class="eyebrow">TROUBLESHOOTING &amp; UPDATE</p><h2>08 常见故障与升级</h2>
+            <details open><summary>网页提示连接被拒绝，或打不开 8282</summary><p>先看 Docker Desktop / DSM 套件是否正在运行；Docker 在解压目录执行 <code>docker compose ps</code> 和 <code>docker compose logs --tail 80 server</code>。若进程退出，应先处理日志中的启动错误，再检查防火墙。确认端口没有被其他程序占用，并核对访问的是服务器局域网 IP；只有 Docker 默认本机模式使用 127.0.0.1。</p></details>
+            <details><summary>提示 EACCES / permission denied</summary><p>这是文件系统权限问题。群晖检查内部系统用户 <code>FCEmulatorLibrary</code> 对所选共享文件夹的读写权限，以及每一级父目录的穿越权限；不要只检查 DSM 登录账号。Docker 检查挂载目录是否允许容器 UID/GID <code>1000:1000</code> 写入，以及 Docker Desktop 是否已共享该目录。只修正资料库目录，不要对整块磁盘设置所有人可写。</p><p>群晖启动日志通常位于 <code>/var/packages/FCEmulatorLibrary/var/fc-emulator-library.log</code>。若报错指向临时缓存，也应核对是否安装了最新服务器包；升级后再检查新日志，避免把旧记录当成本次错误。</p></details>
+            <details><summary>主机架构或 Node.js 不匹配</summary><p>群晖公开 SPK 的 <code>noarch</code> 表示包内没有固定架构的 Node，不代表可以跳过运行时安装。请在套件中心安装适用于该 NAS 型号的 Node.js 18+。Docker Desktop 也要匹配电脑的 Apple 芯片、Intel / AMD 或 ARM 架构；出现镜像架构不支持或 <code>exec format error</code> 时，先核对运行环境，不要靠更改文件权限处理。</p></details>
+            <details><summary>没有游戏、上传失败或提示 BIOS 缺失</summary><p>核对「资料库目录」是服务器可见的真实目录；Docker 中应为 <code>/library</code>。上传失败时读取文件旁的具体错误，固件需同时通过尺寸和身份校验。上传成功但仍有缺 BIOS 提示时，按提示的主机、角色及适用地区补齐；GBA 的外部 BIOS 是可选项，不需要为普通 NES 或不使用外部芯片的 SNES 卡带随意添加 BIOS。</p></details>
+            <details><summary>怎样升级并保留游戏和设置？</summary><p>升级前备份资料库和设置。群晖在套件中心对同一 <code>FCEmulatorLibrary</code> 套件执行手动升级，保留原资料库及套件数据；不要把另一个测试实例当作原套件升级。</p><p>Docker 保留原 <code>library</code>、<code>.env</code> 和配置卷，用新版 ZIP 中的程序及 Compose 文件更新原安装目录，再运行：</p><pre><code>docker compose build --pull
+docker compose up -d</code></pre><p>如果换了解压位置，务必让 <code>FC_LIBRARY_HOST_PATH</code> 指回原资料库，避免 <code>./library</code> 指向新空目录。<code>docker compose down</code> 用于停止服务；保留数据时不要添加 <code>--volumes</code>，该选项会删除配置卷。</p></details>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer section-shell"><a class="brand" href="index.html"><img class="brand-icon" src="assets/icon.png" alt=""><span>Retro Console</span></a><p>服务器运行在你自己的设备上；安装包不包含 ROM、BIOS 或私人访问令牌。</p><div><a href="server.html">下载服务器</a><a href="privacy.html">隐私政策</a><span>© <span data-year></span></span></div></footer>
+  </body>
+</html>
