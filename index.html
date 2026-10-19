@@ -19,7 +19,7 @@
     <link rel="alternate" hreflang="zh-Hans" href="https://getretroconsole.com/index.html">
     <link rel="alternate" hreflang="en" href="https://getretroconsole.com/en/index.html">
     <link rel="alternate" hreflang="x-default" href="https://getretroconsole.com/index.html">
-    <link rel="stylesheet" href="styles.css?v=92ea4ff437">
+    <link rel="stylesheet" href="styles.css?v=e61a896f6e">
     <script src="script.js?v=e10073f50d" defer></script>
   </head>
   <body>
@@ -28,7 +28,7 @@
         <img class="brand-icon" src="assets/site-icon-128.png" alt="" width="128" height="128" decoding="async">
         <span>Retro Console</span>
       </a>
-      <nav aria-label="主导航"><a href="#systems">支持平台</a><a href="#download-android">Android TV</a><a href="#download-macos">macOS</a><a href="server.html">服务器端</a><a href="install.html">安装指南</a><a href="privacy.html">隐私</a></nav>
+      <nav aria-label="主导航"><a href="#systems">支持平台</a><span class="nav-clients"><span class="nav-client-label">客户端：</span><a href="#download-android">Android TV</a><a href="#download-macos">macOS</a></span><a href="server.html">服务器端</a><a href="install.html">安装指南</a><a href="privacy.html">隐私</a></nav>
       <div class="header-actions"><a class="language-switch" data-language="en" href="en/index.html" lang="en" aria-label="Switch to English">English</a><a class="header-cta" href="#download">下载客户端</a></div>
     </header>
 
@@ -61,22 +61,25 @@
       <section class="platform-strip" aria-label="客户端平台">
         <div class="section-shell platform-strip-inner">
           <p>一个资料库，多种客厅设备</p>
-          <div><span class="active">Android TV</span><span class="active">macOS</span><span class="active">Apple TV · 红白机街机模拟器</span><span>自建服务器</span></div>
+          <div><a class="active" href="#download-android">Android TV</a><a class="active" href="#download-macos">macOS</a><a class="active" href="https://apps.apple.com/cn/app/id6806745032" target="_blank" rel="noopener">Apple TV · 红白机街机模拟器 ↗</a><a href="server.html">自建服务器 →</a></div>
         </div>
       </section>
 
       <section class="systems section-shell" id="systems">
         <div class="section-heading reveal">
-          <p class="eyebrow"><span></span> One library, every game night</p>
-          <h2>不必记住硬件，<br><em>按想玩的方式开始。</em></h2>
-          <p>统一的封面、搜索、收藏、最近游玩与游戏菜单。无论独自回味还是多人同乐，都使用同一套电视交互。</p>
+          <p class="eyebrow"><span></span> Supported game systems</p>
+          <h2>支持的游戏机<br><em>与街机。</em></h2>
+          <p>这里列的是当前公开版的系统范围。部分游戏需要另备 BIOS，街机需要匹配的完整 ROM 集；同一平台的具体游戏兼容情况可能不同。</p>
         </div>
         <div class="system-grid">
-          <article class="system-card reveal"><span>01</span><div><p>Classic</p><h3>童年回忆</h3></div><small>即时存档 · 自动保存 · 快进</small></article>
-          <article class="system-card reveal"><span>02</span><div><p>Co-op</p><h3>并肩闯关</h3></div><small>双人合作 · 四人同乐</small></article>
-          <article class="system-card reveal"><span>03</span><div><p>Racing</p><h3>速度挑战</h3></div><small>低延迟操作 · 流畅画面</small></article>
-          <article class="system-card reveal"><span>04</span><div><p>Versus</p><h3>客厅对战</h3></div><small>本地多人 · 随时续局</small></article>
+          <article class="system-card reveal"><span>NINTENDO</span><div><h3>红白机与超任</h3><p class="system-models">NES / Famicom · FDS<br>SNES / Super Famicom</p></div><small>FDS 磁碟游戏需 BIOS</small></article>
+          <article class="system-card reveal"><span>SEGA</span><div><h3>世嘉游戏机</h3><p class="system-models">Mega Drive / Genesis · Mega CD / Sega CD<br>32X · Master System · Game Gear · SG-1000</p></div><small>Mega CD、32X 需对应 BIOS</small></article>
+          <article class="system-card reveal"><span>HANDHELD</span><div><h3>经典掌机</h3><p class="system-models">Game Boy · Game Boy Color · Game Boy Advance<br>WonderSwan / Color · Neo Geo Pocket / Color</p></div><small>部分机型需另备 BIOS</small></article>
+          <article class="system-card reveal"><span>ATARI</span><div><h3>Atari 游戏机</h3><p class="system-models">Atari 2600 · Atari 5200 · Atari 7800</p></div><small>5200、7800 需对应 BIOS</small></article>
+          <article class="system-card reveal"><span>PLAYSTATION · PC ENGINE</span><div><h3>光盘与卡带</h3><p class="system-models">PlayStation（PS1）<br>PC Engine / TurboGrafx-16 · PC Engine CD</p></div><small>PS1、PC Engine CD 需 BIOS / System Card</small></article>
+          <article class="system-card reveal"><span>ARCADE</span><div><h3>街机游戏</h3><p class="system-models">Neo Geo · Capcom · SEGA · Konami · Taito<br>IGS PGM 等已适配街机驱动</p></div><small>需完整匹配的 ROM 集；按游戏准备 BIOS / Key</small></article>
         </div>
+        <p class="system-notes"><a href="install.html#rom-formats">查看支持的 ROM 格式 →</a><a href="install.html#bios">了解 BIOS 准备方法 →</a></p>
       </section>
 
       <section class="experience section-shell">
