@@ -50,6 +50,7 @@ button, input { font: inherit; }
 .site-header nav { display: flex; font-size: 12px; font-weight: 650; gap: 34px; }
 .site-header nav .nav-clients { align-items:center; display:inline-flex; flex:none; gap:12px; white-space:nowrap; }
 .nav-client-label { color:var(--muted); }
+.site-header nav .nav-client-label, .site-header nav a[href="server.html"] { font-weight:800; }
 .site-header nav a { color: var(--muted); position: relative; transition: color .2s ease; }
 .site-header nav a::after { background: var(--red); bottom: -10px; content: ""; height: 2px; left: 0; position: absolute; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; width: 100%; }
 .site-header nav a:hover, .site-header nav a.current { color: var(--ink); }
