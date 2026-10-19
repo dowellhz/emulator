@@ -114,8 +114,14 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
 .system-card > div { margin: auto 0; }
 .system-card p { color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: .1em; margin: 0 0 10px; text-transform: uppercase; }
 .system-card .system-models { font-family:var(--sans); font-size:12px; letter-spacing:normal; line-height:1.8; margin:12px 0 16px; text-transform:none; }
-.system-notes { display:flex; flex-wrap:wrap; gap:12px 24px; font-size:13px; margin:24px 0 0; }
-.system-notes a { align-items:center; display:inline-flex; min-height:36px; color:var(--red-dark); text-decoration:underline; text-underline-offset:3px; }
+.system-notes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:20px 0 0; max-width:760px; }
+.system-notes a { align-items:center; background:var(--white); border:1px solid var(--line); border-radius:14px; color:var(--teal); display:flex; font-size:13px; font-weight:650; gap:12px; min-height:64px; padding:12px 16px; transition:background .2s ease,border-color .2s ease,box-shadow .2s ease; }
+.system-note-icon { align-items:center; background:rgba(87,209,175,.14); border-radius:10px; display:inline-flex; flex:none; height:36px; justify-content:center; width:36px; }
+.system-note-icon svg { height:20px; width:20px; }
+.system-note-arrow { color:var(--red-dark); flex:none; font-size:20px; margin-left:auto; }
+.system-notes a:hover { background:#eaf4ee; border-color:var(--teal); box-shadow:0 4px 12px rgba(16,32,31,.06); }
+.system-notes a:focus-visible { outline:2px solid var(--teal); outline-offset:4px; }
+@media (max-width:680px) { .system-notes { grid-template-columns:1fr; } }
 .system-card h3 { font-size: 27px; letter-spacing: -.045em; margin: 0; }
 .system-card small { border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; padding-top: 17px; }
 .system-card:nth-child(2) { background: var(--red); border-color: var(--red); color: white; }
