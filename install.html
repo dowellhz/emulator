@@ -20,7 +20,7 @@
   <body>
     <header class="site-header scrolled" data-header>
       <a class="brand" href="index.html" aria-label="返回 Retro Console 首页"><img class="brand-icon" src="assets/site-icon-128.png" alt="" width="128" height="128" decoding="async"><span>Retro Console</span></a>
-      <nav aria-label="主导航"><a href="index.html#systems">支持平台</a><span class="nav-clients"><span class="nav-client-label">客户端：</span><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">iOS</a><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">Apple TV</a><a href="index.html#download-android">Android TV</a><a href="index.html#download-macos">macOS</a></span><a href="server.html">服务器端</a><a class="current" aria-current="page" href="install.html">安装指南</a><a href="privacy.html">隐私</a></nav>
+      <nav aria-label="主导航"><a href="index.html#systems">支持平台</a><span class="nav-clients"><span class="nav-client-label">客户端：</span><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">iPhone</a><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">Apple TV</a><a href="index.html#download-android">Android TV</a><a href="index.html#download-macos">macOS</a></span><a href="server.html">服务器端</a><a class="current" aria-current="page" href="install.html">安装指南</a><a href="privacy.html">隐私</a></nav>
       <div class="header-actions"><a class="language-switch" data-language="en" href="en/install.html" lang="en" aria-label="Switch to English">English</a><a class="header-cta" href="index.html#download">下载客户端</a></div>
     </header>
     <main class="installation section-shell">
@@ -106,8 +106,8 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             </ol>
           </section>
           <section id="clients" class="installation-section">
-            <p class="eyebrow">IOS · ANDROID TV · APPLE TV · MACOS</p><h2>07 连接客户端资料库</h2>
-            <p>iOS 与 Apple TV 客户端可从 <a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">App Store</a> 安装；iOS 版要求 iOS 17.0 或更高版本。</p>
+            <p class="eyebrow">IPHONE · ANDROID TV · APPLE TV · MACOS</p><h2>07 连接客户端资料库</h2>
+            <p>iPhone 与 Apple TV 客户端可从 <a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">App Store</a> 安装；iPhone 版要求 iOS 17.0 或更高版本。</p>
             <ol class="instruction-steps">
               <li><h3>取得资料库根地址</h3><p>通过服务器<strong>局域网地址</strong>打开管理网页，点击右上角「资料库地址」。客户端使用的地址形如 <code>http://服务器的局域网IP:8282/library/</code>。这与浏览器管理页的根地址不同，末尾要保留 <code>/library/</code>，无需手工追加 <code>library.json</code>。</p></li>
               <li><h3>在客户端填写地址与认证</h3><p>在 Android TV、Apple TV 或 macOS 客户端打开「设置 → NAS / 远程资料库」，填写「服务器地址」。服务器启用了 Token 时，认证方式选择「Bearer Token」，填入与管理网页相同的访问令牌。不要把 DSM 用户名密码填成 Token。</p><p>macOS 若提示正在使用本地 ROM 目录、服务器同步已暂停，先切回远程资料库模式再继续。</p></li>

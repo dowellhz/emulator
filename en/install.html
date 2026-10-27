@@ -20,7 +20,7 @@
   <body>
     <header class="site-header scrolled" data-header>
       <a class="brand" href="index.html" aria-label="Back to the Retro Console home page"><img class="brand-icon" src="../assets/site-icon-128.png" alt="" width="128" height="128" decoding="async"><span>Retro Console</span></a>
-      <nav aria-label="Main navigation"><a href="index.html#systems">Systems</a><span class="nav-clients"><span class="nav-client-label">Apps:</span><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">iOS</a><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">Apple TV</a><a href="index.html#download-android">Android TV</a><a href="index.html#download-macos">macOS</a></span><a href="server.html">Server</a><a class="current" aria-current="page" href="install.html">Installation</a><a href="privacy.html">Privacy</a></nav>
+      <nav aria-label="Main navigation"><a href="index.html#systems">Systems</a><span class="nav-clients"><span class="nav-client-label">Apps:</span><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">iPhone</a><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">Apple TV</a><a href="index.html#download-android">Android TV</a><a href="index.html#download-macos">macOS</a></span><a href="server.html">Server</a><a class="current" aria-current="page" href="install.html">Installation</a><a href="privacy.html">Privacy</a></nav>
       <div class="header-actions"><a class="language-switch" data-language="zh" href="../install.html" lang="zh-CN" aria-label="切换到中文">中文</a><a class="header-cta" href="index.html#download">Download Apps</a></div>
     </header>
     <main class="installation section-shell">
@@ -106,8 +106,8 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
             </ol>
           </section>
           <section id="clients" class="installation-section">
-            <p class="eyebrow">IOS · ANDROID TV · APPLE TV · MACOS</p><h2>07 Connect a client to your library</h2>
-            <p>Install the iOS or Apple TV app from the <a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">App Store</a>. The iOS app requires iOS 17.0 or later.</p>
+            <p class="eyebrow">IPHONE · ANDROID TV · APPLE TV · MACOS</p><h2>07 Connect a client to your library</h2>
+            <p>Install the iPhone or Apple TV app from the <a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">App Store</a>. The iPhone app requires iOS 17.0 or later.</p>
             <ol class="instruction-steps">
               <li><h3>Get the library’s root address</h3><p>Open the management page using the server’s <strong>local network address</strong> and click “Library address” at the top right. Clients use an address such as <code>http://your-server-LAN-IP:8282/library/</code>. This differs from the management page’s root address: keep the trailing <code>/library/</code>. You do not need to add <code>library.json</code>.</p></li>
               <li><h3>Enter the address and authentication in your client</h3><p>On Android TV, Apple TV, or macOS, open “Settings → NAS / Remote library” and enter the “Server address.” If the server has a token, select “Bearer Token” authentication and enter the same access token used by the management page. Do not enter your DSM username or password as the token.</p><p>If macOS says that a local ROM folder is in use and server sync is paused, switch back to remote library mode first.</p></li>
