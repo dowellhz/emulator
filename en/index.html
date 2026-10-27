@@ -7,7 +7,7 @@
     <script src="../language.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0b1717">
-    <meta name="description" content="Retro Console — A living room game library and emulator for Android TV, Apple TV, and macOS.">
+    <meta name="description" content="Retro Console — A living room game library and emulator for iOS, Android TV, Apple TV, and macOS.">
     <meta property="og:title" content="Retro Console">
     <meta property="og:description" content="Your TV. Your controller. Your next game.">
     <meta property="og:type" content="website">
@@ -28,22 +28,22 @@
         <img class="brand-icon" src="../assets/site-icon-128.png" alt="" width="128" height="128" decoding="async">
         <span>Retro Console</span>
       </a>
-      <nav aria-label="Main navigation"><a href="#systems">Systems</a><span class="nav-clients"><span class="nav-client-label">Apps:</span><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">Apple TV</a><a href="#download-android">Android TV</a><a href="#download-macos">macOS</a></span><a href="server.html">Server</a><a href="install.html">Installation</a><a href="privacy.html">Privacy</a></nav>
+      <nav aria-label="Main navigation"><a href="#systems">Systems</a><span class="nav-clients"><span class="nav-client-label">Apps:</span><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">iOS</a><a href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">Apple TV</a><a href="#download-android">Android TV</a><a href="#download-macos">macOS</a></span><a href="server.html">Server</a><a href="install.html">Installation</a><a href="privacy.html">Privacy</a></nav>
       <div class="header-actions"><a class="language-switch" data-language="zh" href="../index.html?lang=zh" lang="zh-CN" aria-label="切换到中文">中文</a><a class="header-cta" href="#download">Download Apps</a></div>
     </header>
 
     <main id="top">
       <section class="hero section-shell">
         <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Android TV, macOS &amp; Apple TV available</p>
+          <p class="eyebrow"><span></span> iOS, Android TV, macOS &amp; Apple TV available</p>
           <h1>Your TV.<br>Your controller.<br><em class="hero-tagline">Your next game.</em></h1>
-          <p class="hero-intro">A game library designed to be used from the couch. Connect your own NAS or library server, then browse, favorite, save, and resume games on Android TV and Mac.</p>
+          <p class="hero-intro">A game library designed to be used from the couch. Connect your own NAS or library server, then browse, favorite, save, and resume games on iPhone, Android TV, Apple TV, and Mac.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#download">Download an app <span>↓</span></a>
             <a class="button button-ghost" href="server.html">Set up a library server <span>→</span></a>
           </div>
           <div class="hero-meta" aria-label="App versions and controller support">
-            <span>Android TV 1.3</span><span>macOS 1.3.7</span><span>Apple TV 1.3</span><span>Controller support</span>
+            <span>Android TV 1.3</span><span>macOS 1.3.7</span><span>Apple TV 1.3</span><span>iOS · App Store</span><span>Controller support</span>
           </div>
         </div>
         <div class="hero-art reveal" aria-label="Preview of the Retro Console TV library">
@@ -61,7 +61,7 @@
       <section class="platform-strip" aria-label="App platforms">
         <div class="section-shell platform-strip-inner">
           <p>One library for your living room devices</p>
-          <div><a class="active" href="#download-android">Android TV</a><a class="active" href="#download-macos">macOS</a><a class="active" href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">Apple TV · Retro Console ↗</a><a href="server.html">Self-hosted server →</a></div>
+          <div><a class="active" href="#download-ios">iOS · iPhone</a><a class="active" href="#download-android">Android TV</a><a class="active" href="#download-macos">macOS</a><a class="active" href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">Apple TV · Retro Console ↗</a><a href="server.html">Self-hosted server →</a></div>
         </div>
       </section>
 
@@ -101,7 +101,7 @@
         <div class="download-copy">
           <p class="eyebrow"><span></span> Downloads</p>
           <h2>Start your next game<br>on the big screen.</h2>
-          <p>Download the Android TV or macOS app below. On Apple TV, search the App Store for “Retro Console Player”. Installers contain no commercial games, BIOS files, or private keys. Only import content you have the right to use.</p>
+          <p>Install the iOS or Apple TV app from the App Store, or download the Android TV or macOS installer below. Installers contain no commercial games, BIOS files, or private keys. Only import content you have the right to use.</p>
           <p>macOS 1.3.7 improves compatibility with some NES games. Clicking the close button minimizes the main window; click the Dock icon to restore it.</p>
           <div class="download-notes">
             <span><b>Android TV</b> Android 7.0 or later · arm64-v8a</span>
@@ -110,6 +110,14 @@
           </div>
         </div>
         <div class="download-panels">
+          <div class="download-panel" id="download-ios">
+            <img src="../assets/site-icon-128.png" alt="" width="128" height="128" loading="lazy" decoding="async">
+            <div>
+              <p>Retro Console for iOS</p>
+              <small>iPhone · iOS 17.0 or later</small>
+            </div>
+            <a class="button button-light" href="https://apps.apple.com/app/id6806745032" target="_blank" rel="noopener">App Store <span>↗</span></a>
+          </div>
           <div class="download-panel" id="download-android">
             <img src="../assets/site-icon-128.png" alt="" width="128" height="128" loading="lazy" decoding="async">
             <div>
@@ -145,7 +153,7 @@
           <h2>A short setup.<br>Your files stay yours.</h2>
         </div>
         <ol class="install-steps">
-          <li class="reveal"><span>01</span><div><h3>Download and install</h3><p>Android TV: send the APK to your TV and install it with a file manager or ADB. When prompted, allow installation from that source. macOS: open the DMG and drag the app to Applications. The download is signed and notarized by Apple.</p></div></li>
+          <li class="reveal"><span>01</span><div><h3>Download and install</h3><p>iOS and Apple TV: use the App Store button to install the app. Android TV: send the APK to your TV and install it with a file manager or ADB. When prompted, allow installation from that source. macOS: open the DMG and drag the app to Applications. The download is signed and notarized by Apple.</p></div></li>
           <li class="reveal"><span>02</span><div><h3>Connect your own library</h3><p>On Mac, import and organize local games in ROM Manager without a server, or connect to your Synology library in Settings. <a href="install.html#macos">Read the macOS setup guide →</a></p></div></li>
           <li class="reveal"><span>03</span><div><h3>Connect a controller and play</h3><p>Use a Bluetooth or USB controller. Hold the confirm button on a game to open its options, add it to favorites, manage its cache, or view game details.</p></div></li>
         </ol>

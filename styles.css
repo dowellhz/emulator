@@ -376,6 +376,7 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
   .site-header > .header-actions { grid-column:2; grid-row:1; gap:8px; }
   .site-header nav { display:flex; grid-column:1 / -1; grid-row:2; width:100%; min-width:0; gap:14px 18px; flex-wrap:wrap; overflow:visible; padding:8px 0 16px; }
   .site-header nav a { flex:none; }
+  .site-header nav .nav-clients { flex-shrink:1; flex-wrap:wrap; max-width:100%; white-space:normal; }
 
   .installation-layout { grid-template-columns:minmax(0,1fr); gap:28px; }
   .installation-toc { position:static; flex-direction:row; flex-wrap:wrap; gap:16px 22px; padding-bottom:15px; }
