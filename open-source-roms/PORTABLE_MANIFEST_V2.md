@@ -1,7 +1,7 @@
 # FC Emulator 可携带游戏清单 v2
 
 `manifest.json` 的 v2 格式在 v1 展示元数据之外，加入一份完整、可审计的 `hardware` 声明。
-它用于 Mega Drive、IGS PGM、SNES、Game Boy 等独立新核心，也可用于现有系统。`gameBoy`、
+它用于 Mega Drive、IGS PGM、SNES、Game Boy、Nintendo 64 等独立新核心，也可用于现有系统。`gameBoy`、
 `gameBoyColor` 曾于 2026-09-10 作为墓碑保留，2026-10-02 随自研核心按原含义恢复。
 
 v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`，其中所有数组即使为空也
@@ -78,6 +78,7 @@ v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`�
 | `megaCD` | `sega-mega-cd` | `.fcmcd` | `mega-cd-` |
 | `pcEngine` | `pc-engine`、`turbografx-16` | `.pce` | `pce-` |
 | `pcEngineCD` | `pc-engine-cd` | `.fcpcecd` | `pce-cd-` |
+| `nintendo64` | `nintendo-64` | `.z64` | `n64-` |
 | `pgm` | `arcade-igs-pgm1` | `.zip/.7z` | `pgm-` |
 | `snes` | `super-nintendo`、`super-famicom` | `.smc/.sfc` | `snes-` |
 
@@ -91,7 +92,8 @@ v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`�
 持久化 `kind` 与 `FCEngineC` ABI v2 一一对应：`nes-battery`、`fds-side`、
 `neogeo-backup-ram`、`neogeo-memory-card`、`cps1-eeprom`、`mega-drive-sram`、
 `mega-drive-eeprom`、`pgm-nvram`、`snes-sram`、`snes-rtc`、`sega8-cartridge-ram`、
-`game-boy-ram`、`game-boy-rtc`、`gba-backup`、`gba-rtc`、`ps1-memory-card`、`mega-cd-backup-ram`。
+`game-boy-ram`、`game-boy-rtc`、`gba-backup`、`gba-rtc`、`ps1-memory-card`、`mega-cd-backup-ram`、
+`n64-eeprom-4k`、`n64-eeprom-16k`、`n64-sram`、`n64-flashram`、`n64-controller-pak`。
 同一 `(kind, slot)` 不可重复，`bytes` 是核心可见区域的精确大小。这里只描述区域，不保存用户
 运行后产生的存档数据。
 
@@ -99,6 +101,47 @@ v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`�
 JavaScript 精确解析，绝对值不得超过 JSON 安全整数 `9007199254740991`；seed 与检查点不得为负。
 `.fds/.qd` 必须同时使用 `famicom-disk-system` 与 `fds-` 板卡，且只可声明 `fds-side`；`.nes`
 不得声明 FDS 型号、板卡或 `fds-side`。
+
+Nintendo 64 的 canonical system id 是 `nintendo64`；`n64` 只能作为上传参数的输入别名，绝不能写入
+清单、索引或存档路由。原始导入可读取 `.z64/.v64/.n64`，但必须先规范成大端字节序，游戏包内只保存
+`.z64`，`rom.bytes` 与 `rom.sha256` 都针对规范字节。型号固定 `nintendo-64`，板卡固定
+`n64-cartridge`，`features` 为空或恰为 `["rtc"]`（见下文卡带 RTC），不随包发布 PIF ROM，`firmware`
+必须为空。`region` 只接受 `japan/usa/europe`，并在读取 ROM 后再次核对：日/美为 NTSC，欧为 PAL。
+ROM 头 0x3E 地区码只接受 ares `625df945` `mia/medium/nintendo-64.cpp` 与 Mupen64Plus-Next
+`12edd2c7` `main/rom.c::rom_country_code_to_system_type` 制式一致的码：`E`→`usa`、`J`→`japan`、
+`A`（北美+日本多地区，两者均 NTSC，Mupen 标作 USA/Japan）→`usa`；`D/F/I/P/S/X` 与 `U/Y`
+（澳洲/欧洲，两者均 PAL）→`europe`。两者制式不一致（`H/W/Z`：ares PAL、Mupen 回退 NTSC）
+或只有 ares 列出的码继续拒绝导入。
+
+通用 hardware 块另有一个必填的 N64 专属对象：
+
+```json
+"nintendo64": {
+  "cic": "nus-6102",
+  "rdramBytes": 8388608,
+  "accessories": [
+    { "port": 0, "kind": "rumble-pak" },
+    { "port": 1, "kind": "controller-pak" }
+  ]
+}
+```
+
+`cic` 只接受首发零售范围的 `nus-6101-7102`、`nus-6102`、`nus-6103-7103`、
+`nus-6105-7105`、`nus-6106-7106`，且必须与 IPL3 探针完全一致；未知 CIC、Aleck 64、iQue 不得用
+6102 兜底发布。`rdramBytes` 只能是 4194304 或 8388608。输入只能是 1–4 个从 port 0 连续声明的
+`n64-controller`；每端口最多一个 `controller-pak` 或 `rumble-pak`。Controller Pak 必须同时有同 port
+的 `n64-controller-pak`，固定 32768 字节；两边必须逐端口一一对应，Rumble Pak 不产生持久化区域。
+
+卡带存档最多一种，固定在 slot 0：`n64-eeprom-4k` 512 字节、`n64-eeprom-16k` 2048 字节、
+`n64-sram` 32768 字节或 `n64-flashram` 131072 字节。不得按标题或文件名猜存档、也不得失败后轮换介质。
+卡带 RTC（Joybus channel 4，如《动物森林》NAF）以 `cartridge.features: ["rtc"]` 声明，事实来自
+服务端卡带表（ares 表的 `rtc` 标记），不按标题或文件名猜测。RTC 不是持久化区域，不产生
+`persistence` 条目：与 Mupen64Plus-Next `device/cart/af_rtc.c`（时钟跟随宿主时间）一致，客户端
+在冷启动、机器运行前把宿主本地时间作为 RTC 显式载入核心（`fc_n64_machine_load_rtc`），核心之后
+只随模拟时钟推进；游戏内写入的时间不跨会话保存。从即时存档恢复时沿用存档内的 RTC 状态。
+这次扩展不改 `schemaVersion`：此前的客户端要求 `features` 为空，会安全拒绝带 `rtc` 的清单（无法
+运行 RTC 卡带的客户端不会静默缺 RTC 启动），因此它不是“旧客户端可继续接受”的向后兼容扩展，
+三端必须同步升级。
 
 Mega Drive 首发产品边界更窄：`region` 只接受 `japan/usa/europe/world`，输入只接受端口 0/1
 且必须包含端口 0，每张卡带最多一种 slot 0 持久介质。并行 SRAM 使用普通 `mega-drive-*`
@@ -167,6 +210,8 @@ BIOS 按区放在资料库根目录：`ps1-bios-usa.bin`、`ps1-bios-japan.bin`�
 清单 `region` 取对应区的 BIOS；没有该区 BIOS 时不启动并提示上传。真 BIOS 会校验光盘区码，所以不能拿别区的
 BIOS 代替。公开 SPK/Docker 包不得含 PlayStation BIOS、`.fcps1` 或 `.cue`。
 
+PS1 旧散盘的可逆显示关联（2026-10-18）：旧单盘清单可添加 `emulation.discSetParentID`，值为同一资料库内已验证合并版的游戏 ID。此字段只是显示提示，不改变 ROM、硬件、原件、SHA 或存档身份。旧条目必须继续保留在根索引，旧文件也必须保留；新客户端仅在子盘和父条目均为 PlayStation、同来源且父条目没有父关联时隐藏子盘。无效类型、缺失父条目、自引用、跨来源或循环关联不得让游戏失效或被删除。不了解此字段的旧客户端可忽略它。合并版使用自身 ROM/SHA 的独立存档，旧记忆卡和即时存档不会自动迁入。
+
 Mega CD（2026-10-08 加入）：ROM 是游戏的 `.fcmcd` 包（`MEGA_CD_DISC_PACKAGE_V1.md`：PlayStation 包的布局、魔数
 `FCMCDPK1`），清单只能是 v2。型号 `sega-mega-cd`，板卡固定为 `mega-cd-disc`、无 feature；两个端口都是
 `mega-drive-3-button`；持久化只有 slot 0、8192 字节的 `mega-cd-backup-ram`（主机内置备份 RAM）；不声明固件。
@@ -192,7 +237,7 @@ System Card 按区放在资料库根目录：`pce-syscard-japan.pce`、`pce-sysc
 
 PC Engine / TurboGrafx-16 HuCard（2026-10-08 加入）：ROM 是 `.pce`（可带 512 字节拷贝机头），清单只能是 v2。`region` 与 `model`
 成对：日版卡 `japan` + `pc-engine`，美版卡 `usa` + `turbografx-16`。卡属于哪台主机按存储镜像（去掉拷贝机头、不做按位倒序）
-的 SHA-1 判定：在 MAME 软件表 `hash/tg16.xml`（85388fbf，98 张，服务器 `lib/pce-tg16.js`）里的是美版卡，其余都是日版卡。
+的 SHA-1 判定：在 MAME 软件表 `hash/tg16.xml`（85388fbf，98 张，CC0-1.0；共享识别库 `FCROMIdentifyC` 的 `FCROMIdentifyPCEngineTG16.inc`）里的是美版卡，其余都是日版卡。
 镜像是否按位倒序（$1FFF 处复位向量的页字节小于 $E0 时载入前倒回来）只是存储方式，不代表地区：No-Intro 的美版卡没有倒序，
 日版的 Xserd、Cyber Dodge 反而是倒序的。美版卡插在 PC Engine（手柄口 bit 6 读出 1）上会锁死，所以地区不能猜。
 1.0.0-0081 按倒序判地区，写出的清单由服务器启动时按上述规则就地改正（`reconcileCanonicalPCEHardware`）。板卡为

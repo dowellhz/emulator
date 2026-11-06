@@ -25,7 +25,7 @@
     </header>
     <main class="installation section-shell">
       <header class="installation-intro">
-        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.3.4</p>
+        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.4.0</p>
         <h1>Install your app.<br><em>Manage your game library.</em></h1>
         <p>Play and manage local ROMs directly with the Mac app, or keep a shared library on a computer or Synology NAS. Choose your setup below, then import games and connect your devices.</p>
         <div class="installation-choice"><a href="#computer">Set up a computer server · Docker <span>↓</span></a><a href="#synology">I use Synology DSM 7 <span>↓</span></a><a href="#macos">Play and manage ROMs on a Mac <span>↓</span></a></div>
@@ -116,7 +116,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
           </section>
           <section id="rom-formats" class="installation-section">
             <p class="eyebrow">HELP · ROM FORMATS</p><h2>08 Which ROMs can the server accept?</h2>
-            <p>A ROM is a game file you have dumped; ZIP / 7z files are containers that hold files together. The types below are accepted by the <strong>1.3.4 server’s upload interface</strong>. This does not mean every game will run, or include formats supported only by an individual client. Choose a library folder in “Settings” before uploading.</p>
+            <p>A ROM is a game file you have dumped; ZIP / 7z files are containers that hold files together. The types below are accepted by the <strong>1.4.0 server’s upload interface</strong>. This does not mean every game will run, or include formats supported only by an individual client. Choose a library folder in “Settings” before uploading.</p>
             <h3>Cartridge and disk games</h3>
             <p>“Single-file ZIP / 7z” below means the archive contains <strong>one game file in the listed format</strong>. Keep covers, readme files, and other games out of the same archive. The server validates the contents instead of treating every ZIP as an arcade set. The file may be inside a subfolder. Common system metadata is ignored; unsafe paths and damaged archives are rejected.</p>
             <div class="installation-table"><table><thead><tr><th>Console</th><th>Raw files and members inside ZIP / 7z</th><th>Identification and dependencies</th></tr></thead><tbody>
@@ -133,6 +133,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
               <tr><td>WonderSwan / WonderSwan Color</td><td><code>.ws</code>, <code>.wsc</code>; single-file ZIP / 7z supported</td><td>One system entry; cartridge contents determine the model.</td></tr>
               <tr><td>Neo Geo Pocket / Color</td><td><code>.ngp</code>, <code>.ngc</code>; single-file ZIP / 7z supported</td><td>Provide the BIOS and initial NVRAM for the matching model.</td></tr>
               <tr><td>PC Engine / TurboGrafx-16 HuCard</td><td><code>.pce</code>; single-file ZIP / 7z supported</td><td>The cartridge entry is separate from CD games that need a System Card. A System Card itself is identified as firmware.</td></tr>
+              <tr><td>Nintendo 64</td><td><code>.z64</code>, <code>.v64</code>, <code>.n64</code>; single-file ZIP / 7z supported</td><td>All three byte orders are stored as <code>.z64</code>. Save type, region and real-time clock are declared from the CIC and cartridge header; no BIOS is needed.</td></tr>
               <tr><td>Atari 2600</td><td><code>.a26</code>; single-file ZIP / 7z supported</td><td>Needs accurate video standard, cartridge board, and controller declarations. The page asks for missing details; the game title cannot determine its mapper.</td></tr>
               <tr><td>Atari 5200</td><td><code>.a52</code>, including validated CART headers; single-file ZIP / 7z supported</td><td>Declare the board when it is ambiguous. A 2-port or 4-port model can be specified. Requires the 5200 BIOS.</td></tr>
               <tr><td>Atari 7800</td><td><code>.a78</code>, including validated A78 headers; single-file ZIP / 7z supported</td><td>Headerless images must match the known-cartridge catalogue; A78 headers must be valid. Requires the matching video-standard BIOS, and HSC when the cartridge declares it.</td></tr>
@@ -149,7 +150,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
             <p>Use a complete ROM set in <strong><code>.zip</code> / <code>.7z</code></strong>. Keep its original driver filename and the chip files inside; the server checks the contents. A set holds multiple chips for one game, so the single-member rule for cartridge archives does not apply. Neo Geo also needs <code>neogeo.zip</code>, PGM needs <code>pgm.zip</code>, and CPS2 needs a matching <code>.key</code>.</p>
             <p>Split clone sets may lack chips from the parent set or device ROMs. They cannot run without those files. Some ZIP clone sets can be completed from a matching parent already in the library. If the parent is missing, upload the correct complete parent set first. Renaming a file or uploading only the clone does not supply the missing data. The current cores do not support every MAME driver or every ROM set revision.</p>
             <p><strong>CPS3 uses the separate “CPS3 Arcade” area:</strong> upload the MAME game ZIP containing its cartridge BIOS and the matching CloneCD <code>.img</code> disc. The server then installs the game. This raw IMG entry is specific to CPS3, not a general PlayStation IMG upload path. An existing <code>.fcc3</code> installed-game package from this project can be imported by the server after configuring a library folder. Renaming another file does not make it a valid package.</p>
-            <p>For unlisted types, do not assume the server can upload them just because a client has a console menu or recognizes an extension. For example, internal Nintendo 64 manifest validation does not mean this web version offers uploads of <code>.z64</code> / <code>.v64</code> / <code>.n64</code>.</p>
+            <p>For unlisted types, do not assume the server can upload them just because a client has a console menu or recognizes an extension.</p>
           </section>
           <section id="troubleshooting" class="installation-section">
             <p class="eyebrow">TROUBLESHOOTING &amp; UPDATE</p><h2>09 Troubleshooting and updates</h2>

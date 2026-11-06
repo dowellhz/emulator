@@ -25,7 +25,7 @@
     </header>
     <main class="installation section-shell">
       <header class="installation-intro">
-        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.3.4</p>
+        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.4.0</p>
         <h1>装好应用，<br><em>管理自己的游戏库。</em></h1>
         <p>Mac 应用可以直接管理本地 ROM 并游玩；也可以用电脑或群晖 NAS 存放共享资料库，让电视、Mac 或手机连接。先选适合自己的用法，再配置目录、导入游戏。</p>
         <div class="installation-choice"><a href="#computer">安装电脑服务器 · Docker <span>↓</span></a><a href="#synology">我用群晖 DSM 7 <span>↓</span></a><a href="#macos">我在 Mac 上管理和玩游戏 <span>↓</span></a></div>
@@ -116,7 +116,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
           </section>
           <section id="rom-formats" class="installation-section">
             <p class="eyebrow">HELP · ROM FORMATS</p><h2>08 服务器支持哪些 ROM？</h2>
-            <p>ROM 是你导出的游戏文件；ZIP / 7z 是把文件装在一起的压缩容器。下面列的是 <strong>1.3.4 服务器上传入口</strong>实际接受的类型，不等同于每款游戏都能运行，也不把客户端单独支持的格式算进来。先在「设置」中选好资料库目录，再上传。</p>
+            <p>ROM 是你导出的游戏文件；ZIP / 7z 是把文件装在一起的压缩容器。下面列的是 <strong>1.4.0 服务器上传入口</strong>实际接受的类型，不等同于每款游戏都能运行，也不把客户端单独支持的格式算进来。先在「设置」中选好资料库目录，再上传。</p>
             <h3>卡带与磁碟游戏</h3>
             <p>下表的「单文件 ZIP / 7z」指压缩包内只放<strong>一个对应格式的游戏文件</strong>。封面、说明文档和其他游戏请不要混在同一压缩包内；系统会按成员内容校验，不会把所有 ZIP 都当作街机。文件可在子目录内；常见系统元数据会忽略，危险路径或损坏压缩包会拒绝。</p>
             <div class="installation-table"><table><thead><tr><th>主机</th><th>裸文件与 ZIP / 7z 内的成员</th><th>识别与依赖</th></tr></thead><tbody>
@@ -133,6 +133,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
               <tr><td>WonderSwan / WonderSwan Color</td><td><code>.ws</code>、<code>.wsc</code>；支持单文件 ZIP / 7z</td><td>同一系统入口，由卡带内容区分机型。</td></tr>
               <tr><td>Neo Geo Pocket / Color</td><td><code>.ngp</code>、<code>.ngc</code>；支持单文件 ZIP / 7z</td><td>按机型准备 BIOS 与首启 NVRAM。</td></tr>
               <tr><td>PC Engine / TurboGrafx-16 HuCard</td><td><code>.pce</code>；支持单文件 ZIP / 7z</td><td>这是卡带入口，与需要 System Card 的 CD 游戏分开；System Card 本身会识别为固件。</td></tr>
+              <tr><td>Nintendo 64</td><td><code>.z64</code>、<code>.v64</code>、<code>.n64</code>；支持单文件 ZIP / 7z</td><td>三种字节序统一保存为 <code>.z64</code>；按 CIC 与卡带头声明存档类型、地区和实时时钟，不需要 BIOS。</td></tr>
               <tr><td>Atari 2600</td><td><code>.a26</code>；支持单文件 ZIP / 7z</td><td>需要正确的制式、板卡与输入声明，页面按缺项提问；不能按标题猜 mapper。</td></tr>
               <tr><td>Atari 5200</td><td><code>.a52</code>，包括受校验的 CART 头；支持单文件 ZIP / 7z</td><td>板型有歧义时需声明，可指定 2 / 4 端口机型；需要 5200 BIOS。</td></tr>
               <tr><td>Atari 7800</td><td><code>.a78</code>，包括受校验的 A78 头；支持单文件 ZIP / 7z</td><td>无头映像须匹配已知卡带表，A78 头须有效；需要对应制式 BIOS，HSC 按卡带声明准备。</td></tr>
@@ -149,7 +150,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
             <p>使用完整驱动集 <strong><code>.zip</code> / <code>.7z</code></strong>，保留原始驱动文件名和内部芯片文件，服务器会核对内容。这里是一个游戏含多块芯片的集合，不适用上面的「仅一个 ROM 成员」规则。Neo Geo 需另备 <code>neogeo.zip</code>，PGM 需 <code>pgm.zip</code>；CPS2 还需匹配的 <code>.key</code>。</p>
             <p>拆分子集可能缺少母集芯片或设备 ROM；缺这些文件时不能运行。部分 ZIP 子集可从已经入库的匹配母集补全；若报缺母集，请先上传正确完整母集，不能靠改名或只上传子集解决。并非任何 MAME 驱动或任意来源 ROM 集都受当前内核支持。</p>
             <p><strong>CPS3 使用独立「CPS3 街机」区域：</strong>上传 MAME 游戏集 ZIP（含卡带 BIOS）和对应 CloneCD 光盘 <code>.img</code>，服务端再安装为游戏。这个裸 IMG 入口专用于 CPS3，不是 PlayStation 的通用裸 IMG 入口。已有本项目 <code>.fcc3</code> 安装游戏包可由服务器导入，但必须先配置资料库目录；改名的文件不算有效安装包。</p>
-            <p>没有在本表列出的类型，请勿仅凭客户端菜单或扩展名猜测服务器能上传。例如服务器内部有 Nintendo 64 清单校验代码，并不代表本版网页已开放 <code>.z64</code> / <code>.v64</code> / <code>.n64</code> 上传入口。</p>
+            <p>没有在本表列出的类型，请勿仅凭客户端菜单或扩展名猜测服务器能上传。</p>
           </section>
           <section id="troubleshooting" class="installation-section">
             <p class="eyebrow">TROUBLESHOOTING &amp; UPDATE</p><h2>09 常见故障与升级</h2>
