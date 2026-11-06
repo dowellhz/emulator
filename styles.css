@@ -55,6 +55,8 @@ button, input { font: inherit; }
 .site-header nav a::after { background: var(--red); bottom: -10px; content: ""; height: 2px; left: 0; position: absolute; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; width: 100%; }
 .site-header nav a:hover, .site-header nav a.current { color: var(--ink); }
 .site-header nav a:hover::after, .site-header nav a.current::after { transform: scaleX(1); }
+.site-header nav .nav-clients a { color: var(--red); }
+.site-header nav .nav-clients a:hover { color: var(--red-dark); }
 .header-cta { background: var(--ink); border-radius: 999px; color: white; font-size: 11px; font-weight: 750; justify-self: end; padding: 11px 18px; }
 .header-actions { display:flex; align-items:center; justify-self:end; gap:14px; }
 .language-switch { border:1px solid var(--line); border-radius:999px; font-size:12px; font-weight:650; padding:9px 12px; white-space:nowrap; }
