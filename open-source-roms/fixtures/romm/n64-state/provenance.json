@@ -1,0 +1,11 @@
+{
+  "license": "CC0-1.0",
+  "author": "repository original zero-frame diagnostic",
+  "sourcePattern": "FCEmulatorMac/Tests/FCN64CoreCNativeTests/pif_boot.c make_rom",
+  "framesExecuted": 0,
+  "description": "Original 8192-byte pattern; IPL3 last4 solved for public NUS6102 CRC32 90bb6cb5. Contains no copied commercial boot/program. Not a playable game.",
+  "romSHA256": "5f6e787f54bf89cba9e0d247120644e8aaaa2b51156924b224a01d0e43202f9b",
+  "hardwareSHA256": "e0438031ee1f21b00716b27d6fa70d03ea25f83836ea20cfdcbd44959c2e9b15",
+  "wireMagic": "FCN64IR1",
+  "emulator": "fc-nintendo64-state-v2"
+}

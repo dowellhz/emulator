@@ -1,0 +1,1 @@
+{"cartridge":{"board":"n64-cartridge","features":[]},"firmware":[],"inputs":[{"kind":"n64-controller","port":0}],"model":"nintendo-64","nintendo64":{"accessories":[],"cic":"nus-6102","rdramBytes":4194304},"persistence":[],"referenceTraces":[],"region":"usa","schemaVersion":1}

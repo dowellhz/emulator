@@ -1,0 +1,12 @@
+{
+  "id": 33,
+  "user_id": 11,
+  "device_id": "fixture-device-a",
+  "rom_id": 101,
+  "save_slot": null,
+  "start_time": "2026-11-07T00:00:00+00:00",
+  "end_time": "2026-11-07T00:01:00+00:00",
+  "duration_ms": 45000,
+  "created_at": "2026-11-07T00:01:01+00:00",
+  "updated_at": "2026-11-07T00:01:01+00:00"
+}

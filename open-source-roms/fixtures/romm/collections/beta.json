@@ -1,0 +1,24 @@
+[
+  {
+    "id": 7,
+    "name": "Fixture beta picks",
+    "description": "Synthetic account-scoped collection",
+    "rom_ids": [
+      101
+    ],
+    "path_cover_small": null,
+    "path_cover_large": null,
+    "path_covers_small": [],
+    "path_covers_large": [],
+    "is_public": false,
+    "is_favorite": false,
+    "is_virtual": false,
+    "is_smart": false,
+    "created_at": "2026-11-07T00:00:00+00:00",
+    "updated_at": "2026-11-07T00:00:00+00:00",
+    "rom_count": 1,
+    "url_cover": null,
+    "user_id": 22,
+    "owner_username": "fixture-beta"
+  }
+]

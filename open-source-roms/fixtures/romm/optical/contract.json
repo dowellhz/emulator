@@ -1,0 +1,95 @@
+{
+  "authoredOnly": true,
+  "productPreparationInvoked": false,
+  "priorIndependentGoldenManifest": "FCEmulatorLibraryServer/test/fixtures/ps1-chd-fixtures.json",
+  "cases": [
+    {
+      "name": "single-cue",
+      "sources": [
+        "single-cue/disc.cue"
+      ],
+      "golden": "golden/single-cue.fcps1",
+      "goldenSHA256": "c1fa7d599b034b3d72e8f2a5ee880d391d426f4372ca3f457b27c4f430fe96d4"
+    },
+    {
+      "name": "m3u-explicit",
+      "sources": [
+        "m3u/game.m3u"
+      ],
+      "golden": "golden/disc-ab.fcps1",
+      "goldenSHA256": "4b76f62c18cb89fd40841bf97bfd42db95b774833c947dd95e4a7b19aae75f12"
+    },
+    {
+      "name": "ccd-sub",
+      "sources": [
+        "ccd/Disc.ccd"
+      ],
+      "golden": "golden/ccd.fcps1",
+      "goldenSHA256": "113caaa8d911156db1c75b532210e8e6bfcacdc130f5bb3d5e9a3ea01fa17a4c"
+    },
+    {
+      "name": "mds",
+      "sources": [
+        "mds/game.mds"
+      ],
+      "golden": "golden/mds.fcps1",
+      "goldenSHA256": "61e803dc3c44badc8c3d87c43687355f9d655f5f93750beac6354c58775b0a09"
+    },
+    {
+      "name": "deflate-cue",
+      "sources": [
+        "single-cue.zip"
+      ],
+      "golden": "golden/single-cue.fcps1",
+      "goldenSHA256": "c1fa7d599b034b3d72e8f2a5ee880d391d426f4372ca3f457b27c4f430fe96d4"
+    },
+    {
+      "name": "zip64-cue",
+      "sources": [
+        "single-cue-zip64.zip"
+      ],
+      "golden": "golden/single-cue.fcps1",
+      "goldenSHA256": "c1fa7d599b034b3d72e8f2a5ee880d391d426f4372ca3f457b27c4f430fe96d4"
+    },
+    {
+      "name": "deflate-m3u",
+      "sources": [
+        "m3u.zip"
+      ],
+      "golden": "golden/disc-ab.fcps1",
+      "goldenSHA256": "4b76f62c18cb89fd40841bf97bfd42db95b774833c947dd95e4a7b19aae75f12"
+    },
+    {
+      "name": "natural-order",
+      "sources": [
+        "natural.zip"
+      ],
+      "golden": "golden/disc-ba.fcps1",
+      "goldenSHA256": "f99b34a9d570c814587f5c1d102eddc23f2190ff9e8aa5ed1d451b0402f48814"
+    },
+    {
+      "name": "chd-cdzl",
+      "sources": [
+        "chd-cdzl.chd"
+      ],
+      "golden": "golden/disc-a.fcps1",
+      "goldenSHA256": "ef6a230ca188cf584ac612206182346713231c47297fe3a3a0e4cd8cfae4d05f"
+    },
+    {
+      "name": "chd-cdlz",
+      "sources": [
+        "chd-cdlz.chd"
+      ],
+      "golden": "golden/disc-a.fcps1",
+      "goldenSHA256": "ef6a230ca188cf584ac612206182346713231c47297fe3a3a0e4cd8cfae4d05f"
+    },
+    {
+      "name": "chd-cdfl",
+      "sources": [
+        "chd-cdfl.chd"
+      ],
+      "golden": "golden/disc-a.fcps1",
+      "goldenSHA256": "ef6a230ca188cf584ac612206182346713231c47297fe3a3a0e4cd8cfae4d05f"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": 11,
+  "username": "alpha",
+  "enabled": true,
+  "oauth_scopes": [
+    "roms.read",
+    "roms.write",
+    "collections.read",
+    "collections.write",
+    "roms.user.read",
+    "roms.user.write",
+    "devices.read"
+  ]
+}

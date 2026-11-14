@@ -7,7 +7,7 @@
   const relative = location.pathname.slice(root.pathname.length);
   const english = relative.startsWith('en/');
   const page = (english ? relative.slice(3) : relative) || 'index.html';
-  if (!['index.html', 'server.html', 'install.html', 'privacy.html'].includes(page)) return;
+  if (!['index.html', 'server.html', 'install.html', 'privacy.html', 'changelog.html'].includes(page)) return;
   const read = () => {
     try { return localStorage.getItem(key); } catch { return null; }
   };
@@ -52,7 +52,7 @@
         const url = new URL(link.href, location.href);
         const path = url.pathname.slice(root.pathname.length);
         if (url.origin === root.origin && url.pathname.startsWith(root.pathname)
-            && ['index.html', 'server.html', 'install.html', 'privacy.html', ''].includes(path)) {
+            && ['index.html', 'server.html', 'install.html', 'privacy.html', 'changelog.html', ''].includes(path)) {
           url.searchParams.set('lang', 'zh');
           link.href = url.href;
         }

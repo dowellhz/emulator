@@ -1,0 +1,19 @@
+{
+  "id": "fixture-device-a",
+  "user_id": 11,
+  "name": "Original test device",
+  "platform": "test",
+  "client": "fc",
+  "client_version": "1",
+  "ip_address": null,
+  "mac_address": null,
+  "hostname": null,
+  "client_device_identifier": "original-author-device",
+  "sync_mode": "download",
+  "sync_enabled": true,
+  "sync_config": null,
+  "capabilities": {},
+  "last_seen": null,
+  "created_at": "2026-11-07T00:00:00+00:00",
+  "updated_at": "2026-11-07T00:00:00+00:00"
+}

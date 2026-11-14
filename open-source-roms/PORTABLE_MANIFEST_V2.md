@@ -78,6 +78,7 @@ v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`�
 | `megaCD` | `sega-mega-cd` | `.fcmcd` | `mega-cd-` |
 | `pcEngine` | `pc-engine`、`turbografx-16` | `.pce` | `pce-` |
 | `pcEngineCD` | `pc-engine-cd` | `.fcpcecd` | `pce-cd-` |
+| `saturn` | `sega-saturn` | `.fcsat` | `saturn-` |
 | `nintendo64` | `nintendo-64` | `.z64` | `n64-` |
 | `pgm` | `arcade-igs-pgm1` | `.zip/.7z` | `pgm-` |
 | `snes` | `super-nintendo`、`super-famicom` | `.smc/.sfc` | `snes-` |
@@ -87,7 +88,7 @@ v1 清单保持可读，但不得带 `hardware`。v2 清单必须带 `hardware`�
 
 输入设备按系统限制为 `nes-standard`、`arcade-digital`、`mega-drive-3-button`、
 `mega-drive-6-button`、`snes-standard`、`snes-super-scope`、`sms-control-pad`、
-`game-gear-built-in`、`game-boy-built-in`、`gba-built-in`、`ps1-digital-pad`、`ps1-dualshock-analog` 或 `pce-pad`（Mega CD 用 `mega-drive-3-button`）。端口号在 0–7 内且不可重复。
+`game-gear-built-in`、`game-boy-built-in`、`gba-built-in`、`ps1-digital-pad`、`ps1-dualshock-analog`、`pce-pad` 或 `saturn-pad`（Mega CD 用 `mega-drive-3-button`）。端口号在 0–7 内且不可重复。
 
 持久化 `kind` 与 `FCEngineC` ABI v2 一一对应：`nes-battery`、`fds-side`、
 `neogeo-backup-ram`、`neogeo-memory-card`、`cps1-eeprom`、`mega-drive-sram`、
@@ -234,6 +235,23 @@ System Card 按区放在资料库根目录：`pce-syscard-japan.pce`、`pce-sysc
 `bios.pcEngineCD` 与 `bios.megaCD` 同形。只接受 MAME（`85388fbf`）`hash/pce.xml` 的 cdsysb/cdsysa/cdsys/scdsys 与
 `hash/tg16.xml` 的 cdsys/scdsys（`lib/pcecd.js` 的 `PCECD_SYSTEM_CARDS`，按去机头后的 SHA-1）。Super CD-ROM² 光盘只能用
 3.0（Super System Card）启动。公开 SPK/Docker 包不得含 System Card 或 `.fcpcecd`。
+
+Sega Saturn（2026-11-06 加入）：ROM 是光盘的 `.fcsat` 包（`SATURN_DISC_PACKAGE_V1.md`：PlayStation 包的布局、魔数
+`FCSATPK1`），清单只能是 v2。型号 `sega-saturn`；`region` 是 `usa`/`japan`/`europe`，由共享识别库按光盘系统 ID 的地区符号决定
+（U、J、E 顺序取第一个）；板卡固定 `saturn-cd-disc`、无 feature；端口 0、1 各一个 `saturn-pad`；持久化是 slot 0、32768 字节的
+`saturn-backup-ram`（主机内置备份 RAM），卡带为 `backup` 时另有 slot 0、524288 字节的 `saturn-cart-backup`（备份记忆卡带），
+其余情况不得有它；不声明固件。硬件块另有只用于土星的 `saturn: {areaCode, bios, cart}`（三个键都必须有）：`areaCode` 是 SMPC
+区域码（日本 1、北美 4、欧洲 12，第 3 位为 PAL），`bios` 是 BIOS 槽（日本 `japan`，北美与欧洲 `overseas`），两者都由 `region`
+唯一决定；`cart` 是卡带槽里插的卡带：`none`、`extram-1m`（1 MiB 扩展 RAM）、`extram-4m`（4 MiB 扩展 RAM）或 `backup`
+（512 KiB 备份记忆卡带），由共享识别库按光盘产品号（系统 ID 0x20–0x29，去两端空白后整串精确比较，区分大小写）查卡带表决定
+（`FCROMIdentifyDisc.c` `SATURN_CART_ROWS`，取自 Ymir `0d7f58b9` `game_db.cpp`）。需要 ROM 卡带的光盘（拳皇 95、奥特曼）不能入库。
+完整审计会核对 `cart` 与光盘所需的一致。`emulation.saturnDisc` 记录系统 ID（厂商、产品号、版本、发售日、设备信息、地区符号、外设、安全码是否为零售版），
+客户端可忽略。完整审计会重新读包核对地区。
+
+BIOS 按槽放在资料库根目录：`saturn-bios-japan.bin`、`saturn-bios-overseas.bin`（512 KiB，原样 dump），`library.json` 的
+`bios.saturn` 与 `bios.megaCD` 同形（键为 `japan`/`overseas`）。只接受 MAME（`85388fbf`）`sega/sat_console.cpp` 的 saturnjp
+（v1.00、v1.003、v1.01）、saturn/saturneu（海外 v1.00a、v1.01a）、vsaturn、hisaturn（v1.01、v1.02）共 8 个映像（按 SHA-1；
+`lib/saturn.js` 的 `SATURN_BIOSES`，即 `FCROMIdentifyBIOS.c`）；同一槽的新上传覆盖旧的。公开 SPK/Docker 包不得含土星 BIOS 或 `.fcsat`。
 
 PC Engine / TurboGrafx-16 HuCard（2026-10-08 加入）：ROM 是 `.pce`（可带 512 字节拷贝机头），清单只能是 v2。`region` 与 `model`
 成对：日版卡 `japan` + `pc-engine`，美版卡 `usa` + `turbografx-16`。卡属于哪台主机按存储镜像（去掉拷贝机头、不做按位倒序）

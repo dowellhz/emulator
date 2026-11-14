@@ -1,0 +1,104 @@
+{
+  "kind": "repository-authored-test-data",
+  "encoder": "/opt/homebrew/Cellar/rom-tools/0.289/bin/chdman",
+  "encoderSHA256": "74303532f6963b49c2374d3c289d6184861e3494ea6287d7aba06250f5092039",
+  "authorSHA256": "4db359cc3a2433ed2e2c17d2acb631d57a94d67079a3146908a8b20a32466636",
+  "commands": [
+    [
+      "/opt/homebrew/Cellar/rom-tools/0.289/bin/chdman",
+      "createcd",
+      "-i",
+      "/var/folders/n3/pllkvv5d4rl3vk9w2mq9bww40000gn/T/fc-parent-chd-eigyh6xt/Disc B.cue",
+      "-o",
+      "/Users/linlu/nes-emulator/site/open-source-roms/fixtures/romm/parent-chd/parent.chd",
+      "-c",
+      "cdzl",
+      "-hs",
+      "9792",
+      "-np",
+      "1"
+    ],
+    [
+      "/opt/homebrew/Cellar/rom-tools/0.289/bin/chdman",
+      "createcd",
+      "-i",
+      "/var/folders/n3/pllkvv5d4rl3vk9w2mq9bww40000gn/T/fc-parent-chd-eigyh6xt/Disc B.cue",
+      "-o",
+      "/Users/linlu/nes-emulator/site/open-source-roms/fixtures/romm/parent-chd/child-identical.chd",
+      "-c",
+      "cdzl",
+      "-hs",
+      "9792",
+      "-np",
+      "1",
+      "-op",
+      "/Users/linlu/nes-emulator/site/open-source-roms/fixtures/romm/parent-chd/parent.chd"
+    ],
+    [
+      "/opt/homebrew/Cellar/rom-tools/0.289/bin/chdman",
+      "createcd",
+      "-i",
+      "/var/folders/n3/pllkvv5d4rl3vk9w2mq9bww40000gn/T/fc-parent-chd-eigyh6xt/Disc B.cue",
+      "-o",
+      "/Users/linlu/nes-emulator/site/open-source-roms/fixtures/romm/parent-chd/child.chd",
+      "-c",
+      "cdzl",
+      "-hs",
+      "9792",
+      "-np",
+      "1",
+      "-op",
+      "/Users/linlu/nes-emulator/site/open-source-roms/fixtures/romm/parent-chd/parent.chd"
+    ],
+    [
+      "/opt/homebrew/Cellar/rom-tools/0.289/bin/chdman",
+      "createcd",
+      "-i",
+      "/var/folders/n3/pllkvv5d4rl3vk9w2mq9bww40000gn/T/fc-parent-chd-eigyh6xt/Disc B.cue",
+      "-o",
+      "/Users/linlu/nes-emulator/site/open-source-roms/fixtures/romm/parent-chd/child-standalone.chd",
+      "-c",
+      "cdzl",
+      "-hs",
+      "9792",
+      "-np",
+      "1"
+    ],
+    [
+      "/opt/homebrew/Cellar/rom-tools/0.289/bin/chdman",
+      "createcd",
+      "-i",
+      "/var/folders/n3/pllkvv5d4rl3vk9w2mq9bww40000gn/T/fc-parent-chd-eigyh6xt/Disc B.cue",
+      "-o",
+      "/Users/linlu/nes-emulator/site/open-source-roms/fixtures/romm/parent-chd/grandchild.chd",
+      "-c",
+      "cdzl",
+      "-hs",
+      "9792",
+      "-np",
+      "1",
+      "-op",
+      "/Users/linlu/nes-emulator/site/open-source-roms/fixtures/romm/parent-chd/child-standalone.chd"
+    ]
+  ],
+  "files": {
+    "child-identical.chd": {
+      "bytes": 254,
+      "sha256": "9165abca1db2e4bf569c89d59c91486f5be47f7843967225c42908023e8b731b"
+    },
+    "child.chd": {
+      "bytes": 513,
+      "sha256": "459bdf87b46868d19269d77d2bd908b3a8d27c9080582b883bb19d7b957c8117"
+    },
+    "grandchild.chd": {
+      "bytes": 486,
+      "sha256": "44ce49cb8f97620a762377a56c067572825d02059bd624e59c4f897ce3db93ea"
+    },
+    "parent.chd": {
+      "bytes": 1900,
+      "sha256": "97719532ea60a181aaa58ad3c67fac15d2c2629bb11f68161567875588ad2a18"
+    }
+  },
+  "expectedTrackSHA256": "cc7659bfdd05037494dcd7486b7ea57357f0622bd2ea76488d0933d639a87e5e",
+  "childTrackSHA256": "1a4ccb47cb090bc3744e18b15499c6ba2e45350c859bc9b926b118c64c5edb72"
+}

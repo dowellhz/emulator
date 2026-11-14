@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "authoredOnly": true,
+  "productPreparationInvoked": false,
+  "catalogues": {
+    "base": [
+      {
+        "driver": "parent",
+        "parent": null,
+        "system": "neoGeo",
+        "chips": [
+          {
+            "name": "p1.p1",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "c1.c1",
+            "bytes": 17,
+            "crc32": "36a10f4e"
+          }
+        ]
+      },
+      {
+        "driver": "child",
+        "parent": "parent",
+        "system": "neoGeo",
+        "chips": [
+          {
+            "name": "p1.p1",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          }
+        ]
+      }
+    ],
+    "keyed": [
+      {
+        "driver": "keyed",
+        "parent": null,
+        "system": "arcade",
+        "identity": [
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          }
+        ],
+        "chips": [
+          {
+            "name": "p1.p1",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          },
+          {
+            "name": "child.key",
+            "bytes": 20,
+            "crc32": "3bddffa4",
+            "key": true
+          }
+        ]
+      }
+    ],
+    "sockets": [
+      {
+        "driver": "sockets",
+        "parent": null,
+        "system": "neoGeo",
+        "identity": [
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          }
+        ],
+        "chips": [
+          {
+            "name": "a",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "b",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          }
+        ]
+      }
+    ],
+    "alternates": [
+      {
+        "driver": "alternates",
+        "parent": null,
+        "system": "neoGeo",
+        "identity": [
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          }
+        ],
+        "chips": [
+          {
+            "name": "socket1a",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "socket1b",
+            "bytes": 18,
+            "crc32": "78f19044",
+            "alternate": true
+          },
+          {
+            "name": "socket2a",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          }
+        ]
+      }
+    ],
+    "optional": [
+      {
+        "driver": "optional",
+        "parent": null,
+        "system": "neoGeo",
+        "identity": [
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          }
+        ],
+        "chips": [
+          {
+            "name": "p1.p1",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          },
+          {
+            "name": "optional.bin",
+            "bytes": 17,
+            "crc32": "38288896",
+            "optional": true
+          }
+        ]
+      }
+    ],
+    "ambiguous": [
+      {
+        "driver": "parent",
+        "parent": null,
+        "system": "neoGeo",
+        "chips": [
+          {
+            "name": "p1.p1",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "c1.c1",
+            "bytes": 17,
+            "crc32": "36a10f4e"
+          }
+        ]
+      },
+      {
+        "driver": "child",
+        "parent": "parent",
+        "system": "neoGeo",
+        "chips": [
+          {
+            "name": "p1.p1",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          }
+        ]
+      },
+      {
+        "driver": "child-other",
+        "parent": "parent",
+        "system": "neoGeo",
+        "chips": [
+          {
+            "name": "p1.p1",
+            "bytes": 17,
+            "crc32": "281a0312"
+          },
+          {
+            "name": "c1.c1",
+            "bytes": 16,
+            "crc32": "2acfa894"
+          }
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "deflate-renamed-chips",
+      "catalogue": "base",
+      "child": "child.zip",
+      "donors": [
+        "parent.zip"
+      ],
+      "golden": "golden/child.zip",
+      "goldenSHA256": "0ff4771545b483e93c482a1599beeeb3596df63ed4fe219a165093c7b78456f9"
+    },
+    {
+      "name": "bounded-7z-child",
+      "catalogue": "base",
+      "child": "child.7z",
+      "donors": [
+        "parent.zip"
+      ],
+      "golden": "golden/child.zip",
+      "goldenSHA256": "0ff4771545b483e93c482a1599beeeb3596df63ed4fe219a165093c7b78456f9"
+    },
+    {
+      "name": "already-complete",
+      "catalogue": "base",
+      "child": "complete.zip",
+      "donors": [],
+      "unchanged": true
+    },
+    {
+      "name": "missing-parent",
+      "catalogue": "base",
+      "child": "child.zip",
+      "donors": [],
+      "rejected": true
+    },
+    {
+      "name": "ambiguous-identity",
+      "catalogue": "ambiguous",
+      "child": "child.zip",
+      "donors": [
+        "parent.zip"
+      ],
+      "rejected": true
+    },
+    {
+      "name": "donor-key-forbidden",
+      "catalogue": "keyed",
+      "child": "child.zip",
+      "donors": [
+        "parent-key.zip"
+      ],
+      "rejected": true
+    },
+    {
+      "name": "corrupt-child-key-forbidden",
+      "catalogue": "keyed",
+      "child": "child-wrong-key.zip",
+      "donors": [
+        "parent-key.zip"
+      ],
+      "rejected": true
+    },
+    {
+      "name": "child-key-only",
+      "catalogue": "keyed",
+      "child": "child-key.zip",
+      "donors": [
+        "parent.zip"
+      ],
+      "golden": "golden/keyed.zip",
+      "goldenSHA256": "5b061b2e74c02d81627764c2f543192b09532ea7fd51f112df4518945aa53cc2"
+    },
+    {
+      "name": "same-socket-cannot-repeat",
+      "catalogue": "sockets",
+      "child": "child.zip",
+      "donors": [
+        "one-socket.zip"
+      ],
+      "rejected": true
+    },
+    {
+      "name": "two-physical-sockets",
+      "catalogue": "sockets",
+      "child": "child.zip",
+      "donors": [
+        "two-sockets.zip"
+      ],
+      "golden": "golden/sockets.zip",
+      "goldenSHA256": "e583cd37baf529c82bd3db6e1561422012f457f61a2231bce38fe4fa2b144993"
+    },
+    {
+      "name": "alternate-displacement",
+      "catalogue": "alternates",
+      "child": "child.zip",
+      "donors": [
+        "alternates.zip"
+      ],
+      "golden": "golden/alternates.zip",
+      "goldenSHA256": "7fd6c62b5a2520065106ffcb13d63b36bc9acdd011c27df35ee168734ce503b2"
+    },
+    {
+      "name": "optional-only-from-child",
+      "catalogue": "optional",
+      "child": "child-optional.zip",
+      "donors": [
+        "parent.zip"
+      ],
+      "golden": "golden/optional-present.zip",
+      "goldenSHA256": "a0e3ecd40ea7c4b3ed4a69757fcd75b72732cd4a85df4d5406021b22f62eebca"
+    },
+    {
+      "name": "optional-never-borrowed",
+      "catalogue": "optional",
+      "child": "child.zip",
+      "donors": [
+        "parent-optional.zip"
+      ],
+      "golden": "golden/optional-absent.zip",
+      "goldenSHA256": "0ff4771545b483e93c482a1599beeeb3596df63ed4fe219a165093c7b78456f9"
+    }
+  ]
+}

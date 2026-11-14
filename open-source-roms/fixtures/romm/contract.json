@@ -1,0 +1,81 @@
+{
+  "format": "fc-romm-contract-fixtures",
+  "version": 1,
+  "provenance": "synthetic-source-reviewed-not-live-romm",
+  "rommVersion": "5.4.1",
+  "rommCommit": "9c74d0143fbb876f2f62260b91c6fd0b3f590226",
+  "sourceFiles": [
+    "backend/endpoints/responses/rom.py",
+    "backend/endpoints/responses/platform.py",
+    "backend/endpoints/responses/base.py",
+    "backend/endpoints/responses/identity.py",
+    "backend/endpoints/responses/collection.py",
+    "backend/endpoints/roms/__init__.py"
+  ],
+  "runtimeEvidence": {
+    "liveRomMTested": false,
+    "reason": "These fixtures are generated examples; NAS live HTTP/OpenAPI evidence is stored separately"
+  },
+  "ids": {
+    "singleRomID": 101,
+    "singleFileID": 1001,
+    "multiRomID": 202,
+    "multiFileIDs": [
+      2001,
+      2002
+    ],
+    "customPlatformRomID": 303
+  },
+  "syntheticContent": {
+    "1001": {
+      "bytes": 24592,
+      "sha256": "66310763063aeb1f054d7c88d96b97b050f761d9a1d388ff82ac90c1149de391",
+      "sha1": "35415cfde8365da76668aafc09b380a16ade66ff",
+      "md5": "04016537f1fb26d81c68e3f939dbe346",
+      "crc32": "611139ff"
+    },
+    "2001": {
+      "bytes": 24592,
+      "sha256": "66310763063aeb1f054d7c88d96b97b050f761d9a1d388ff82ac90c1149de391",
+      "sha1": "35415cfde8365da76668aafc09b380a16ade66ff",
+      "md5": "04016537f1fb26d81c68e3f939dbe346",
+      "crc32": "611139ff"
+    },
+    "2002": {
+      "bytes": 24592,
+      "sha256": "ca797d0cfaafc379c840305b0d74b40703821c04000e63d4f5671bee8c28b9e5",
+      "sha1": "9b6146f7d75eabced2ebb804572672da22de4b4b",
+      "md5": "75a63a8ee253e96023394ba45fb2524c",
+      "crc32": "8a6f01c7"
+    },
+    "3001": {
+      "bytes": 24592,
+      "sha256": "66310763063aeb1f054d7c88d96b97b050f761d9a1d388ff82ac90c1149de391",
+      "sha1": "35415cfde8365da76668aafc09b380a16ade66ff",
+      "md5": "04016537f1fb26d81c68e3f939dbe346",
+      "crc32": "611139ff"
+    },
+    "4001": {
+      "bytes": 24592,
+      "sha256": "66310763063aeb1f054d7c88d96b97b050f761d9a1d388ff82ac90c1149de391",
+      "sha1": "35415cfde8365da76668aafc09b380a16ade66ff",
+      "md5": "04016537f1fb26d81c68e3f939dbe346",
+      "crc32": "611139ff"
+    },
+    "5001": {
+      "bytes": 24592,
+      "sha256": "66310763063aeb1f054d7c88d96b97b050f761d9a1d388ff82ac90c1149de391",
+      "sha1": "35415cfde8365da76668aafc09b380a16ade66ff",
+      "md5": "04016537f1fb26d81c68e3f939dbe346",
+      "crc32": "611139ff"
+    }
+  },
+  "expectations": {
+    "pages/files-omitted.json": "files omitted by with_files=false; not evidence of missing ROMs",
+    "pages/null-total.json": "valid page with unknown total",
+    "roms/custom-platform.json": "unknown platform slug must remain inspectable; content is synthetic NES",
+    "roms/multi-file.json": "two valid synthetic cartridges; refuse automatic first-member selection",
+    "roms/no-remote-hash.json": "local SHA-256 identity must not be advertised as remote SHA-256 verification",
+    "invalid/fractional-id.json": "reject fractional object ID"
+  }
+}

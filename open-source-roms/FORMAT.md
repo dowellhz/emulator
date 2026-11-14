@@ -104,7 +104,7 @@ Falling.png
 - `bytes` 必须等于文件的实际字节数。
 - `sha256` 必须等于文件内容的 SHA-256，并使用 64 位小写十六进制字符。
 - NES ROM 使用 `.nes`；封面推荐 `.png`，也支持 `.jpg`、`.jpeg` 和 `.webp`。
-- 单个 ROM 最大 512 MiB（PlayStation 光盘包 `.fcps1`、Mega CD 光盘包 `.fcmcd`、PC Engine CD 光盘包 `.fcpcecd` 每张盘最大 1 GiB、整包最大 4 GiB），单张封面最大 32 MiB，资料库最多 5000 个游戏。
+- 单个 ROM 最大 512 MiB（PlayStation 光盘包 `.fcps1`、Mega CD 光盘包 `.fcmcd`、PC Engine CD 光盘包 `.fcpcecd`、Sega Saturn 光盘包 `.fcsat` 每张盘最大 1 GiB、整包最大 4 GiB），单张封面最大 32 MiB，资料库最多 5000 个游戏。
 
 macOS 可使用以下命令生成完整性字段：
 

@@ -1,0 +1,2 @@
+# CloneCD fixtures intentionally preserve the format's CRLF bytes.
+*.ccd -text whitespace=cr-at-eol

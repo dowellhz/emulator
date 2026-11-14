@@ -1,0 +1,13 @@
+{
+  "author": "repository original RGB arithmetic pattern",
+  "license": "CC0-1.0",
+  "originalPNGDimensions": [
+    32,
+    16
+  ],
+  "transformedPNGDimensions": [
+    16,
+    8
+  ],
+  "jpeg": "OS sips JPEG encoding of original.png, no external image source"
+}
