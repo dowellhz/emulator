@@ -25,7 +25,7 @@
     </header>
     <main class="installation section-shell">
       <header class="installation-intro">
-        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.4.0</p>
+        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.5.0</p>
         <h1>装好应用，<br><em>管理自己的游戏库。</em></h1>
         <p>Mac 应用可以直接管理本地 ROM 并游玩；也可以用电脑或群晖 NAS 存放共享资料库，让电视、Mac 或手机连接。先选适合自己的用法，再配置目录、导入游戏。</p>
         <div class="installation-choice">
@@ -92,6 +92,8 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
               <tr><td>Neo Geo / IGS PGM</td><td>分别上传 <code>neogeo.zip</code> / <code>pgm.zip</code>。</td></tr>
               <tr><td>PlayStation / Mega CD</td><td>与游戏地区匹配的 BIOS；按文件身份自动区分日、美、欧版。</td></tr>
               <tr><td>PC Engine CD</td><td>有效的 System Card；Super CD-ROM² 游戏需要 3.0。</td></tr>
+              <tr><td>世嘉土星 Sega Saturn</td><td>与游戏地区匹配的土星 BIOS（日本或海外），由文件身份判定。</td></tr>
+              <tr><td>PSP</td><td>不需要 BIOS。系统字体（<code>flash0</code> 的 <code>.pgf</code>）可选，用到系统字体的游戏才需要。</td></tr>
               <tr><td>Sega 32X</td><td>主 SH-2、副 SH-2、MD 侧三件 BIOS，按卡片提示逐件上传。</td></tr>
               <tr><td>Neo Geo Pocket</td><td>对应单色 / 彩色机型的 BIOS，以及对应的首启 NVRAM。</td></tr>
               <tr><td>Atari 5200 / 7800</td><td>5200 使用 <code>atari5200-bios.rom</code>；7800 当前客户端需要游戏制式对应的 NTSC / PAL BIOS，HSC 只用于声明 High Score Cartridge 的卡带。</td></tr>
@@ -121,7 +123,7 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
           </section>
           <section id="rom-formats" class="installation-section">
             <p class="eyebrow">HELP · ROM FORMATS</p><h2>08 服务器支持哪些 ROM？</h2>
-            <p>ROM 是你导出的游戏文件；ZIP / 7z 是把文件装在一起的压缩容器。下面列的是 <strong>1.4.0 服务器上传入口</strong>实际接受的类型，不等同于每款游戏都能运行，也不把客户端单独支持的格式算进来。先在「设置」中选好资料库目录，再上传。</p>
+            <p>ROM 是你导出的游戏文件；ZIP / 7z 是把文件装在一起的压缩容器。下面列的是 <strong>1.5.0 服务器上传入口</strong>实际接受的类型，不等同于每款游戏都能运行，也不把客户端单独支持的格式算进来。先在「设置」中选好资料库目录，再上传。</p>
             <h3>卡带与磁碟游戏</h3>
             <p>下表的「单文件 ZIP / 7z」指压缩包内只放<strong>一个对应格式的游戏文件</strong>。封面、说明文档和其他游戏请不要混在同一压缩包内；系统会按成员内容校验，不会把所有 ZIP 都当作街机。文件可在子目录内；常见系统元数据会忽略，危险路径或损坏压缩包会拒绝。</p>
             <div class="installation-table"><table><thead><tr><th>主机</th><th>裸文件与 ZIP / 7z 内的成员</th><th>识别与依赖</th></tr></thead><tbody>
@@ -149,6 +151,8 @@ docker compose ps</code></pre><p>首次构建需要联网获取基础镜像。�
               <tr><td>PlayStation</td><td><code>.fcps1</code>；CD 镜像 <code>.chd</code>；ZIP / 7z 中的 CUE + BIN、CHD，或 CloneCD 的 CCD + 同名 IMG（及可选 SUB）</td><td>按光盘身份识别，需要对应地区 BIOS。</td></tr>
               <tr><td>Mega CD / Sega CD</td><td><code>.fcmcd</code>；CD 镜像 <code>.chd</code>，或 ZIP / 7z 中的 CUE + BIN、CHD，或 CloneCD CCD + IMG（及可选 SUB）</td><td>经过光盘内容探测分流到 Mega CD，不是把任何 BIN 都当光盘；需要对应地区 BIOS。</td></tr>
               <tr><td>PC Engine CD</td><td><code>.fcpcecd</code>；CD 镜像 <code>.chd</code>，或 ZIP / 7z 中的 CUE + BIN、CHD，或 CloneCD CCD + IMG（及可选 SUB）</td><td>按光盘内容探测分流；需要有效 System Card，Super CD-ROM² 游戏需 3.0。</td></tr>
+              <tr><td>Sega Saturn</td><td><code>.fcsat</code>；CD 镜像 <code>.chd</code>，或 ZIP / 7z 中的 CUE + BIN、CHD，或 CloneCD CCD + IMG（及可选 SUB）</td><td>按光盘系统 ID 识别并取地区；需要对应地区（日本 / 海外）的土星 BIOS。需要 ROM 扩展卡带的少数游戏会拒收。</td></tr>
+              <tr><td>PSP</td><td>UMD 镜像 <code>.iso</code>、<code>.cso</code>（CISO），直接上传，不要再打包</td><td>按镜像内的 <code>PSP_GAME/PARAM.SFO</code> 与 <code>EBOOT.BIN</code> 识别，不是把任何 ISO 都当 PSP；不需要 BIOS。ZSO、DAX 与 CHD 格式的 PSP 镜像不接受。系统字体可在「BIOS 与固件」页另行上传（可选）。</td></tr>
             </tbody></table></div>
             <p><code>.cue</code> 是轨道目录，不是游戏数据本身。请把它与所引用的全部 BIN 按原相对路径装进同一个 ZIP / 7z，<strong>不要只上传 CUE，也不要把裸 BIN 当作光盘上传</strong>。同一游戏的多张盘可在一个包内，每盘一份 CUE / CHD / CCD；不要混用这几种布局，也不要把不同游戏混成一个包。<code>.fcps1</code> / <code>.fcmcd</code> / <code>.fcpcecd</code> 是本项目的光盘包格式，不能靠修改扩展名生成。</p>
             <h3>街机、Neo Geo 与 PGM</h3>

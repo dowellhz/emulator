@@ -25,7 +25,7 @@
     </header>
     <main class="installation section-shell">
       <header class="installation-intro">
-        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.4.0</p>
+        <p class="eyebrow">STEP BY STEP · LIBRARY SERVER 1.5.0</p>
         <h1>Install your app.<br><em>Manage your game library.</em></h1>
         <p>Play and manage local ROMs directly with the Mac app, or keep a shared library on a computer or Synology NAS. Choose your setup below, then import games and connect your devices.</p>
         <div class="installation-choice">
@@ -92,6 +92,8 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
               <tr><td>Neo Geo / IGS PGM</td><td>Upload <code>neogeo.zip</code> for Neo Geo or <code>pgm.zip</code> for PGM.</td></tr>
               <tr><td>PlayStation / Mega CD</td><td>A BIOS matching the game’s region. The file’s identity determines whether it is Japanese, US, or European.</td></tr>
               <tr><td>PC Engine CD</td><td>A valid System Card. Super CD-ROM² games require version 3.0.</td></tr>
+              <tr><td>Sega Saturn</td><td>A Saturn BIOS matching the game’s region (Japan or overseas). The file’s identity determines which it is.</td></tr>
+              <tr><td>PSP</td><td>No BIOS. System fonts (<code>.pgf</code> files from <code>flash0</code>) are optional and only needed by games that use them.</td></tr>
               <tr><td>Sega 32X</td><td>All three BIOS files: master SH-2, slave SH-2, and Mega Drive side. Upload each using the cards.</td></tr>
               <tr><td>Neo Geo Pocket</td><td>The BIOS and initial battery-backed memory image (NVRAM) for the matching monochrome or color model.</td></tr>
               <tr><td>Atari 5200 / 7800</td><td>The 5200 uses <code>atari5200-bios.rom</code>. Current 7800 clients need the NTSC or PAL BIOS for the game’s video standard. The High Score Cartridge (HSC) file is needed only when the cartridge declares that accessory.</td></tr>
@@ -121,7 +123,7 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
           </section>
           <section id="rom-formats" class="installation-section">
             <p class="eyebrow">HELP · ROM FORMATS</p><h2>08 Which ROMs can the server accept?</h2>
-            <p>A ROM is a game file you have dumped; ZIP / 7z files are containers that hold files together. The types below are accepted by the <strong>1.4.0 server’s upload interface</strong>. This does not mean every game will run, or include formats supported only by an individual client. Choose a library folder in “Settings” before uploading.</p>
+            <p>A ROM is a game file you have dumped; ZIP / 7z files are containers that hold files together. The types below are accepted by the <strong>1.5.0 server’s upload interface</strong>. This does not mean every game will run, or include formats supported only by an individual client. Choose a library folder in “Settings” before uploading.</p>
             <h3>Cartridge and disk games</h3>
             <p>“Single-file ZIP / 7z” below means the archive contains <strong>one game file in the listed format</strong>. Keep covers, readme files, and other games out of the same archive. The server validates the contents instead of treating every ZIP as an arcade set. The file may be inside a subfolder. Common system metadata is ignored; unsafe paths and damaged archives are rejected.</p>
             <div class="installation-table"><table><thead><tr><th>Console</th><th>Raw files and members inside ZIP / 7z</th><th>Identification and dependencies</th></tr></thead><tbody>
@@ -149,6 +151,8 @@ docker compose ps</code></pre><p>The first build needs internet access to downlo
               <tr><td>PlayStation</td><td><code>.fcps1</code>; CD images in <code>.chd</code> format; ZIP / 7z containing CUE + BIN, CHD, or CloneCD CCD + a matching IMG (and optional SUB)</td><td>Identified from the disc. Requires the BIOS for its region.</td></tr>
               <tr><td>Mega CD / Sega CD</td><td><code>.fcmcd</code>; CD images in <code>.chd</code> format; or ZIP / 7z containing CUE + BIN, CHD, or CloneCD CCD + IMG (and optional SUB)</td><td>Disc contents identify it as Mega CD; an arbitrary BIN is not a disc image. Requires the BIOS for its region.</td></tr>
               <tr><td>PC Engine CD</td><td><code>.fcpcecd</code>; CD images in <code>.chd</code> format; or ZIP / 7z containing CUE + BIN, CHD, or CloneCD CCD + IMG (and optional SUB)</td><td>Identified from disc contents. Requires a valid System Card; Super CD-ROM² games need 3.0.</td></tr>
+              <tr><td>Sega Saturn</td><td><code>.fcsat</code>; CD images in <code>.chd</code> format; or ZIP / 7z containing CUE + BIN, CHD, or CloneCD CCD + IMG (and optional SUB)</td><td>Identified from the disc’s system ID, which also gives its region. Requires the Saturn BIOS for that region (Japan / overseas). The few games that need a ROM expansion cartridge are refused.</td></tr>
+              <tr><td>PSP</td><td>UMD images in <code>.iso</code> or <code>.cso</code> (CISO), uploaded directly without another archive</td><td>Identified by <code>PSP_GAME/PARAM.SFO</code> and <code>EBOOT.BIN</code> inside the image; not every ISO is treated as PSP. No BIOS is needed. ZSO, DAX and CHD PSP images are not accepted. System fonts can be added separately under “BIOS &amp; firmware” (optional).</td></tr>
             </tbody></table></div>
             <p>A <code>.cue</code> file lists the tracks; it is not the game data itself. Put it and every BIN it references into the same ZIP / 7z, keeping their relative paths. <strong>Do not upload just the CUE or a raw BIN as a disc.</strong> Multiple discs for the same game can share one archive, with one CUE / CHD / CCD per disc. Do not mix these layouts or combine different games in one archive. <code>.fcps1</code> / <code>.fcmcd</code> / <code>.fcpcecd</code> are this project’s disc package formats; changing a filename extension does not create one.</p>
             <h3>Arcade, Neo Geo, and PGM</h3>
