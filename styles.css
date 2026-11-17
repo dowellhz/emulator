@@ -189,6 +189,11 @@ details[open]>summary .detail-plus{transform:rotate(45deg)}
 .download-bottom>div{max-width:450px;text-align:right}
 .download-bottom>div>p{font-size:10px;color:#b9c6b2;line-height:1.9;margin-bottom:8px}
 .download-bottom>div>a{font-size:10px;color:var(--mint)}
+.server-downloads{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;border-top:1px solid var(--line-light);margin-top:36px;padding-top:36px}
+.server-downloads-heading{grid-column:span 2;align-self:center;padding-right:48px}
+.server-downloads-heading h3{font-size:34px;line-height:1.15;margin:10px 0 14px;color:var(--white)}
+.server-downloads-heading>p:not(.eyebrow){font-size:13px;line-height:1.8;color:#b9c6b2;max-width:420px;margin-bottom:14px}
+.server-downloads-heading .text-link{color:var(--mint);font-size:12px}
 .home-faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:90px;padding-block:96px}
 .home-faq h2{font-size:clamp(38px,4vw,55px)}
 .home-faq .text-link{margin-top:30px}
@@ -355,6 +360,8 @@ details[open]>summary .detail-plus{transform:rotate(45deg)}
 .intro-band-inner>span{font-size:11px}
 .intro-band p{font-size:14px}
 .app-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.server-downloads{grid-template-columns:repeat(2,minmax(0,1fr))}
+.server-downloads-heading{grid-column:1/-1;padding-right:0;margin-bottom:8px}
 .app-card{padding:28px}
 .app-card-top>.micro-label{font-size:8px}
 .app-description{font-size:13px}
@@ -526,6 +533,8 @@ html:not(.js-ready) .home-hero,html:not(.js-ready) .installation,html:not(.js-re
 .library-diagram>p{font-size:9px;margin-top:24px}
 .home-download{padding-block:54px}
 .app-grid{grid-template-columns:1fr;gap:16px}
+.server-downloads{grid-template-columns:1fr;gap:16px;margin-top:28px;padding-top:28px}
+.server-downloads-heading h3{font-size:28px}
 .app-card{padding:24px;display:grid;grid-template-columns:1fr auto;column-gap:12px}
 .app-card-top{grid-column:1/-1;margin-bottom:20px}
 .app-card-top>.micro-label{font-size:8px}
